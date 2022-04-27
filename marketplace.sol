@@ -14,9 +14,12 @@ contract Marketplace {
         uint sold;
     }
 
+    // keep track how many products
+    uint internal productsLength = 0;
+
     mapping(uint => Product) internal products;
 
-    function writeProduct(uint _index, 
+    function writeProduct( 
         string memory _name,
         string memory _image,
         string memory _description,
@@ -25,7 +28,7 @@ contract Marketplace {
     ) public {
         uint _sold = 0;
 
-        products[_index] = Product(
+        products[productsLength] = Product(
             payable(msg.sender),
             _name,
             _image,
@@ -34,6 +37,13 @@ contract Marketplace {
             _price,
             _sold
         );
+
+        // increase whenever we have a new product added
+        productsLength++;
+    }
+
+    function getProductsLength() public view returns (uint) {
+        return productsLength;
     }
 
     function readProduct(uint _index) public view returns (
