@@ -17,6 +17,8 @@ interface IERC20Token {
 
 contract Marketplace {  
 
+    address internal cUsdTokenAddress = 0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1;
+
     struct Product {
         address payable owner;
         string name;
@@ -39,6 +41,7 @@ contract Marketplace {
         string memory _location,
         uint _price
     ) public {
+        // 0: is available, 1: is sold - not available
         uint _sold = 0;
 
         products[productsLength] = Product(
@@ -77,5 +80,19 @@ contract Marketplace {
             products[_index].price,
             products[_index].sold
         );
+    }
+
+    // buy a product from our contract
+    function buyProduct(uint _index) public payable {
+        require(
+            IERC20Token(cUsdTokenAddress).transferFrom(
+                msg.sender,
+                products[_index].owner,
+                products[_index].price
+            ),
+            "Transfer failed"
+        );
+
+        products[_index].sold++;
     }
 }
