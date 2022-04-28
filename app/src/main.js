@@ -1,3 +1,29 @@
+import Web3 from 'web3'
+import { newKitFromWeb3 } from '@celo/contractkit'
+import BigNumber from "bignumber.js"
+
+const ERC20_DECIMALS = 18
+
+let kit
+
+const connectCeloWallet = async function () {
+    if (window.celo) {
+        notification("⚠️ Please approve this DApp to use it.")
+        try {
+            await window.celo.enable()
+            notificationOff()
+
+            const web3 = new Web3(window.celo)
+            kit = newKitFromWeb3(web3)
+
+        } catch (error) {
+            notification(`⚠️ ${error}.`)
+        }
+    } else {
+        notification("⚠️ Please install the CeloExtensionWallet.")
+    }
+}
+
 // Using jquery to handle all logic in index.html
 // Sample product data
 const products = [
