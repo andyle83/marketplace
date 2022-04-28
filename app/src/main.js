@@ -76,9 +76,11 @@ const products = [
     },
 ];
 
-// Hard code function (temp) to return wallet balance
-const getBalance = function () {
-    document.querySelector("#balance").textContent = 21
+// Return select wallet balance
+const getBalance = async function () {
+    const totalBalance = await kit.getTotalBalance(kit.defaultAccount)
+    const cUSDBalance = totalBalance.cUSD.shiftedBy(-ERC20_DECIMALS).toFixed(2)
+    document.querySelector("#balance").textContent = cUSDBalance
 }
 
 // Iterate product list to create new product UI component
