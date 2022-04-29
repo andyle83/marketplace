@@ -17,6 +17,7 @@ Blockchain:
 - Written in Solidity for Celo blockchain network
 - Deploying in Celo testnet: https://alfajores-blockscout.celo-testnet.org/
 - Deploy address: `0xF377516621Cef90E12C0b5133adc783A336B1123`
+- Development framework: HardHat
 
 Frontend:
 - Nodejs application 
