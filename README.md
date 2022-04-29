@@ -2,7 +2,12 @@
 
 ### Introduce
 
-There is a great course in decade.org about Celo (101 & 102). It helps us to understand about Solidity, Celo blockchain, and how to make a full-stack application.
+This project is about a simple marketplace to manage / selling product. Is based on great course in decade.org about Celo (101 & 102). It helps us to understand about Solidity, Celo blockchain, and how to make a full-stack application.
+
+Here are some features are implemented:
+- See products hosted on the Celo Blockchain
+- Purchase products with cUSD and pay the owner
+- Add your own products to the dApp
 
 ### Technology:
 
