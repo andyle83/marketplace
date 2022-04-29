@@ -16,7 +16,7 @@ Published website: https://andyle83.github.io/marketplace/
 Blockchain:
 - Written in Solidity for Celo blockchain network
 - Deploying in Celo testnet: https://alfajores-blockscout.celo-testnet.org/
-- Deploy address: `0xF377516621Cef90E12C0b5133adc783A336B1123`
+- Deploy address: `0xF377516621Cef90E12C0b5133adc783A336B1123` (can be changed)
 - Development framework: HardHat
 
 Frontend:
@@ -24,8 +24,6 @@ Frontend:
 - [Webpack](https://webpack.js.org/guides/getting-started/) as module bundler
 - Utilise [Celo ContractKit](https://docs.celo.org/developer-guide/contractkit/setup)
 - Using jQuery to update UI component with simple even handler function
-
-Screenshot:
 
 ### Application screenshot
 
@@ -60,6 +58,16 @@ Screenshot:
   - Administration features
     - Not everyone can add new product / category (admin, group of admin)
     - Selling reporting etc..
+
+### Useful commands
+
+- Celo-cli
+  - New account: `celocli account:new`
+  - Check configure: `celocli config:get`
+  - Set configure (for network): `celocli config:set --node=https://alfajores-forno.celo-testnet.org`
+  - Get balance (sample address): `celocli account:balance 0x8c5e4A133aA48d0B776D24DD6eA8315Ae4eE0bb8`
+- Hardhat 
+  - Deploy `npx hardhat run scripts/sample-script.js --network alfajores`
 
 **Reference**
 
