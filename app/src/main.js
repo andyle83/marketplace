@@ -39,6 +39,7 @@ const connectCeloWallet = async function () {
 
 // Approve for payment
 async function approve(_price) {
+    console.log(`approve call with price ${_price.shiftedBy(-ERC20_DECIMALS).toFixed(2)} cUSD`)
     const cUSDContract = new kit.web3.eth.Contract(erc20Abi, cUSDContractAddress)
 
     // Payer is default account that get from above method: connectCeloWallet
@@ -185,7 +186,7 @@ document
             notification(`⚠️ ${error}.`)
         }
         notification(`🎉 You successfully added "${params[0]}".`)
-        getProducts()
+        await getProducts()
     });
 
 // handle when user click on buy product button
@@ -202,11 +203,12 @@ document.querySelector("#marketplace").addEventListener("click", async (e) => {
         try {
             // purchase product
             const result = await contract.methods
+                // TODO: better with type system in here
                 .buyProduct(index)
                 .send({ from: kit.defaultAccount })
             notification(`🎉 You successfully bought "${products[index].name}".`)
-            getProducts()
-            getBalance()
+            await getProducts()
+            await getBalance()
         } catch (error) {
             notification(`⚠️ ${error}.`)
         }
