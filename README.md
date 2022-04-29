@@ -66,8 +66,12 @@ Frontend:
   - Check configure: `celocli config:get`
   - Set configure (for network): `celocli config:set --node=https://alfajores-forno.celo-testnet.org`
   - Get balance (sample address): `celocli account:balance 0x8c5e4A133aA48d0B776D24DD6eA8315Ae4eE0bb8`
-- Hardhat 
-  - Deploy `npx hardhat run scripts/sample-script.js --network alfajores`
+- Hardhat
+  - Accounts: `npx hardhat accounts`
+  - Compile: `npx hardhat compile`
+  - Testing: `npx hardhat test`
+  - Deploy: `npx hardhat run scripts/sample-script.js --network alfajores`
+  - In-memory network: `npx hardhat node`
 
 **Reference**
 
