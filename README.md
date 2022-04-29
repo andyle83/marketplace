@@ -62,4 +62,5 @@ Screenshot:
 
 **Reference**
 
-- https://dacade.org/
+- [Celo Development 101](https://dacade.org/)
+- [The Ultimate Guide to Deploy Celo dApps using Hardhat](https://medium.com/celodevelopers/hardhat-and-celo-the-ultimate-guide-to-deploy-celo-dapps-using-hardhat-747f42ad0788)
