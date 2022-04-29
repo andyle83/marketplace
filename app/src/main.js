@@ -37,6 +37,17 @@ const connectCeloWallet = async function () {
     }
 }
 
+// Approve for payment
+async function approve(_price) {
+    const cUSDContract = new kit.web3.eth.Contract(erc20Abi, cUSDContractAddress)
+
+    // Payer is default account that get from above method: connectCeloWallet
+    const result = await cUSDContract.methods
+        .approve(MPContractAddress, _price) // send money to contract's owner
+        .send({ from: kit.defaultAccount })
+    return result
+}
+
 // Calling contract via RPC
 const getProducts = async function() {
     const _productsLength = await contract.methods.getProductsLength().call()
@@ -148,7 +159,7 @@ window.addEventListener("load", async () => {
     notification("⌛ Loading...")
     await connectCeloWallet()
     await getBalance()
-    renderProducts()
+    await getProducts()
     notificationOff()
 })
 
@@ -178,12 +189,27 @@ document
     });
 
 // handle when user click on buy product button
-document.querySelector("#marketplace").addEventListener("click", (e) => {
+document.querySelector("#marketplace").addEventListener("click", async (e) => {
     if(e.target.className.includes("buyBtn")) {
         const index = e.target.id
-        products[index].sold++
-        notification(`🎉 You successfully bought "${products[index].name}".`)
-        renderProducts()
+        notification("⌛ Waiting for payment approval...")
+        try {
+            await approve(products[index].price)
+        } catch (error) {
+            notification(`⚠️ ${error}.`)
+        }
+        notification(`⌛ Awaiting payment for "${products[index].name}"...`)
+        try {
+            // purchase product
+            const result = await contract.methods
+                .buyProduct(index)
+                .send({ from: kit.defaultAccount })
+            notification(`🎉 You successfully bought "${products[index].name}".`)
+            getProducts()
+            getBalance()
+        } catch (error) {
+            notification(`⚠️ ${error}.`)
+        }
     }
 });
 
