@@ -10,7 +10,7 @@ module.exports = {
     main: path.resolve(process.cwd(), "src", "main.js")
   },
   output: {
-    path: path.resolve(process.cwd(), "docs"),
+    path: path.resolve(__dirname, "../docs/"),
     publicPath: ""
   },
 	node: {
