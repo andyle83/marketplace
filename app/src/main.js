@@ -35,55 +35,6 @@ const connectCeloWallet = async function () {
     }
 }
 
-// Using jquery to handle all logic in index.html
-// Sample product data
-// const products = [
-//     {
-//         name: "Giant BBQ",
-//         image: "https://i.imgur.com/yPreV19.png",
-//         description: `Grilled chicken, beef, fish, sausages, bacon,
-//       vegetables served with chips.`,
-//         location: "Kimironko Market",
-//         owner: "0x32Be343B94f860124dC4fEe278FDCBD38C102D88",
-//         price: 3,
-//         sold: 27,
-//         index: 0,
-//     },
-//     {
-//         name: "BBQ Chicken",
-//         image: "https://i.imgur.com/NMEzoYb.png",
-//         description: `French fries and grilled chicken served with gacumbari
-//       and avocados with cheese.`,
-//         location: "Afrika Fresh KG 541 St",
-//         owner: "0x3275B7F400cCdeBeDaf0D8A9a7C8C1aBE2d747Ea",
-//         price: 4,
-//         sold: 12,
-//         index: 1,
-//     },
-//     {
-//         name: "Beef burrito",
-//         image: "https://i.imgur.com/RNlv3S6.png",
-//         description: `Homemade tortilla with your choice of filling, cheese,
-//       guacamole salsa with Mexican refried beans and rice.`,
-//         location: "Asili - KN 4 St",
-//         owner: "0x2EF48F32eB0AEB90778A2170a0558A941b72BFFb",
-//         price: 2,
-//         sold: 35,
-//         index: 2,
-//     },
-//     {
-//         name: "Barbecue Pizza",
-//         image: "https://i.imgur.com/fpiDeFd.png",
-//         description: `Barbecue Chicken Pizza: Chicken, gouda, pineapple, onions
-//       and house-made BBQ sauce.`,
-//         location: "Kigali Hut KG 7 Ave",
-//         owner: "0x2EF48F32eB0AEB90778A2170a0558A941b72BFFb",
-//         price: 1,
-//         sold: 2,
-//         index: 3,
-//     },
-// ];
-
 // Calling contract via RPC
 const getProducts = async function() {
     const _productsLength = await contract.methods.getProductsLength().call()
@@ -104,6 +55,7 @@ const getProducts = async function() {
         })
         _products.push(_product)
     }
+    // Wait until products are updated and render products list again
     products = await Promise.all(_products)
     renderProducts()
 }
@@ -111,6 +63,7 @@ const getProducts = async function() {
 // Return select wallet balance
 const getBalance = async function () {
     const totalBalance = await kit.getTotalBalance(kit.defaultAccount)
+    // Need to shift 18 digits, and round up 2
     const cUSDBalance = totalBalance.cUSD.shiftedBy(-ERC20_DECIMALS).toFixed(2)
     document.querySelector("#balance").textContent = cUSDBalance
 }
@@ -150,7 +103,7 @@ function productTemplate(_product) {
           <a class="btn btn-lg btn-outline-dark buyBtn fs-6 p-3" id=${
         _product.index
     }>
-            Buy for ${_product.price} cUSD
+            Buy for ${_product.price.shiftedBy(-ERC20_DECIMALS).toFixed(2)} cUSD
           </a>
         </div>
       </div>
@@ -200,21 +153,26 @@ window.addEventListener("load", async () => {
 // handle when user click on new product button
 document
     .querySelector("#newProductBtn")
-    .addEventListener("click", () => {
-        const _product = {
-            // who this address owner ?
-            owner: "0x2EF48F32eB0AEB90778A2170a0558A941b72BFFb",
-            name: document.getElementById("newProductName").value,
-            image: document.getElementById("newImgUrl").value,
-            description: document.getElementById("newProductDescription").value,
-            location: document.getElementById("newLocation").value,
-            price: document.getElementById("newPrice").value,
-            sold: 0,
-            index: products.length,
+    .addEventListener("click", async (e) => {
+        const params = [
+            document.getElementById("newProductName").value,
+            document.getElementById("newImgUrl").value,
+            document.getElementById("newProductDescription").value,
+            document.getElementById("newLocation").value,
+            new BigNumber(document.getElementById("newPrice").value)
+                .shiftedBy(ERC20_DECIMALS)
+                .toString()
+        ]
+        notification(`⌛ Adding "${params[0]}"...`)
+        try {
+            const result = await contract.methods
+                .writeProduct(...params)
+                .send({ from: kit.defaultAccount })
+        } catch (error) {
+            notification(`⚠️ ${error}.`)
         }
-        products.push(_product)
-        notification(`🎉 You successfully added "${_product.name}".`)
-        renderProducts()
+        notification(`🎉 You successfully added "${params[0]}".`)
+        getProducts()
     });
 
 // handle when user click on buy product button
