@@ -157,9 +157,10 @@ function notificationOff() {
 }
 
 // event handler
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
     notification("⌛ Loading...")
-    getBalance()
+    await connectCeloWallet()
+    await getBalance()
     renderProducts()
     notificationOff()
 })
