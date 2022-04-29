@@ -1,4 +1,4 @@
-## marketplace Celo 101 course
+## Celo 101 course - Marketplace
 
 ### Introduce
 
