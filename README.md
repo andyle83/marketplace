@@ -9,6 +9,7 @@ There is a great course in decade.org about Celo (101 & 102). It helps us to und
 Blockchain:
 - Written in Solidity for Celo blockchain network
 - Deploying in Celo testnet: https://alfajores-blockscout.celo-testnet.org/
+- Deploy address: `0xF377516621Cef90E12C0b5133adc783A336B1123`
 
 Frontend:
 - Nodejs application 
