@@ -36,6 +36,23 @@ Screenshot:
 
 ![Add New Product](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/2.png)
 
+### TODO items
+
+- Smart Contract Unit Test
+- Frontend improvement:
+  - Using frontend library / or framework (React)
+  - CSS library (Tailwind + DaisyUI)
+  - Unit Testing
+- CI/CD
+  - Integration Testing
+- New features
+  - Voting / Comment from customer
+  - Sorting / Pagination / Category
+  - Searching
+  - Multi-items checkout
+  - Buying history
+  - Recommendation
+
 **Reference**
 
 - https://dacade.org/
