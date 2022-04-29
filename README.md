@@ -17,6 +17,18 @@ Frontend:
 - Utilise [Celo ContractKit](https://docs.celo.org/developer-guide/contractkit/setup)
 - Using jQuery to update UI component with simple even handler function
 
+Screenshot:
+
+### Application screenshot
+
+- Home page
+
+![Home Page](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/1.png)
+
+- Calling smart contract to get counter's value
+
+![Add New Product](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/2.png)
+
 **Reference**
 
 - https://dacade.org/
