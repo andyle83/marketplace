@@ -45,13 +45,20 @@ Screenshot:
   - Unit Testing
 - CI/CD
   - Integration Testing
+  - CI/CD Pipeline
 - New features
   - Voting / Comment from customer
   - Sorting / Pagination / Category
   - Searching
   - Multi-items checkout
   - Buying history
-  - Recommendation
+  - Recommendation (or any Personalization)
+- Backend 
+  - Using database to improve performance / or store "big" data like images
+  - Extra customer profile (email, phone). It helps customer engagement / personalization
+  - Administration features
+    - Not everyone can add new product / category (admin, group of admin)
+    - Selling reporting etc..
 
 **Reference**
 
