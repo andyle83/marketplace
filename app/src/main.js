@@ -7,6 +7,8 @@ const ERC20_DECIMALS = 18
 const MPContractAddress = "0xF377516621Cef90E12C0b5133adc783A336B1123"
 
 let kit
+let contract
+let products = []
 
 const connectCeloWallet = async function () {
     if (window.celo) {
@@ -15,12 +17,16 @@ const connectCeloWallet = async function () {
             await window.celo.enable()
             notificationOff()
 
+            // KitContract initialize
             const web3 = new Web3(window.celo)
             kit = newKitFromWeb3(web3)
 
+            // Get account with information (i.e, balance)
             const accounts = await kit.web3.eth.getAccounts()
             kit.defaultAccount = accounts[0]
 
+            // Deployed contract reference
+            contract = new kit.web3.eth.Contract(marketplaceAbi, MPContractAddress)
         } catch (error) {
             notification(`⚠️ ${error}.`)
         }
@@ -31,52 +37,76 @@ const connectCeloWallet = async function () {
 
 // Using jquery to handle all logic in index.html
 // Sample product data
-const products = [
-    {
-        name: "Giant BBQ",
-        image: "https://i.imgur.com/yPreV19.png",
-        description: `Grilled chicken, beef, fish, sausages, bacon, 
-      vegetables served with chips.`,
-        location: "Kimironko Market",
-        owner: "0x32Be343B94f860124dC4fEe278FDCBD38C102D88",
-        price: 3,
-        sold: 27,
-        index: 0,
-    },
-    {
-        name: "BBQ Chicken",
-        image: "https://i.imgur.com/NMEzoYb.png",
-        description: `French fries and grilled chicken served with gacumbari 
-      and avocados with cheese.`,
-        location: "Afrika Fresh KG 541 St",
-        owner: "0x3275B7F400cCdeBeDaf0D8A9a7C8C1aBE2d747Ea",
-        price: 4,
-        sold: 12,
-        index: 1,
-    },
-    {
-        name: "Beef burrito",
-        image: "https://i.imgur.com/RNlv3S6.png",
-        description: `Homemade tortilla with your choice of filling, cheese, 
-      guacamole salsa with Mexican refried beans and rice.`,
-        location: "Asili - KN 4 St",
-        owner: "0x2EF48F32eB0AEB90778A2170a0558A941b72BFFb",
-        price: 2,
-        sold: 35,
-        index: 2,
-    },
-    {
-        name: "Barbecue Pizza",
-        image: "https://i.imgur.com/fpiDeFd.png",
-        description: `Barbecue Chicken Pizza: Chicken, gouda, pineapple, onions 
-      and house-made BBQ sauce.`,
-        location: "Kigali Hut KG 7 Ave",
-        owner: "0x2EF48F32eB0AEB90778A2170a0558A941b72BFFb",
-        price: 1,
-        sold: 2,
-        index: 3,
-    },
-];
+// const products = [
+//     {
+//         name: "Giant BBQ",
+//         image: "https://i.imgur.com/yPreV19.png",
+//         description: `Grilled chicken, beef, fish, sausages, bacon,
+//       vegetables served with chips.`,
+//         location: "Kimironko Market",
+//         owner: "0x32Be343B94f860124dC4fEe278FDCBD38C102D88",
+//         price: 3,
+//         sold: 27,
+//         index: 0,
+//     },
+//     {
+//         name: "BBQ Chicken",
+//         image: "https://i.imgur.com/NMEzoYb.png",
+//         description: `French fries and grilled chicken served with gacumbari
+//       and avocados with cheese.`,
+//         location: "Afrika Fresh KG 541 St",
+//         owner: "0x3275B7F400cCdeBeDaf0D8A9a7C8C1aBE2d747Ea",
+//         price: 4,
+//         sold: 12,
+//         index: 1,
+//     },
+//     {
+//         name: "Beef burrito",
+//         image: "https://i.imgur.com/RNlv3S6.png",
+//         description: `Homemade tortilla with your choice of filling, cheese,
+//       guacamole salsa with Mexican refried beans and rice.`,
+//         location: "Asili - KN 4 St",
+//         owner: "0x2EF48F32eB0AEB90778A2170a0558A941b72BFFb",
+//         price: 2,
+//         sold: 35,
+//         index: 2,
+//     },
+//     {
+//         name: "Barbecue Pizza",
+//         image: "https://i.imgur.com/fpiDeFd.png",
+//         description: `Barbecue Chicken Pizza: Chicken, gouda, pineapple, onions
+//       and house-made BBQ sauce.`,
+//         location: "Kigali Hut KG 7 Ave",
+//         owner: "0x2EF48F32eB0AEB90778A2170a0558A941b72BFFb",
+//         price: 1,
+//         sold: 2,
+//         index: 3,
+//     },
+// ];
+
+// Calling contract via RPC
+const getProducts = async function() {
+    const _productsLength = await contract.methods.getProductsLength().call()
+    const _products = []
+    for (let i = 0; i < _productsLength; i++) {
+        let _product = new Promise(async (resolve, reject) => {
+            let p = await contract.methods.readProduct(i).call()
+            resolve({
+                index: i,
+                owner: p[0],
+                name: p[1],
+                image: p[2],
+                description: p[3],
+                location: p[4],
+                price: new BigNumber(p[5]),
+                sold: p[6],
+            })
+        })
+        _products.push(_product)
+    }
+    products = await Promise.all(_products)
+    renderProducts()
+}
 
 // Return select wallet balance
 const getBalance = async function () {
