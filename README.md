@@ -21,11 +21,11 @@ Screenshot:
 
 ### Application screenshot
 
-- Home page
+- Home Page
 
 ![Home Page](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/1.png)
 
-- Calling smart contract to get counter's value
+- Add New Product
 
 ![Add New Product](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/2.png)
 
