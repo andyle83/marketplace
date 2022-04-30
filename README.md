@@ -14,12 +14,14 @@ Published website: https://andyle83.github.io/marketplace/
 ### Technology:
 
 Blockchain:
+
 - Written in Solidity for Celo blockchain network
 - Deploying in Celo testnet: https://alfajores-blockscout.celo-testnet.org/
 - Deploy address: `0x052F92eF1B97c0dD68B7150a8BBeBf962dD8a4e7` (can be changed)
 - Development framework: HardHat & Laika
 
 Frontend:
+
 - Nodejs application 
 - [Webpack](https://webpack.js.org/guides/getting-started/) as module bundler
 - Utilise [Celo ContractKit](https://docs.celo.org/developer-guide/contractkit/setup)
@@ -27,22 +29,24 @@ Frontend:
 
 ### Testing
 
-- Running Unit Testing Smart Contract
-  - Local network - Testing using hardhat gauche package: `npm run test`
-  - Local network - Testing using hardhat node: `npx hardhat node` , then `npx hardhat test`
-  - Testing network:  `npx hardhat test --network alfajores`
+Running Unit Testing Smart Contract
 
-- Running manual test (using Laika)
-  - Deploy in testnet: `npx hardhat run scripts/sample-script.js --network alfajores`
-  - Sync: `npx hardhat laika-sync --contract Marketplace --address 0x052F92eF1B97c0dD68B7150a8BBeBf962dD8a4e7`
+- Local network - Testing using hardhat gauche package: `npm run test`
+- Local network - Testing using hardhat node: `npx hardhat node` , then `npx hardhat test`
+- Testing network:  `npx hardhat test --network alfajores`
+
+Running manual test (using Laika)
+  
+- Deploy in testnet: `npx hardhat run scripts/sample-script.js --network alfajores`
+- Sync: `npx hardhat laika-sync --contract Marketplace --address 0x052F92eF1B97c0dD68B7150a8BBeBf962dD8a4e7`
 
 ### Application screenshot
 
-- Home Page
+Home Page
 
 ![Home Page](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/1.png)
 
-- Add New Product
+Add New Product
 
 ![Add New Product](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/2.png)
 
@@ -72,23 +76,27 @@ Frontend:
 
 ### Useful commands
 
-- Celo-cli
-  - New account: `celocli account:new`
-  - Check configure: `celocli config:get`
-  - Set configure (for network): `celocli config:set --node=https://alfajores-forno.celo-testnet.org`
-  - Get balance (sample address): `celocli account:balance 0xbDEA9f367e9a92b41e91525AEC13d3aDFb027a68`
-- Hardhat
-  - Accounts: `npx hardhat accounts`
-  - Clean up: ` npx hardhat clean`
-  - Compile: `npx hardhat compile`
-  - In-memory network: `npx hardhat node`
-  - Testing: `npx hardhat test` | `npx hardhat test --network alfajores`
-  - Deploy: `npx hardhat run scripts/sample-script.js --network alfajores`
+Celo-cli
+
+- New account: `celocli account:new`
+- Check configure: `celocli config:get`
+- Set configure (for network): `celocli config:set --node=https://alfajores-forno.celo-testnet.org`
+- Get balance (sample address): `celocli account:balance 0xbDEA9f367e9a92b41e91525AEC13d3aDFb027a68`
+
+Hardhat
+
+- Accounts: `npx hardhat accounts`
+- Clean up: ` npx hardhat clean`
+- Compile: `npx hardhat compile`
+- In-memory network: `npx hardhat node`
+- Testing: `npx hardhat test` | `npx hardhat test --network alfajores`
+- Deploy: `npx hardhat run scripts/sample-script.js --network alfajores`
 - Laika (similar as Postman)
-  - Syn command: `npx hardhat laika-sync --contract Marketplace --address 0x052F92eF1B97c0dD68B7150a8BBeBf962dD8a4e7`
+- Syn command: `npx hardhat laika-sync --contract Marketplace --address 0x052F92eF1B97c0dD68B7150a8BBeBf962dD8a4e7`
 
 ### Issues
-- Not able to run in localhost. Solution
+
+1. Not able to run in localhost. Solution
   - Start the hardhat node as in-memory local blockchain
   - Update hardhat configure with right address (localhost) and port
 
