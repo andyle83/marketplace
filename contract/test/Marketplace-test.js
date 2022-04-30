@@ -21,7 +21,10 @@ describe("Marketplace", function () {
 
     it("Should return 1 product when a new product is insert", async function () {
       // act
-      await contract.writeProduct("Test", "Image", "Description", "Location", 1000);
+      const newProductTx = await contract.writeProduct("Test", "Image", "Description", "Location", 1000);
+      // wait until the transaction is mined
+      await newProductTx.wait();
+
       const productsLength = await contract.getProductsLength();
 
       // assert

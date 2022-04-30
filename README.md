@@ -25,6 +25,17 @@ Frontend:
 - Utilise [Celo ContractKit](https://docs.celo.org/developer-guide/contractkit/setup)
 - Using jQuery to update UI component with simple even handler function
 
+### Testing
+
+- Running Unit Testing Smart Contract
+  - Local network - Testing using hardhat gauche package: `npm run test`
+  - Local network - Testing using hardhat node: `npx hardhat node` , then `npx hardhat test`
+  - Testing network:  `npx hardhat test --network alfajores`
+
+- Running manual test (using Laika)
+  - Deploy in testnet: `npx hardhat run scripts/sample-script.js --network alfajores`
+  - Sync: `npx hardhat laika-sync --contract Marketplace --address 0x052F92eF1B97c0dD68B7150a8BBeBf962dD8a4e7`
+
 ### Application screenshot
 
 - Home Page
