@@ -25,15 +25,15 @@ describe("Marketplace", function () {
       location: "Location 1",
       price: 1,
       sold: 0
+    },
+    {
+      name: "Test 2",
+      image: "Image 2",
+      description: "Description 2",
+      location: "Location 2",
+      price: 2,
+      sold: 0
     }
-    // {
-    //   name: "Test 2",
-    //   image: "Image 2",
-    //   description: "Description 2",
-    //   location: "Location 2",
-    //   price: 2,
-    //   sold: 0
-    // }
   ];
 
   beforeEach(async () => {
