@@ -1,7 +1,5 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
-const hre = require("hardhat");
-
 
 describe("Marketplace", function () {
   let contract;
@@ -14,6 +12,7 @@ describe("Marketplace", function () {
   });
 
   describe("productsLength", () => {
+
     it("Should return no product when contract is deployed", async function () {
       // act
       const productsLength = await contract.getProductsLength();
@@ -30,5 +29,6 @@ describe("Marketplace", function () {
       expect(productsLength).to.be.not.null;
       expect(productsLength).to.equal(1);
     });
+
   })
 });
