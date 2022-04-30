@@ -23,17 +23,17 @@ describe("Marketplace", function () {
       image: "Image 1",
       description: "Description 1",
       location: "Location 1",
-      price: 1000,
-      sold: 0
-    },
-    {
-      name: "Test 2",
-      image: "Image 2",
-      description: "Description 2",
-      location: "Location 2",
-      price: 2000,
+      price: 1,
       sold: 0
     }
+    // {
+    //   name: "Test 2",
+    //   image: "Image 2",
+    //   description: "Description 2",
+    //   location: "Location 2",
+    //   price: 2,
+    //   sold: 0
+    // }
   ];
 
   beforeEach(async () => {
@@ -58,7 +58,6 @@ describe("Marketplace", function () {
 
     it("Should return correct number of product when new products are insert", async function () {
       // act
-      console.log(products.length);
       await Promise.all(products.map(async (product) => {
         const newProductTx = await contract.writeProduct(product.name, product.image, product.description, product.location, product.price);
         await newProductTx.wait();
@@ -69,7 +68,7 @@ describe("Marketplace", function () {
       // assert
       expect(productsLength).to.be.not.undefined;
       expect(productsLength).to.be.not.null;
-      expect(productsLength).to.equal(2);
+      expect(productsLength).to.equal(products.length);
     });
 
   });
@@ -99,5 +98,28 @@ describe("Marketplace", function () {
     });
 
   })
+
+  // describe("buyProduct", () => {
+  //
+  //   it("Should increase sold when a product was bought", async function () {
+  //     // act
+  //     const newProductTx = await contract.writeProduct(
+  //       products[0].name,
+  //       products[0].image,
+  //       products[0].description,
+  //       products[0].location,
+  //       products[0].price
+  //     );
+  //     await newProductTx.wait();
+  //
+  //     const buyProductTx = await contract.buyProduct(0);
+  //     await buyProductTx.wait();
+  //
+  //     const [,sold] = await contract.readProduct(0);
+  //
+  //     expect(sold).to.equal(1);
+  //   });
+  //
+  // })
 
 });
