@@ -2,6 +2,7 @@ const { expect } = require("chai");
 const { ethers } = require("hardhat");
 const hre = require("hardhat");
 
+
 describe("Marketplace", function () {
   let contract;
 
@@ -21,10 +22,12 @@ describe("Marketplace", function () {
 
     it("Should return 1 product when a new product is insert", async function () {
       // act
-      await contract.writeProduct("Test", "Image", "Description", "Location", 100);
+      await contract.writeProduct("Test", "Image", "Description", "Location", 1000);
       const productsLength = await contract.getProductsLength();
 
       // assert
+      expect(productsLength).to.be.not.undefined;
+      expect(productsLength).to.be.not.null;
       expect(productsLength).to.equal(1);
     });
   })

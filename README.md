@@ -70,14 +70,16 @@ Frontend:
   - Accounts: `npx hardhat accounts`
   - Clean up: ` npx hardhat clean`
   - Compile: `npx hardhat compile`
+  - In-memory network: `npx hardhat node`
   - Testing: `npx hardhat test` | `npx hardhat test --network alfajores`
   - Deploy: `npx hardhat run scripts/sample-script.js --network alfajores`
-  - In-memory network: `npx hardhat node`
 - Laika (similar as Postman)
   - Syn command: `npx hardhat laika-sync --contract Marketplace --address 0x052F92eF1B97c0dD68B7150a8BBeBf962dD8a4e7`
 
-**Issues**
-- Not able to run in localhost
+### Issues
+- Not able to run in localhost. Solution
+  - Start the hardhat node as in-memory local blockchain
+  - Update hardhat configure with right address (localhost) and port
 
 **Reference**
 
