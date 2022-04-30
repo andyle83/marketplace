@@ -8,20 +8,24 @@ describe("Marketplace", function () {
   beforeEach(async () => {
     const Marketplace = await ethers.getContractFactory("Marketplace");
     contract = await Marketplace.deploy();
-  });
-
-  it("Should get no product when contract is deployed", async function () {
     await contract.deployed();
     console.log("Marketplace deployed to:", contract.address);
-
-    const productsLength = await contract.getProductsLength();
-    expect(productsLength).to.equal(0);
-
-    // const setGreetingTx = await greeter.setGreeting("Hola, mundo!");
-    //
-    // // wait until the transaction is mined
-    // await setGreetingTx.wait();
-    //
-    // expect(await greeter.greet()).to.equal("Hola, mundo!");
   });
+
+  describe("productsLength", () => {
+    it("Should return no product when contract is deployed", async function () {
+      // act
+      const productsLength = await contract.getProductsLength();
+      expect(productsLength).to.equal(0);
+    });
+
+    it("Should return 1 product when a new product is insert", async function () {
+      // act
+      await contract.writeProduct("Test", "Image", "Description", "Location", 100);
+      const productsLength = await contract.getProductsLength();
+
+      // assert
+      expect(productsLength).to.equal(1);
+    });
+  })
 });
