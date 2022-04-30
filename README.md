@@ -5,6 +5,7 @@
 This project is about a simple marketplace to manage / selling product. Is based on great course in decade.org about Celo (101 & 102). It helps us to understand about Solidity, Celo blockchain, and how to make a full-stack application.
 
 Here are some features are implemented:
+
 - See products hosted on the Celo Blockchain
 - Purchase products with cUSD and pay the owner
 - Add your own products to the dApp
@@ -13,14 +14,14 @@ Published website: https://andyle83.github.io/marketplace/
 
 ### Technology:
 
-Blockchain:
+**Blockchain:**
 
 - Written in Solidity for Celo blockchain network
 - Deploying in Celo testnet: https://alfajores-blockscout.celo-testnet.org/
 - Deploy address: `0x052F92eF1B97c0dD68B7150a8BBeBf962dD8a4e7` (can be changed)
 - Development framework: HardHat & Laika
 
-Frontend:
+**Frontend:**
 
 - Nodejs application 
 - [Webpack](https://webpack.js.org/guides/getting-started/) as module bundler
@@ -29,13 +30,13 @@ Frontend:
 
 ### Testing
 
-Running Unit Testing Smart Contract
+**Running Unit Testing Smart Contract**
 
 - Local network - Testing using hardhat gauche package: `npm run test`
 - Local network - Testing using hardhat node: `npx hardhat node` , then `npx hardhat test`
 - Testing network:  `npx hardhat test --network alfajores`
 
-Running manual test (using Laika)
+**Running manual test (using Laika)**
   
 - Deploy in testnet: `npx hardhat run scripts/sample-script.js --network alfajores`
 - Sync: `npx hardhat laika-sync --contract Marketplace --address 0x052F92eF1B97c0dD68B7150a8BBeBf962dD8a4e7`
@@ -76,14 +77,14 @@ Add New Product
 
 ### Useful commands
 
-Celo-cli
+**Celo-cli**
 
 - New account: `celocli account:new`
 - Check configure: `celocli config:get`
 - Set configure (for network): `celocli config:set --node=https://alfajores-forno.celo-testnet.org`
 - Get balance (sample address): `celocli account:balance 0xbDEA9f367e9a92b41e91525AEC13d3aDFb027a68`
 
-Hardhat
+**Hardhat**
 
 - Accounts: `npx hardhat accounts`
 - Clean up: ` npx hardhat clean`
