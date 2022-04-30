@@ -1,4 +1,5 @@
 require("@nomiclabs/hardhat-waffle");
+require("@nomiclabs/hardhat-ganache");
 require("dotenv").config({ path: ".env" });
 require("hardhat-laika");
 
