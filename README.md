@@ -68,12 +68,16 @@ Frontend:
   - Get balance (sample address): `celocli account:balance 0xbDEA9f367e9a92b41e91525AEC13d3aDFb027a68`
 - Hardhat
   - Accounts: `npx hardhat accounts`
+  - Clean up: ` npx hardhat clean`
   - Compile: `npx hardhat compile`
-  - Testing: `npx hardhat test`
+  - Testing: `npx hardhat test` | `npx hardhat test --network alfajores`
   - Deploy: `npx hardhat run scripts/sample-script.js --network alfajores`
   - In-memory network: `npx hardhat node`
 - Laika (similar as Postman)
   - Syn command: `npx hardhat laika-sync --contract Marketplace --address 0x052F92eF1B97c0dD68B7150a8BBeBf962dD8a4e7`
+
+**Issues**
+- Not able to run in localhost
 
 **Reference**
 
