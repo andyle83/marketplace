@@ -1,6 +1,6 @@
 ## Celo 101 course - Marketplace
 
-### Introduce
+### 1. Introduce
 
 This project is about a simple marketplace to manage / selling product. Is based on great course in decade.org about Celo (101 & 102). It helps us to understand about Solidity, Celo blockchain, and how to make a full-stack application.
 
@@ -12,7 +12,7 @@ Here are some features are implemented:
 
 Published website: https://andyle83.github.io/marketplace/
 
-### Technology:
+### 2. Technology:
 
 **Blockchain:**
 
@@ -28,7 +28,7 @@ Published website: https://andyle83.github.io/marketplace/
 - Utilise [Celo ContractKit](https://docs.celo.org/developer-guide/contractkit/setup)
 - Using jQuery to update UI component with simple even handler function
 
-### Testing
+### 3. Testing
 
 **Running Unit Testing Smart Contract**
 
@@ -41,7 +41,7 @@ Published website: https://andyle83.github.io/marketplace/
 - Deploy in testnet: `npx hardhat run scripts/sample-script.js --network alfajores`
 - Sync: `npx hardhat laika-sync --contract Marketplace --address 0x052F92eF1B97c0dD68B7150a8BBeBf962dD8a4e7`
 
-### Application screenshot
+### 4. Application screenshot
 
 Home Page
 
@@ -51,7 +51,7 @@ Add New Product
 
 ![Add New Product](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/2.png)
 
-### TODO items
+### 5. TODO items
 
 - Smart Contract Unit Test
 - Frontend improvement:
@@ -75,7 +75,7 @@ Add New Product
     - Not everyone can add new product / category (admin, group of admin)
     - Selling reporting etc..
 
-### Useful commands
+### 6. Useful commands
 
 **Celo-cli**
 
@@ -95,7 +95,7 @@ Add New Product
 - Laika (similar as Postman)
 - Syn command: `npx hardhat laika-sync --contract Marketplace --address 0x052F92eF1B97c0dD68B7150a8BBeBf962dD8a4e7`
 
-### Issues
+### 7. Issues
 
 1. Not able to run in localhost. Solution
   - Start the hardhat node as in-memory local blockchain
