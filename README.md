@@ -111,7 +111,31 @@ Error: replacement fee too low [ See: https://links.ethers.org/v5-errors-REPLACE
 ```
 ProviderError: VM Exception while processing transaction: revert
 ```
+- Running hardhat in-memory blockchain `npx hardhat node`
+- Running unit test in hardhat node `npx hardhat test --network localhost`
+- Checking output in hardhat console log
 
+```
+eth_chainId
+eth_getTransactionByHash
+eth_chainId
+eth_getTransactionReceipt
+eth_chainId
+eth_estimateGas
+  Contract call:       Marketplace#buyProduct
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+  Value:               0 ETH
+
+  Error: Transaction reverted: function call to a non-contract account
+      at Marketplace.buyProduct (contracts/Marketplace.sol:88)
+      at async EthModule._estimateGasAction (/Users/Anh.Le/Workspace/GitHub/celo-101/contract/node_modules/hardhat/src/internal/hardhat-network/provider/modules/eth.ts:425:7)
+      at async HardhatNetworkProvider._sendWithLogging (/Users/Anh.Le/Workspace/GitHub/celo-101/contract/node_modules/hardhat/src/internal/hardhat-network/provider/provider.ts:139:22)
+      at async HardhatNetworkProvider.request (/Users/Anh.Le/Workspace/GitHub/celo-101/contract/node_modules/hardhat/src/internal/hardhat-network/provider/provider.ts:116:18)
+      at async JsonRpcHandler._handleRequest (/Users/Anh.Le/Workspace/GitHub/celo-101/contract/node_modules/hardhat/src/internal/hardhat-network/jsonrpc/handler.ts:188:20)
+      at async JsonRpcHandler._handleSingleRequest (/Users/Anh.Le/Workspace/GitHub/celo-101/contract/node_modules/hardhat/src/internal/hardhat-network/jsonrpc/handler.ts:167:17)
+      at async Server.JsonRpcHandler.handleHttp (/Users/Anh.Le/Workspace/GitHub/celo-101/contract/node_modules/hardhat/src/internal/hardhat-network/jsonrpc/handler.ts:52:21)
+```
 
 **Reference**
 
