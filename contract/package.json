@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "node": "hardhat node",
-    "test": "hardhat --network ganache test"
+    "test": "hardhat test"
   },
   "keywords": [],
   "author": "",

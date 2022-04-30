@@ -1,9 +1,8 @@
 import "@nomiclabs/hardhat-waffle";
+import '@nomiclabs/hardhat-ethers'
 import "@nomiclabs/hardhat-ganache";
 import { task } from "hardhat/config";
 import '@typechain/hardhat';
-import '@nomiclabs/hardhat-ethers'
-import '@nomiclabs/hardhat-waffle'
 import "hardhat-laika";
 import * as dotenv from "dotenv";
 
@@ -21,10 +20,13 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
-  defaultNetwork: "alfajores",
+  defaultNetwork: "ganache",
   networks: {
     localhost: {
       url: "http://127.0.0.1:8545",
+    },
+    ganache: {
+      url: "http://127.0.0.1:7545",
     },
     alfajores: {
       url: "https://alfajores-forno.celo-testnet.org",

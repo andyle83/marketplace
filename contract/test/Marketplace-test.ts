@@ -99,27 +99,27 @@ describe("Marketplace", function () {
 
   })
 
-  // describe("buyProduct", () => {
-  //
-  //   it("Should increase sold when a product was bought", async function () {
-  //     // act
-  //     const newProductTx = await contract.writeProduct(
-  //       products[0].name,
-  //       products[0].image,
-  //       products[0].description,
-  //       products[0].location,
-  //       products[0].price
-  //     );
-  //     await newProductTx.wait();
-  //
-  //     const buyProductTx = await contract.buyProduct(0);
-  //     await buyProductTx.wait();
-  //
-  //     const [,sold] = await contract.readProduct(0);
-  //
-  //     expect(sold).to.equal(1);
-  //   });
-  //
-  // })
+  describe("buyProduct", () => {
+
+    it("Should increase sold when a product was bought", async function () {
+      // act
+      const newProductTx = await contract.writeProduct(
+        products[0].name,
+        products[0].image,
+        products[0].description,
+        products[0].location,
+        products[0].price
+      );
+      await newProductTx.wait();
+
+      const buyProductTx = await contract.buyProduct(0);
+      await buyProductTx.wait();
+
+      const [,sold] = await contract.readProduct(0);
+
+      expect(sold).to.equal(1);
+    });
+
+  })
 
 });

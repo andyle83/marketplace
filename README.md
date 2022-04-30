@@ -86,6 +86,7 @@ Add New Product
 
 **Hardhat**
 
+- Console: `npx hardhat console` (i.e., config)
 - Accounts: `npx hardhat accounts`
 - Clean up: ` npx hardhat clean`
 - Compile: `npx hardhat compile`
