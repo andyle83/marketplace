@@ -1,5 +1,6 @@
 require("@nomiclabs/hardhat-waffle");
 require("dotenv").config({ path: ".env" });
+require("hardhat-laika");
 
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more

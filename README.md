@@ -16,7 +16,7 @@ Published website: https://andyle83.github.io/marketplace/
 Blockchain:
 - Written in Solidity for Celo blockchain network
 - Deploying in Celo testnet: https://alfajores-blockscout.celo-testnet.org/
-- Deploy address: `0xF377516621Cef90E12C0b5133adc783A336B1123` (can be changed)
+- Deploy address: `0x052F92eF1B97c0dD68B7150a8BBeBf962dD8a4e7` (can be changed)
 - Development framework: HardHat
 
 Frontend:
@@ -65,13 +65,15 @@ Frontend:
   - New account: `celocli account:new`
   - Check configure: `celocli config:get`
   - Set configure (for network): `celocli config:set --node=https://alfajores-forno.celo-testnet.org`
-  - Get balance (sample address): `celocli account:balance 0x8c5e4A133aA48d0B776D24DD6eA8315Ae4eE0bb8`
+  - Get balance (sample address): `celocli account:balance 0xbDEA9f367e9a92b41e91525AEC13d3aDFb027a68`
 - Hardhat
   - Accounts: `npx hardhat accounts`
   - Compile: `npx hardhat compile`
   - Testing: `npx hardhat test`
   - Deploy: `npx hardhat run scripts/sample-script.js --network alfajores`
   - In-memory network: `npx hardhat node`
+- Laika (similar as Postman)
+  - Syn command: `npx hardhat laika-sync --contract Marketplace --address 0x052F92eF1B97c0dD68B7150a8BBeBf962dD8a4e7`
 
 **Reference**
 
