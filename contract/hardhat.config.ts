@@ -1,10 +1,13 @@
-require("@nomiclabs/hardhat-waffle");
-require("@nomiclabs/hardhat-ganache");
-require("dotenv").config({ path: ".env" });
-require("hardhat-laika");
+import "@nomiclabs/hardhat-waffle";
+import "@nomiclabs/hardhat-ganache";
+import { task } from "hardhat/config";
+import '@typechain/hardhat';
+import '@nomiclabs/hardhat-ethers'
+import '@nomiclabs/hardhat-waffle'
+import "hardhat-laika";
+import * as dotenv from "dotenv";
 
-// You need to export an object to set up your config
-// Go to https://hardhat.org/config/ to learn more
+dotenv.config({ path: ".env" });
 
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   const accounts = await hre.ethers.getSigners();
