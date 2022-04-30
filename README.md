@@ -102,11 +102,16 @@ Add New Product
   - Start the hardhat node as in-memory local blockchain
   - Update hardhat configure with right address (localhost) and port
 
-2. Trying to insert concurrent (multi products) at the same time, and get an issue
-
+2. Trying to insert concurrent (multi products) at the same time in Testnet, and get an issue
 ```
 Error: replacement fee too low [ See: https://links.ethers.org/v5-errors-REPLACEMENT_UNDERPRICED 
 ```
+
+3. Trying to make unit test for `buyProduct` but transaction was reverted with error:
+```
+ProviderError: VM Exception while processing transaction: revert
+```
+
 
 **Reference**
 
