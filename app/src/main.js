@@ -114,7 +114,7 @@ function productTemplate(_product) {
           <span>${_product.location}</span>
         </p>
         <div class="d-grid gap-2">
-          <a class="btn btn-lg btn-outline-dark buyBtn fs-6 p-3" id=${
+          <a class="btn btn-lg btn-outline-primary buyBtn fs-6 p-3" id=${
         _product.index
     }>
             Buy for ${_product.price.shiftedBy(-ERC20_DECIMALS).toFixed(2)} cUSD
