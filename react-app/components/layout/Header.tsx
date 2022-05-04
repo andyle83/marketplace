@@ -1,56 +1,45 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import Chip from "@mui/material/Chip";
 import { useContractKit } from "@celo-tools/use-contractkit";
-import { truncateAddress, getWindowDimensions } from "@/utils";
+// import { truncateAddress } from "@/utils";
 
 export function Header() {
-  const { address, network, connect, destroy, kit } = useContractKit();
-  const [windowDimensions, setWindowDimensions] = useState(
-    getWindowDimensions()
-  );
+  const { address, network, kit } = useContractKit();
+  const [balance, setBalance] = useState("");
+
+  async function fetchBalance() {
+    const { cUSD } = await kit.getTotalBalance(address);
+    setBalance(kit.web3.utils.fromWei(cUSD.toString(), 'ether'))
+  }
+
+  useEffect(() => {
+    if (address) {
+      fetchBalance().then(_ => console.log("fet balance successfully"))
+    }
+  }, [network, address])
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar sx={{ gap: { md: 2, xs: 0.5 } }}>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Marketplace
-          </Typography>
-          {network && <Chip label={network.name} color="secondary" />}
-          {address && (
-            <>
-              <Chip
-                label={truncateAddress(address)}
-                color="info"
-                onDelete={destroy}
-                sx={{ mx: 1 }}
-              />
-              {windowDimensions.width >= 600 ? (
-                <Button variant="outlined" color="inherit" onClick={destroy}>
-                  Disconnect
-                </Button>
-              ) : (
-                ""
-              )}
-            </>
-          )}
-          {!address && (
-            <Button
-              color="inherit"
-              variant="outlined"
-              onClick={() => connect().catch(e => console.log(e))}
-            >
-              Connect wallet
-            </Button>
-          )}
-        </Toolbar>
-      </AppBar>
-    </Box>
+    <header>
+      <nav className="navbar bg-white navbar-light border-bottom">
+        <div className="container-fluid">
+          <a className="navbar-brand m-0 h4 fw-bold" href="#">Marketplace</a>
+          <span className="nav-link border rounded-pill bg-warning text-dark">
+            <span id="balance">{balance}</span>cUSD
+          </span>
+        </div>
+      </nav>
+      <div className="alert alert-warning sticky-top mt-2" role="alert">
+        <span id="notification">⌛ Loading...</span>
+      </div>
+      <div className="mb-4" style={{marginTop: "4em"}}>
+        <a
+          className="btn btn-dark rounded-pill"
+          data-bs-toggle="modal"
+          data-bs-target="#addModal"
+        >
+          Add product
+        </a>
+      </div>
+    </header>
   );
 }
