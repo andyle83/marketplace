@@ -38,19 +38,16 @@ export default function App() {
         })
         _products.push(_product)
       }
-      // Wait until products are updated and render products list again
-      await Promise.all(_products)
-
-      setProducts(_products);
+      setProducts(await Promise.all(_products));
     }
 
-    fetchProducts().then(_ => console.log(`fetch data successful !`));
+    fetchProducts().catch(e => console.error(e));
 
   }, [address, network]);
 
   const renderProducts = () => {
-    console.log(`number of products ${products.length}`);
     return products.map((product, index) => {
+      console.log(`${JSON.stringify(product)}`);
       return (
         <div className="col-md-4" key={index}>
           {product.name}
