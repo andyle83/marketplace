@@ -2,6 +2,7 @@ import * as React from "react";
 import BigNumber from "bignumber.js"
 import { useContractKit } from "@celo-tools/use-contractkit";
 import AppLayout from "@/components/layout/AppLayout";
+import Products from '../components/product/Products';
 
 import marketplaceAbi from '../contract/marketplace.abi.json';
 import erc20Abi from '../contract/erc20.abi.json';
@@ -53,9 +54,21 @@ export default function App() {
 
   }, [address, network]);
 
+  const renderProducts = () => {
+    return products.map((product, index) => {
+      console.log(index)
+      console.log(product.name)
+      return (
+        <div className="col-md-4" key={index}>
+          {product.name}
+        </div>
+      )
+    })
+  }
+
   return (
     <AppLayout title="Marketplace" description="A commune marketplace">
-      Number of products in the marketplace {products.length}
+      {renderProducts()}
     </AppLayout>
   );
 }
