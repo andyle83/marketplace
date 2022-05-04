@@ -1,5 +1,6 @@
 import * as React from "react";
 const ERC20_DECIMALS = 18;
+import BigNumber from "bignumber.js"
 
 interface ProductProps {
   index: string,
@@ -8,9 +9,9 @@ interface ProductProps {
   image: string,
   description: string,
   location: string,
-  price: number,
+  price: BigNumber,
   sold: number
-};
+}
 
 export default function Products({ index, name, image, description, location, price, sold }: ProductProps) {
   return (
@@ -33,7 +34,7 @@ export default function Products({ index, name, image, description, location, pr
           </p>
           <div className="d-grid gap-2">
             <a className="btn btn-lg btn-outline-primary buyBtn fs-6 p-3" id={index}>
-              Buy for {price.toFixed(2)} cUSD
+              Buy for {price.shiftedBy(-ERC20_DECIMALS).toFixed(2)} cUSD
             </a>
           </div>
         </div>
