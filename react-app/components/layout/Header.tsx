@@ -14,7 +14,7 @@ export function Header() {
 
   useEffect(() => {
     if (address) {
-      fetchBalance().then(_ => console.log("fet balance successfully"))
+      fetchBalance().catch(e => console.error(e));
     }
   }, [network, address])
 
