@@ -7,19 +7,12 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-export enum BaseCurrency {
-    USD = "cUSD",
-    EUR = "cEUR",
-    ETH = "ETH",
-    CELO = "CELO"
-  }
-
 type AccountDataEntry = {
-    token: BaseCurrency;
+    token: string;
     balance: number;
     value: number;
     exchange: number;
-    baseCurrency: BaseCurrency;
+    baseCurrency: string;
 };
 
 function formatSmallValue(value: number): string {
@@ -29,11 +22,8 @@ function formatSmallValue(value: number): string {
     return value.toFixed(3) + " ";
 }
 
-function formatValue(value: number, currency: BaseCurrency): string {
-    if (currency === BaseCurrency.USD) return `$${value.toFixed(2)}`;
-    if (currency === BaseCurrency.EUR) return `€${value.toFixed(2)}`;
-    if (currency === BaseCurrency.ETH) return `${value < 0.01 ? formatSmallValue(value) : value.toFixed(2) + " "}ETH`;
-    return `${value.toFixed(2)} CELO`;
+function formatValue(value: number): string {
+    return `$${value.toFixed(2)}`;
 }
 
 const AccountTable: React.FC<{ rows: AccountDataEntry[] }> = ({ rows }) => (
@@ -57,8 +47,8 @@ const AccountTable: React.FC<{ rows: AccountDataEntry[] }> = ({ rows }) => (
                 {row.token}
               </TableCell>
               <TableCell align="right">{row.balance < 0.01 ? formatSmallValue(row.balance) : row.balance.toFixed(2) + " "}{row.token}</TableCell>
-              <TableCell align="right">{formatValue(row.value, row.baseCurrency)}</TableCell>
-              <TableCell align="right">{formatValue(row.exchange, row.baseCurrency)} / {row.token}</TableCell>
+              <TableCell align="right">{formatValue(row.value)}</TableCell>
+              <TableCell align="right">{formatValue(row.exchange)} / {row.token}</TableCell>
             </TableRow>
           ))}
         </TableBody>

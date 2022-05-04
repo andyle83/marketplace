@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Tabs, Tab, Typography, Box } from "@mui/material";
 import { useContractKit } from "@celo-tools/use-contractkit";
-import { AccountInfo, Polling } from "@/components";
+import { AccountInfo } from "@/components";
 import AppLayout from "@/components/layout/AppLayout";
 
 interface TabPanelProps {
@@ -30,7 +30,6 @@ export default function App() {
           <AccountInfo></AccountInfo>
         </TabPanel>
       </Box>
-      <Polling/>
     </AppLayout>
   );
 }
