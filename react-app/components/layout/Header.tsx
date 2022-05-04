@@ -8,15 +8,12 @@ import Button from "@mui/material/Button";
 import Chip from "@mui/material/Chip";
 import { useContractKit } from "@celo-tools/use-contractkit";
 import { truncateAddress, getWindowDimensions } from "@/utils";
-import { ThemeSwitcher } from "../ThemeSwitcher";
-import { useThemeContext } from "@/contexts/userTheme";
 
 export function Header() {
   const { address, network, connect, destroy, kit } = useContractKit();
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
   );
-  const { theme, setTheme } = useThemeContext();
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -52,11 +49,6 @@ export function Header() {
               Connect wallet
             </Button>
           )}
-          <ThemeSwitcher
-            sx={{ m: 1 }}
-            onChange={e => setTheme(e.target.checked)}
-            checked={theme}
-          />
         </Toolbar>
       </AppBar>
     </Box>
