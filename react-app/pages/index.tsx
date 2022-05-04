@@ -18,6 +18,7 @@ export default function App() {
 
   return (
     <AppLayout title="Marketplace" description="A commune marketplace">
+      This is where i have to get products
     </AppLayout>
   );
 }

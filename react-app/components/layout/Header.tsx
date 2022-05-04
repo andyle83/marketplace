@@ -31,7 +31,7 @@ export function Header() {
       <div className="alert alert-warning sticky-top mt-2" role="alert">
         <span id="notification">⌛ Loading...</span>
       </div>
-      <div className="mb-4" style={{marginTop: "4em"}}>
+      <div className="mb-4" style={{marginTop: "1em"}}>
         <a
           className="btn btn-dark rounded-pill"
           data-bs-toggle="modal"
