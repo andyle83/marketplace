@@ -13,8 +13,7 @@ interface ProductProps {
 };
 
 export default function Products({ index, name, image, description, location, price, sold }: ProductProps) {
-  // @ts-ignore
-  // @ts-ignore
+  console.log(name);
   return (
     <div className="card mb-4">
       <img className="card-img-top" src={image} alt="..." />

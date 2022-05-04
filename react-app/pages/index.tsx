@@ -6,6 +6,7 @@ import { useContractKit } from "@celo-tools/use-contractkit";
 import AppLayout from "@/components/layout/AppLayout";
 
 import marketplaceAbi from '../contract/marketplace.abi.json';
+import Products from "@/components/product/Products";
 const MPContractAddress = "0xF377516621Cef90E12C0b5133adc783A336B1123";
 
 export default function App() {
@@ -46,14 +47,11 @@ export default function App() {
   }, [address, network]);
 
   const renderProducts = () => {
-    return products.map((product, index) => {
-      console.log(`${JSON.stringify(product)}`);
-      return (
+    return products.map((product, index) =>
         <div className="col-md-4" key={index}>
-          {product.name}
+          <Products {...product} />
         </div>
-      )
-    })
+    )
   }
 
   return (
