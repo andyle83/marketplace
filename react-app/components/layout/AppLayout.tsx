@@ -11,7 +11,7 @@ interface Props {
 
 export default function AppLayout({ title, description, children }: Props) {
   return (
-    <div>
+    <div className="container mt-2" style={{maxWidth: "72em"}}>
       <Header />
       <Meta title={title} description={description} />
       {children}

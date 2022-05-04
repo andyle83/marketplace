@@ -8,6 +8,7 @@ import { AppProps } from "next/app";
 import { Provider } from "react-redux"
 import store from "@/state/index"
 import AppUpdater from "@/state/app/updater"
+import 'bootstrap/dist/css/bootstrap.css';
 
 function Updaters() {
   return (
