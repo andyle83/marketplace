@@ -55,7 +55,7 @@ Add New Product
 
 ![Add New Product](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/2.png)
 
-### 5. TODO items
+### 5. TODO
 
 - CI/CD
   - Integration Testing
