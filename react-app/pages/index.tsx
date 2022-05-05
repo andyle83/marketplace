@@ -1,8 +1,8 @@
 import * as React from "react";
 import {useEffect, useState} from "react";
+import { useContractKit } from "@celo-tools/use-contractkit";
 
 import BigNumber from "bignumber.js"
-import { useContractKit } from "@celo-tools/use-contractkit";
 import AppLayout from "@/components/layout/AppLayout";
 
 import marketplaceAbi from '../contract/marketplace.abi.json';

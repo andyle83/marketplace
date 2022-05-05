@@ -1,6 +1,8 @@
 import * as React from "react";
-const ERC20_DECIMALS = 18;
 import BigNumber from "bignumber.js"
+import Blockies from 'react-blockies-image';
+
+const ERC20_DECIMALS = 18;
 
 interface ProductProps {
   index: string,
@@ -13,7 +15,20 @@ interface ProductProps {
   sold: number
 }
 
-export default function Products({ index, name, image, description, location, price, sold }: ProductProps) {
+// Create a small image (called identicon), represent a hash value which address of product owner
+function identiconTemplate(_address) {
+  const transaction = `https://alfajores-blockscout.celo-testnet.org/address/${_address}/transactions`;
+
+  return (
+    <div className="rounded-circle overflow-hidden d-inline-block border border-white border-2 shadow-sm m-0">
+      <a href={transaction} target="_blank">
+        <Blockies seed={_address} size ={8} scale={6} gColor="#ffe" />;
+      </a>
+    </div>
+  )
+}
+
+export default function Products({ index, owner, name, image, description, location, price, sold }: ProductProps) {
   return (
     <div className="card mb-4">
       <img className="card-img-top" src={image} alt="..." />
@@ -22,7 +37,7 @@ export default function Products({ index, name, image, description, location, pr
         </div>
         <div className="card-body text-left p-4 position-relative">
           <div className="translate-middle-y position-absolute top-0">
-            Icon
+            {identiconTemplate(owner)}
           </div>
           <h2 className="card-title fs-4 fw-bold mt-2">{name}</h2>
           <p className="card-text mb-4" style={{minHeight:"82px"}}>

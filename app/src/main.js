@@ -167,7 +167,7 @@ window.addEventListener("load", async () => {
 // handle when user click on new product button
 document
     .querySelector("#newProductBtn")
-    .addEventListener("click", async (e) => {
+    .addEventListener("click", async (_) => {
         const params = [
             document.getElementById("newProductName").value,
             document.getElementById("newImgUrl").value,
