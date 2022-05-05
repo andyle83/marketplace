@@ -1,4 +1,4 @@
-## Celo 101 course - Marketplace
+## Celo 101 - Marketplace
 
 ### 1. Introduce
 
