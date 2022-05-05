@@ -29,7 +29,6 @@ function MyApp({ Component, pageProps }: AppProps): React.ReactElement {
             icon: "https://use-contractkit.vercel.app/favicon.ico",
           }}
           network={Alfajores}
-          // networks={[Mainnet, Alfajores]}
         >
           <SnackbarProvider
             maxSnack={3}

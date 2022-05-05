@@ -1,10 +1,12 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { useContractKit } from "@celo-tools/use-contractkit";
-// import { truncateAddress } from "@/utils";
+import { BsWalletFill } from "react-icons/bs";
+import { IoIosCloseCircleOutline } from "react-icons/io";
+import {red} from "@mui/material/colors";
 
 export function Header() {
-  const { address, network, kit } = useContractKit();
+  const { address, network, kit, connect, destroy } = useContractKit();
   const [balance, setBalance] = useState("");
 
   async function fetchBalance() {
@@ -14,7 +16,7 @@ export function Header() {
 
   useEffect(() => {
     if (address) {
-      fetchBalance().catch(e => console.error(e));
+      fetchBalance().then(_ => console.log("fetching balance"));
     }
   }, [network, address])
 
@@ -22,9 +24,22 @@ export function Header() {
     <header>
       <nav className="navbar bg-white navbar-light border-bottom">
         <div className="container-fluid">
-          <a className="navbar-brand m-0 h4 fw-bold" href="#">Marketplace</a>
-          <span className="nav-link border rounded-pill bg-warning text-dark">
-            <span id="balance">{balance}</span>cUSD
+          <a className="navbar-brand m-0 h4 fw-bold" href="/">Marketplace</a>
+          <span className="nav-link">
+          {!address ? (
+              <button type="button" className="btn btn-dark" style={{display: "flex", alignItems: "center"}}
+                onClick={() => connect().catch(e => console.log(e))}
+              >
+                Connect wallet <BsWalletFill style={{marginLeft: "0.5rem"}} />
+              </button>
+            ) :
+            (<>
+              <button type="button" className="btn btn-dark" style={{display: "flex", alignItems: "center"}}>
+                <span id="balance" className="m-1">{balance}</span>cUSD
+                <IoIosCloseCircleOutline size={20} color="yellow" onClick={destroy}  style={{marginLeft: "0.5rem"}}/>
+              </button>
+            </>)
+          }
           </span>
         </div>
       </nav>
