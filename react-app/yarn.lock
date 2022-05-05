@@ -1716,7 +1716,7 @@
     "prop-types" "^15.7.2"
     "react-is" "^17.0.2"
 
-"@mui/material@^5.0.0", "@mui/material@^5.4.0":
+"@mui/material@^5.0.0":
   "integrity" "sha512-vfBIAMsRNWI/A4p/eP01MjqhSACwxRGYp/2Yi7WAU64PpI/TXR4b9SRl+XJMMJXVC7+abu4E3hTdF3oqwMCSYA=="
   "resolved" "https://registry.npmjs.org/@mui/material/-/material-5.4.0.tgz"
   "version" "5.4.0"
@@ -2958,11 +2958,6 @@
   "integrity" "sha512-bLG6PHOCZJKNshTjGRBvET0vTciwQE6zFKOKKXPDJfwFBd4Ac0yBfPZqcGvGJap50l7ktvlpFqc2jGVaUgbJgg=="
   "resolved" "https://registry.npmjs.org/blakejs/-/blakejs-1.1.1.tgz"
   "version" "1.1.1"
-
-"blockies-identicon@^0.1.0":
-  "integrity" "sha1-0LL9IhoY8Jya3GBt6MGttzrFBjg="
-  "resolved" "https://registry.npmjs.org/blockies-identicon/-/blockies-identicon-0.1.0.tgz"
-  "version" "0.1.0"
 
 "bls12377js@https://github.com/celo-org/bls12377js#cb38a4cfb643c778619d79b20ca3e5283a2122a6":
   "integrity" "sha512-genS+AxHQKkrKA2xa1C1HCzSlZM8S/ZQEnjqET9u78/fpbHrNbXWvFYypYA3h7ukTD+WpF0hh+S9yxH6mhx4iA=="
@@ -4228,6 +4223,11 @@
     "bn.js" "^4.11.6"
     "elliptic" "^6.4.0"
     "xhr-request-promise" "^0.1.2"
+
+"ethereum-blockies@^0.1.1":
+  "integrity" "sha1-h5/pWd7vSSp6krQ9w0ro3C7lkfw="
+  "resolved" "https://registry.npmjs.org/ethereum-blockies/-/ethereum-blockies-0.1.1.tgz"
+  "version" "0.1.1"
 
 "ethereum-bloom-filters@^1.0.6":
   "integrity" "sha512-rxJ5OFN3RwjQxDcFP2Z5+Q9ho4eIdEmSc2ht0fCu8Se9nbXjZ7/031uXoUYJ87KHCOdVeiUuwSnoS7hmYAGVHA=="
@@ -6465,7 +6465,7 @@
   "resolved" "https://registry.npmjs.org/progress/-/progress-2.0.3.tgz"
   "version" "2.0.3"
 
-"prop-types@^15.6.0", "prop-types@^15.6.2", "prop-types@^15.7.2":
+"prop-types@^15.5.10", "prop-types@^15.6.0", "prop-types@^15.6.2", "prop-types@^15.7.2":
   "integrity" "sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg=="
   "resolved" "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   "version" "15.8.1"
@@ -6594,10 +6594,12 @@
     "iconv-lite" "0.4.24"
     "unpipe" "1.0.0"
 
-"react-blockies-image@^0.0.2":
-  "integrity" "sha512-4Tk8pKgkLafmUvD1WTJfgRdGjLwlv/UPCceHEoi66ehbByEJi1lU37lRsvpI6/GJ4321naX9tmZoCs/FCPcn6Q=="
-  "resolved" "https://registry.npmjs.org/react-blockies-image/-/react-blockies-image-0.0.2.tgz"
-  "version" "0.0.2"
+"react-blockies@^1.4.1":
+  "integrity" "sha512-4N015X5oPNnD3xQPsiqolOFzPZSSWyc5mJhJUZShUCHtiGUxVN+1qsWTcglkHMNySux9hUofaispqcw9QkWP5Q=="
+  "resolved" "https://registry.npmjs.org/react-blockies/-/react-blockies-1.4.1.tgz"
+  "version" "1.4.1"
+  dependencies:
+    "prop-types" "^15.5.10"
 
 "react-device-detect@^2.1.2":
   "integrity" "sha512-N42xttwez3ECgu4KpOL2ICesdfoz8NCBfmc1rH9FRYSjH7NmMyANPSrQ3EvAtJyj/6TzJNhrANSO38iXjCB2Ug=="
@@ -6677,7 +6679,7 @@
     "loose-envify" "^1.4.0"
     "prop-types" "^15.6.2"
 
-"react@*", "react@^0.14.0 || ^15.0.0 || ^16 || ^17", "react@^15.5.3 || ^16.0.0 || ^17.0.0", "react@^16.0.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0", "react@^16.8.3 || ^17 || ^18", "react@^16.9.0 || ^17.0.0 || ^18", "react@^17.0.0", "react@^17.0.2", "react@^17.0.2 || ^18.0.0-0", "react@>= 0.14.0 < 18.0.0", "react@>= 16.8.0 || 17.x.x || 18.x.x", "react@>=16.6.0", "react@>=16.8.0", "react@17.0.2":
+"react@*", "react@^0.14.0 || ^15.0.0 || ^16 || ^17", "react@^15.5.3 || ^16.0.0 || ^17.0.0", "react@^16.0.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0", "react@^16.8.3 || ^17 || ^18", "react@^16.9.0 || ^17.0.0 || ^18", "react@^17.0.0", "react@^17.0.2", "react@^17.0.2 || ^18.0.0-0", "react@>= 0.14.0 < 18.0.0", "react@>= 16.8.0 || 17.x.x || 18.x.x", "react@>=15.0.0", "react@>=16.6.0", "react@>=16.8.0", "react@17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"

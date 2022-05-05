@@ -1,6 +1,6 @@
 import * as React from "react";
 import BigNumber from "bignumber.js"
-import Blockies from 'react-blockies-image';
+import blockies from 'ethereum-blockies';
 
 const ERC20_DECIMALS = 18;
 
@@ -17,12 +17,20 @@ interface ProductProps {
 
 // Create a small image (called identicon), represent a hash value which address of product owner
 function identiconTemplate(_address) {
+  const icon = blockies
+    .create({
+      seed: _address,
+      size: 8,
+      scale: 16,
+    })
+    .toDataURL()
+
   const transaction = `https://alfajores-blockscout.celo-testnet.org/address/${_address}/transactions`;
 
   return (
     <div className="rounded-circle overflow-hidden d-inline-block border border-white border-2 shadow-sm m-0">
       <a href={transaction} target="_blank">
-        <Blockies seed={_address} size ={8} scale={6} gColor="#ffe" />;
+        <img src={icon} width="48" alt={_address} />
       </a>
     </div>
   )
