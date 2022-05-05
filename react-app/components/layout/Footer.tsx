@@ -14,7 +14,7 @@ export default function Footer() {
           <form action="">
             <div className="row d-flex justify-content-center">
               <div className="col-auto">
-                <p className="pt-2">
+                <p className="pt-2 font-monospace">
                   <strong>Sign up newsletter</strong>
                 </p>
               </div>

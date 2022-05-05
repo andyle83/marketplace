@@ -24,7 +24,7 @@ export function Header() {
     <header>
       <nav className="navbar bg-white navbar-light border-bottom">
         <div className="container-fluid">
-          <a className="navbar-brand m-0 h4 fw-bold" href="/">Marketplace</a>
+          <a className="navbar-brand m-0 h4 fw-bold font-monospace" href="/">Food Marketplace</a>
           <span className="nav-link">
           {!address ? (
               <button type="button" className="btn btn-dark" style={{display: "flex", alignItems: "center"}}
@@ -46,7 +46,7 @@ export function Header() {
       <Notification message="⌛ Loading..." />
       <div className="mb-4" style={{marginTop: "1em"}}>
         <a
-          className="btn btn-dark rounded-pill"
+          className="btn btn-dark"
           data-bs-toggle="modal"
           data-bs-target="#addModal"
         >
