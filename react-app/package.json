@@ -1,7 +1,7 @@
 {
-  "name": "@celo-progressive-dapp-starter/react-app",
-  "version": "1.0.0",
-  "private": true,
+  "name": "marketplace",
+  "version": "0.1",
+  "description": "front-end of marketplace",
   "engines": {
     "node": "12.x"
   },
