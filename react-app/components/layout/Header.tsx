@@ -4,6 +4,9 @@ import { useContractKit } from "@celo-tools/use-contractkit";
 import { BsWalletFill } from "react-icons/bs";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import Notification from "./Notification";
+import { isMobile } from 'react-device-detect';
+
+const classNames = require('classnames');
 
 export function Header() {
   const { address, network, kit, connect, destroy } = useContractKit();
@@ -20,11 +23,16 @@ export function Header() {
     }
   }, [network, address])
 
+  const titleClass = classNames("navbar-brand font-monospace", {
+    'fs-6': isMobile,
+    'fs-3': !isMobile
+  })
+
   return (
     <header>
       <nav className="navbar bg-white navbar-light border-bottom">
         <div className="container-fluid">
-          <a className="navbar-brand m-0 h4 fw-bold font-monospace" href="/">Food Marketplace</a>
+          <a className={titleClass} href="/">Food Marketplace</a>
           <span className="nav-link">
           {!address ? (
               <button type="button" className="btn btn-dark" style={{display: "flex", alignItems: "center"}}
