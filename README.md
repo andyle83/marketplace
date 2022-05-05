@@ -23,10 +23,14 @@ Published website: https://andyle83.github.io/marketplace/
 
 **Frontend:**
 
-- Nodejs application 
-- [Webpack](https://webpack.js.org/guides/getting-started/) as module bundler
-- Utilise [Celo ContractKit](https://docs.celo.org/developer-guide/contractkit/setup)
-- Using jQuery to update UI component with simple even handler function
+There are two variant of implementation:
+
+- Node.js application (`app` folder)
+  - [Webpack](https://webpack.js.org/guides/getting-started/) as module bundler
+  - Utilise [Celo ContractKit](https://docs.celo.org/developer-guide/contractkit/setup)
+  - Using jQuery to update UI component with simple even handler function
+
+- Next.js framework (`react-app` folder)
 
 ### 3. Testing
 
@@ -53,11 +57,6 @@ Add New Product
 
 ### 5. TODO items
 
-- Smart Contract Unit Test
-- Frontend improvement:
-  - Using frontend library / or framework (React)
-  - CSS library (Tailwind + DaisyUI)
-  - Unit Testing
 - CI/CD
   - Integration Testing
   - CI/CD Pipeline
