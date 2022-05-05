@@ -15,7 +15,6 @@ interface ProductProps {
   sold: number
 }
 
-// Create a small image (called identicon), represent a hash value which address of product owner
 function identiconTemplate(_address) {
   const icon = blockies
     .create({

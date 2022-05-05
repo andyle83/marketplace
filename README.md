@@ -2,15 +2,15 @@
 
 ### 1. Introduce
 
-This project implements a simple marketplace to manage / selling product. It's based on great course of Celo in the decade.org. It helps us to understand about Solidity, Celo blockchain, and how to make a full-stack application.
+This project implements a simple marketplace to manage / selling product. It's based on great course of Celo in the decade.org. It helps us to understand about Solidity, Celo blockchain, and how to make a fullstack application.
 
-Here are some features are implemented:
+The feature includes:
 
 - See products hosted on the Celo Blockchain
 - Purchase products with cUSD and pay the owner
 - Add your own products to the dApp
 
-Published website: https://andyle83.github.io/marketplace/
+**Demo website**: https://andyle83.github.io/marketplace/
 
 ### 2. Technology:
 
