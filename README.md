@@ -29,8 +29,12 @@ There are two variant of implementation:
   - [Webpack](https://webpack.js.org/guides/getting-started/) as module bundler
   - Utilise [Celo ContractKit](https://docs.celo.org/developer-guide/contractkit/setup)
   - Using jQuery to update UI component with simple even handler function
+  - Bootstrap UI framework
 
 - Next.js framework (`react-app` folder)
+  - Using `use-contractkit` library
+  - Apollo Client for GraphQL queries
+  - Bootstrap UI framework
 
 ### 3. Testing
 
