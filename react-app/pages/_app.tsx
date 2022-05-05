@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }: AppProps): React.ReactElement {
         <ContractKitProvider
           dapp={{
             name: "use-contractkit demo",
-            description: "A demo DApp to showcase functionality",
+            description: "A commune marketplace",
             url: "https://use-contractkit.vercel.app",
             icon: "https://use-contractkit.vercel.app/favicon.ico",
           }}
