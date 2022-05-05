@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useContractKit } from "@celo-tools/use-contractkit";
 import { BsWalletFill } from "react-icons/bs";
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import {red} from "@mui/material/colors";
+import Notification from "./Notification";
 
 export function Header() {
   const { address, network, kit, connect, destroy } = useContractKit();
@@ -43,9 +43,7 @@ export function Header() {
           </span>
         </div>
       </nav>
-      <div className="alert alert-warning sticky-top mt-2" role="alert">
-        <span id="notification">⌛ Loading...</span>
-      </div>
+      <Notification message="⌛ Loading..." />
       <div className="mb-4" style={{marginTop: "1em"}}>
         <a
           className="btn btn-dark rounded-pill"
