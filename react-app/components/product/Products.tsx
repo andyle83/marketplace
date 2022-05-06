@@ -74,7 +74,10 @@ export default function Products({ index, owner, name, image, description, locat
     try {
       // purchase product
       await contract.methods.buyProduct(index).send({ from: kit.defaultAccount })
+
+      // update notification message and rerender component
       dispatch(updateNotificationMessage({ notificationMessage:  `🎉 You successfully bought "${name}".`}));
+      window.location.reload();
     } catch (error) {
       dispatch(updateNotificationMessage({ notificationMessage: "⚠️ ${error}." }));
     }
