@@ -8,7 +8,7 @@ import AppLayout from "@/components/layout/AppLayout";
 import Products from "@/components/product/Products";
 import { updateLoadingState, updateNotificationMessage } from "@/state/app/reducer";
 
-import marketplaceAbi from '../contract/marketplace.abi.json';
+import marketplaceAbi from "@/contract/Marketplace.abi.json";
 const MPContractAddress = "0xF377516621Cef90E12C0b5133adc783A336B1123";
 
 export default function App() {
@@ -17,7 +17,7 @@ export default function App() {
   const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
 
-  dispatch(updateNotificationMessage({notificationMessage: "⌛ Loading..."}));
+  dispatch(updateNotificationMessage({ notificationMessage: "⌛ Loading products list..." }));
 
   // get contract of our marketplace
   // @ts-ignore
@@ -50,7 +50,7 @@ export default function App() {
     fetchProducts().catch(e => console.error(e));
 
     // update notification
-    dispatch(updateLoadingState({isLoading: false}));
+    dispatch(updateLoadingState({ isLoading: false }));
 
   }, [address, network]);
 

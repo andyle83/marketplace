@@ -1,8 +1,16 @@
 import * as React from "react";
 import BigNumber from "bignumber.js"
 import blockies from 'ethereum-blockies';
+import {useDispatch} from "react-redux";
+
+import { updateLoadingState, updateNotificationMessage } from "@/state/app/reducer";
+import {useContractKit} from "@celo-tools/use-contractkit";
 
 const ERC20_DECIMALS = 18;
+import erc20Abi from '@/contract/erc20.abi.json';
+import marketplaceAbi from "@/contract/Marketplace.abi.json";
+const MPContractAddress = "0xF377516621Cef90E12C0b5133adc783A336B1123"
+const cUSDContractAddress = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1"
 
 interface ProductProps {
   index: string,
@@ -36,6 +44,42 @@ function identiconTemplate(_address) {
 }
 
 export default function Products({ index, owner, name, image, description, location, price, sold }: ProductProps) {
+  const { kit } = useContractKit();
+
+  // @ts-ignore
+  const cUSDContract = new kit.web3.eth.Contract(erc20Abi, cUSDContractAddress);
+  // @ts-ignore
+  const contract = new kit.web3.eth.Contract(marketplaceAbi, MPContractAddress);
+
+  const dispatch = useDispatch();
+
+  const approve = async (price: BigNumber) => {
+    return await cUSDContract.methods
+                  .approve(MPContractAddress, price)
+                  .send({ from: kit.defaultAccount })
+  }
+
+  const purchaseHandler = async (index: string, name: string, price: BigNumber) => {
+    dispatch(updateLoadingState({ isLoading: true }));
+    dispatch(updateNotificationMessage({ notificationMessage: "⌛ Waiting for payment approval..." }));
+
+    try {
+      await approve(price)
+    } catch (error) {
+      dispatch(updateNotificationMessage({ notificationMessage: "⚠️ ${error}." }));
+    }
+
+    dispatch(updateNotificationMessage({ notificationMessage:  `⌛ Awaiting payment for "${name}"...`}));
+
+    try {
+      // purchase product
+      await contract.methods.buyProduct(index).send({ from: kit.defaultAccount })
+      dispatch(updateNotificationMessage({ notificationMessage:  `🎉 You successfully bought "${name}".`}));
+    } catch (error) {
+      dispatch(updateNotificationMessage({ notificationMessage: "⚠️ ${error}." }));
+    }
+  }
+
   return (
     <div className="card mb-4">
       <img className="card-img-top" src={image} alt="..." />
@@ -55,7 +99,9 @@ export default function Products({ index, owner, name, image, description, locat
             <span>{location}</span>
           </p>
           <div className="d-grid gap-2">
-            <a className="btn btn-lg btn-outline-primary buyBtn fs-6 p-3" id={index}>
+            <a className="btn btn-lg btn-outline-primary buyBtn fs-6 p-3"
+               id={index}
+               onClick={() => purchaseHandler(index, name, price)}>
               Buy for {price.shiftedBy(-ERC20_DECIMALS).toFixed(2)} cUSD
             </a>
           </div>
