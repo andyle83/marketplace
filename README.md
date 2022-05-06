@@ -2,7 +2,7 @@
 
 ### 1. Introduce
 
-This project implements a simple marketplace to manage / selling product. It's based on great course of Celo in the decade.org. It helps us to understand about Solidity, Celo blockchain, and how to make a fullstack application.
+This project implements a simple marketplace to manage / selling product. It's based on great course of Celo in the [Dacade](https://dacade.org/). It helps us to understand about Solidity, Celo blockchain, and how to make a fullstack application.
 
 The feature includes:
 
@@ -26,8 +26,8 @@ The feature includes:
 There are two variant of implementation:
 
 - Node.js application (`app` folder)
-  - [Webpack](https://webpack.js.org/guides/getting-started/) as module bundler
-  - Utilise [Celo ContractKit](https://docs.celo.org/developer-guide/contractkit/setup)
+  - Webpack as module bundler
+  - Celo ContractKit
   - Using jQuery to update UI component with simple even handler function
   - Bootstrap UI framework
 
@@ -38,11 +38,11 @@ There are two variant of implementation:
 
 ### 3. Showcase
 
-Home Page
+Marketplace Home Page
 
 ![Home Page](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/Marketplace.png)
 
-Add New Product
+Purchase Product
 
 ![Add New Product](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/Payment.png)
 
