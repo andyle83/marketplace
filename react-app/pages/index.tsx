@@ -1,18 +1,24 @@
 import * as React from "react";
 import {useEffect, useState} from "react";
+import {useDispatch} from "react-redux";
 import { useContractKit } from "@celo-tools/use-contractkit";
-
 import BigNumber from "bignumber.js"
-import AppLayout from "@/components/layout/AppLayout";
 
-import marketplaceAbi from '../contract/marketplace.abi.json';
+import AppLayout from "@/components/layout/AppLayout";
 import Products from "@/components/product/Products";
-const MPContractAddress = "0xF377516621Cef90E12C0b5133adc783A336B1123";
+import { updateLoadingState, updateNotificationMessage } from "@/state/app/reducer";
+
+import marketplaceAbi from "@/contract/Marketplace.abi.json";
+
+import { MPContractAddress } from '@/constants';
 
 export default function App() {
   // get contract kit
   const { kit, address, network } = useContractKit();
   const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+
+  dispatch(updateNotificationMessage({ notificationMessage: "⌛ Loading products list..." }));
 
   // get contract of our marketplace
   // @ts-ignore
@@ -43,10 +49,11 @@ export default function App() {
     }
 
     fetchProducts().catch(e => console.error(e));
-
   }, [address, network]);
 
   const renderProducts = () => {
+    // update notification
+    dispatch(updateLoadingState({ isLoading: false }));
     return products.map((product, index) =>
         <div className="col-md-4" key={index}>
           <Products {...product} />

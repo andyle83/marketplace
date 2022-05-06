@@ -1,6 +1,4 @@
-const withPWA = require('next-pwa')
-
-module.exports = withPWA({
+module.exports = {
   reactStrictMode: true,
   pwa: {
     dest: "public",
@@ -18,4 +16,4 @@ module.exports = withPWA({
     };
     return config;
   },
-})
+}

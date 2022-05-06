@@ -33,7 +33,7 @@ export function Header() {
       <nav className="navbar bg-white navbar-light border-bottom">
         <div className="container-fluid">
           <a className={titleClass} href="/">Food Marketplace</a>
-          <span className="nav-link">
+          <span className="nav-link p-0">
           {!address ? (
               <button type="button" className="btn btn-dark" style={{display: "flex", alignItems: "center"}}
                 onClick={() => connect().catch(e => console.log(e))}
@@ -51,7 +51,7 @@ export function Header() {
           </span>
         </div>
       </nav>
-      <Notification message="⌛ Loading..." />
+      <Notification />
       <div className="mb-4" style={{marginTop: "1em"}}>
         <a
           className="btn btn-dark"

@@ -1,8 +1,15 @@
 import * as React from "react";
 import BigNumber from "bignumber.js"
-import blockies from 'ethereum-blockies';
+import {useDispatch} from "react-redux";
 
-const ERC20_DECIMALS = 18;
+import { updateNotificationMessage } from "@/state/app/reducer";
+import {useContractKit} from "@celo-tools/use-contractkit";
+
+import erc20Abi from '@/contract/erc20.abi.json';
+import marketplaceAbi from "@/contract/Marketplace.abi.json";
+import Identicon from "@/components/product/Identicon";
+
+import { MPContractAddress, cUSDContractAddress, ERC20_DECIMALS } from '@/constants';
 
 interface ProductProps {
   index: string,
@@ -15,27 +22,47 @@ interface ProductProps {
   sold: number
 }
 
-function identiconTemplate(_address) {
-  const icon = blockies
-    .create({
-      seed: _address,
-      size: 8,
-      scale: 16,
-    })
-    .toDataURL()
-
-  const transaction = `https://alfajores-blockscout.celo-testnet.org/address/${_address}/transactions`;
-
-  return (
-    <div className="rounded-circle overflow-hidden d-inline-block border border-white border-2 shadow-sm m-0">
-      <a href={transaction} target="_blank">
-        <img src={icon} width="48" alt={_address} />
-      </a>
-    </div>
-  )
-}
-
 export default function Products({ index, owner, name, image, description, location, price, sold }: ProductProps) {
+  const { kit } = useContractKit();
+
+  // @ts-ignore
+  const cUSDContract = new kit.web3.eth.Contract(erc20Abi, cUSDContractAddress);
+  // @ts-ignore
+  const contract = new kit.web3.eth.Contract(marketplaceAbi, MPContractAddress);
+
+  const dispatch = useDispatch();
+
+  const approve = async (price: BigNumber) => {
+    return await cUSDContract.methods
+                  .approve(MPContractAddress, price)
+                  .send({ from: kit.defaultAccount })
+  }
+
+  const dispatchMessage = (message: string) => {
+    dispatch(updateNotificationMessage({ notificationMessage: message }));
+  }
+
+  const purchaseHandler = async (index: string, name: string, price: BigNumber) => {
+    dispatchMessage(`⌛ Waiting payment approval for ${name}`);
+
+    try {
+      await approve(price)
+    } catch (e) {
+      dispatchMessage(`⚠️ ${e}.`);
+    }
+
+    try {
+      // purchase product
+      await contract.methods.buyProduct(index).send({ from: kit.defaultAccount })
+
+      // update notification message and rerender component
+      dispatchMessage(`🎉 You successfully bought "${name}".`);
+      window.location.reload();
+    } catch (e) {
+      dispatchMessage(`⚠️ ${e}.`);
+    }
+  }
+
   return (
     <div className="card mb-4">
       <img className="card-img-top" src={image} alt="..." />
@@ -44,7 +71,7 @@ export default function Products({ index, owner, name, image, description, locat
         </div>
         <div className="card-body text-left p-4 position-relative">
           <div className="translate-middle-y position-absolute top-0">
-            {identiconTemplate(owner)}
+            <Identicon address={owner} />
           </div>
           <h2 className="card-title fs-4 fw-bold mt-2">{name}</h2>
           <p className="card-text mb-4" style={{minHeight:"82px"}}>
@@ -55,7 +82,9 @@ export default function Products({ index, owner, name, image, description, locat
             <span>{location}</span>
           </p>
           <div className="d-grid gap-2">
-            <a className="btn btn-lg btn-outline-primary buyBtn fs-6 p-3" id={index}>
+            <a className="btn btn-lg btn-outline-primary buyBtn fs-6 p-3"
+               id={index}
+               onClick={() => purchaseHandler(index, name, price)}>
               Buy for {price.shiftedBy(-ERC20_DECIMALS).toFixed(2)} cUSD
             </a>
           </div>

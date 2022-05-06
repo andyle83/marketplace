@@ -1,11 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 export interface ApplicationState {
-  readonly blockNumber: number
+  readonly blockNumber: number,
+  isLoading: boolean,
+  notificationMessage: string,
 }
 
 const initialState: ApplicationState = {
   blockNumber: 0,
+  isLoading: false,
+  notificationMessage: '',
 }
 
 const appSlice = createSlice({
@@ -13,11 +17,20 @@ const appSlice = createSlice({
   initialState,
   reducers: {
     updateBlockNumber(state, action) {
-      const { blockNumber } = action.payload
-      state.blockNumber = blockNumber
+      const { blockNumber } = action.payload;
+      state.blockNumber = blockNumber;
     },
+    updateLoadingState(state, action) {
+      const { isLoading } = action.payload;
+      state.isLoading = isLoading;
+    },
+    updateNotificationMessage(state, action) {
+      const { notificationMessage } = action.payload;
+      state.notificationMessage = notificationMessage;
+      state.isLoading = true;
+    }
   },
 })
 
-export const { updateBlockNumber } = appSlice.actions
+export const { updateBlockNumber, updateLoadingState, updateNotificationMessage } = appSlice.actions
 export default appSlice.reducer
