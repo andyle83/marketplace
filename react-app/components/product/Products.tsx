@@ -5,12 +5,11 @@ import {useDispatch} from "react-redux";
 import { updateNotificationMessage } from "@/state/app/reducer";
 import {useContractKit} from "@celo-tools/use-contractkit";
 
-const ERC20_DECIMALS = 18;
 import erc20Abi from '@/contract/erc20.abi.json';
 import marketplaceAbi from "@/contract/Marketplace.abi.json";
 import Identicon from "@/components/product/Identicon";
-const MPContractAddress = "0xF377516621Cef90E12C0b5133adc783A336B1123"
-const cUSDContractAddress = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1"
+
+import { MPContractAddress, cUSDContractAddress, ERC20_DECIMALS } from '@/constants';
 
 interface ProductProps {
   index: string,

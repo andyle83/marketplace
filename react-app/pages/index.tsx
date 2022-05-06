@@ -9,7 +9,8 @@ import Products from "@/components/product/Products";
 import { updateLoadingState, updateNotificationMessage } from "@/state/app/reducer";
 
 import marketplaceAbi from "@/contract/Marketplace.abi.json";
-const MPContractAddress = "0xF377516621Cef90E12C0b5133adc783A336B1123";
+
+import { MPContractAddress } from '@/constants';
 
 export default function App() {
   // get contract kit
