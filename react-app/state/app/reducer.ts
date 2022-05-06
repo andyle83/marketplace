@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 export interface ApplicationState {
-  readonly blockNumber: number
+  readonly blockNumber: number,
+  isLoading: boolean,
 }
 
 const initialState: ApplicationState = {
   blockNumber: 0,
+  isLoading: true,
 }
 
 const appSlice = createSlice({
@@ -16,8 +18,12 @@ const appSlice = createSlice({
       const { blockNumber } = action.payload
       state.blockNumber = blockNumber
     },
+    updateLoadingState(state, action) {
+      const { isLoading } = action.payload
+      state.isLoading = isLoading
+    }
   },
 })
 
-export const { updateBlockNumber } = appSlice.actions
+export const { updateBlockNumber, updateLoadingState } = appSlice.actions
 export default appSlice.reducer
