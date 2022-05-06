@@ -2,7 +2,7 @@
 
 ### 1. Introduce
 
-This project implements a simple marketplace to manage / selling product. It's based on great course of Celo in the https://dacade.org/. It helps us to understand about Solidity, Celo blockchain, and how to make a fullstack application.
+This project implements a simple marketplace to manage / selling product. It's based on great course of Celo in the [Dacade](https://dacade.org/). It helps us to understand about Solidity, Celo blockchain, and how to make a fullstack application.
 
 The feature includes:
 
