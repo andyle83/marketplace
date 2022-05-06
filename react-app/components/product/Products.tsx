@@ -2,7 +2,7 @@ import * as React from "react";
 import BigNumber from "bignumber.js"
 import {useDispatch} from "react-redux";
 
-import { updateLoadingState, updateNotificationMessage } from "@/state/app/reducer";
+import { updateNotificationMessage } from "@/state/app/reducer";
 import {useContractKit} from "@celo-tools/use-contractkit";
 
 const ERC20_DECIMALS = 18;
@@ -44,13 +44,13 @@ export default function Products({ index, owner, name, image, description, locat
   }
 
   const purchaseHandler = async (index: string, name: string, price: BigNumber) => {
-    dispatchMessage("⌛ Waiting for payment approval...");
+    dispatchMessage(`⌛ Waiting payment approval for ${name}`);
+
     try {
       await approve(price)
-    } catch (error) {
-      dispatchMessage("⚠️ ${error}.");
+    } catch (e) {
+      dispatchMessage(`⚠️ ${e}.`);
     }
-    dispatchMessage(`⌛ Awaiting payment for "${name}"...`);
 
     try {
       // purchase product
@@ -59,8 +59,8 @@ export default function Products({ index, owner, name, image, description, locat
       // update notification message and rerender component
       dispatchMessage(`🎉 You successfully bought "${name}".`);
       window.location.reload();
-    } catch (error) {
-      dispatchMessage(`⚠️ ${error}.`);
+    } catch (e) {
+      dispatchMessage(`⚠️ ${e}.`);
     }
   }
 
