@@ -2,8 +2,18 @@
   "name": "marketplace",
   "version": "0.1",
   "description": "front-end of marketplace",
+  "licenses" : [
+    {
+      "type": "MIT",
+      "url": "https://www.opensource.org/licenses/mit-license.php"
+    },
+    {
+      "type": "Apache-2.0",
+      "url": "https://opensource.org/licenses/apache2.0.php"
+    }
+  ],
   "engines": {
-    "node": "12.x"
+    "node": "14.x"
   },
   "scripts": {
     "dev": "next dev",
@@ -26,8 +36,6 @@
     "ethers": "^5.5.3",
     "graphql": "^16.3.0",
     "next": "^12.1.6",
-    "next-pwa": "^5.4.4",
-    "notistack": "^2.0.4",
     "react": "17.0.2",
     "react-device-detect": "^2.2.2",
     "react-dom": "17.0.2",
