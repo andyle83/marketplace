@@ -1,6 +1,5 @@
 import * as React from "react";
 import BigNumber from "bignumber.js"
-import blockies from 'ethereum-blockies';
 import {useDispatch} from "react-redux";
 
 import { updateLoadingState, updateNotificationMessage } from "@/state/app/reducer";
@@ -9,6 +8,7 @@ import {useContractKit} from "@celo-tools/use-contractkit";
 const ERC20_DECIMALS = 18;
 import erc20Abi from '@/contract/erc20.abi.json';
 import marketplaceAbi from "@/contract/Marketplace.abi.json";
+import Identicon from "@/components/product/Identicon";
 const MPContractAddress = "0xF377516621Cef90E12C0b5133adc783A336B1123"
 const cUSDContractAddress = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1"
 
@@ -21,26 +21,6 @@ interface ProductProps {
   location: string,
   price: BigNumber,
   sold: number
-}
-
-function identiconTemplate(_address) {
-  const icon = blockies
-    .create({
-      seed: _address,
-      size: 8,
-      scale: 16,
-    })
-    .toDataURL()
-
-  const transaction = `https://alfajores-blockscout.celo-testnet.org/address/${_address}/transactions`;
-
-  return (
-    <div className="rounded-circle overflow-hidden d-inline-block border border-white border-2 shadow-sm m-0">
-      <a href={transaction} target="_blank">
-        <img src={icon} width="48" alt={_address} />
-      </a>
-    </div>
-  )
 }
 
 export default function Products({ index, owner, name, image, description, location, price, sold }: ProductProps) {
@@ -59,27 +39,28 @@ export default function Products({ index, owner, name, image, description, locat
                   .send({ from: kit.defaultAccount })
   }
 
-  const purchaseHandler = async (index: string, name: string, price: BigNumber) => {
-    dispatch(updateLoadingState({ isLoading: true }));
-    dispatch(updateNotificationMessage({ notificationMessage: "⌛ Waiting for payment approval..." }));
+  const dispatchMessage = (message: string) => {
+    dispatch(updateNotificationMessage({ notificationMessage: message }));
+  }
 
+  const purchaseHandler = async (index: string, name: string, price: BigNumber) => {
+    dispatchMessage("⌛ Waiting for payment approval...");
     try {
       await approve(price)
     } catch (error) {
-      dispatch(updateNotificationMessage({ notificationMessage: "⚠️ ${error}." }));
+      dispatchMessage("⚠️ ${error}.");
     }
-
-    dispatch(updateNotificationMessage({ notificationMessage:  `⌛ Awaiting payment for "${name}"...`}));
+    dispatchMessage(`⌛ Awaiting payment for "${name}"...`);
 
     try {
       // purchase product
       await contract.methods.buyProduct(index).send({ from: kit.defaultAccount })
 
       // update notification message and rerender component
-      dispatch(updateNotificationMessage({ notificationMessage:  `🎉 You successfully bought "${name}".`}));
+      dispatchMessage(`🎉 You successfully bought "${name}".`);
       window.location.reload();
     } catch (error) {
-      dispatch(updateNotificationMessage({ notificationMessage: "⚠️ ${error}." }));
+      dispatchMessage(`⚠️ ${error}.`);
     }
   }
 
@@ -91,7 +72,7 @@ export default function Products({ index, owner, name, image, description, locat
         </div>
         <div className="card-body text-left p-4 position-relative">
           <div className="translate-middle-y position-absolute top-0">
-            {identiconTemplate(owner)}
+            <Identicon address={owner} />
           </div>
           <h2 className="card-title fs-4 fw-bold mt-2">{name}</h2>
           <p className="card-text mb-4" style={{minHeight:"82px"}}>

@@ -48,13 +48,11 @@ export default function App() {
     }
 
     fetchProducts().catch(e => console.error(e));
-
-    // update notification
-    dispatch(updateLoadingState({ isLoading: false }));
-
   }, [address, network]);
 
   const renderProducts = () => {
+    // update notification
+    dispatch(updateLoadingState({ isLoading: false }));
     return products.map((product, index) =>
         <div className="col-md-4" key={index}>
           <Products {...product} />

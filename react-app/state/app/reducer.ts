@@ -8,7 +8,7 @@ export interface ApplicationState {
 
 const initialState: ApplicationState = {
   blockNumber: 0,
-  isLoading: true,
+  isLoading: false,
   notificationMessage: '',
 }
 
@@ -27,6 +27,7 @@ const appSlice = createSlice({
     updateNotificationMessage(state, action) {
       const { notificationMessage } = action.payload;
       state.notificationMessage = notificationMessage;
+      state.isLoading = true;
     }
   },
 })
