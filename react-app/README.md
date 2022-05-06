@@ -1,17 +1,17 @@
-# Celo DApp Starter Frontend
+# Marketplace Frontend
 
 ## Getting Started
 
 ### Install
 
 ```shell
-yarn
+npm run install
 ```
 
 ### Start
 
 ```shell
-yarn dev
+npm run dev
 ```
 
 ## Dependencies
@@ -19,12 +19,12 @@ yarn dev
 - [use-contractkit](https://www.npmjs.com/package/@celo-tools/use-contractkit) for web3 connection and account management
 - [Next.js](https://nextjs.org/) app framework
 - [Apollo Client](https://www.npmjs.com/package/apollo-client) (for Graph queries)
-- [Material UI](https://mui.com/getting-started/installation/) for designed React Components
+- [Bootstrap](https://react-bootstrap.github.io/getting-started/introduction/) for designed React Components
 
 ## Architecture
 
 - `/pages` includes the main application components (specifically `index.tsx` and `_app.tsx`)
-  - `_app.tsx` includes configurartion
+  - `_app.tsx` includes configuration
   - `index.tsx` is the main page of the application
 - `/components` includes components that are rendered in `index.tsx`
 - `/public` includes files for the PWA

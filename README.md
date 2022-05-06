@@ -82,22 +82,87 @@ Add New Product
 
 **Celo-cli**
 
-- New account: `celocli account:new`
-- Check configure: `celocli config:get`
-- Set configure (for network): `celocli config:set --node=https://alfajores-forno.celo-testnet.org`
-- Get balance (sample address): `celocli account:balance 0xbDEA9f367e9a92b41e91525AEC13d3aDFb027a68`
+New account 
+
+```shell 
+celocli account:new
+```
+
+Check configure 
+
+```shell
+celocli config:get
+```
+
+Set configure (for network) 
+
+```shell
+celocli config:set --node=https://alfajores-forno.celo-testnet.org
+```
+
+Get balance (sample address)
+
+```shell 
+celocli account:balance 0xbDEA9f367e9a92b41e91525AEC13d3aDFb027a68
+```
 
 **Hardhat**
 
-- Console: `npx hardhat console` (i.e., config)
-- Accounts: `npx hardhat accounts`
-- Clean up: ` npx hardhat clean`
-- Compile: `npx hardhat compile`
-- In-memory network: `npx hardhat node`
-- Testing: `npx hardhat test` | `npx hardhat test --network alfajores`
-- Deploy: `npx hardhat run scripts/sample-script.js --network alfajores`
-- Laika (similar as Postman)
-- Syn command: `npx hardhat laika-sync --contract Marketplace --address 0x052F92eF1B97c0dD68B7150a8BBeBf962dD8a4e7`
+Console 
+
+```shell
+npx hardhat console` (i.e., config)
+```
+
+Accounts 
+
+```shell
+npx hardhat accounts
+```
+
+Clean up 
+
+```shell
+npx hardhat clean
+```
+
+Compile 
+
+```shell
+npx hardhat compile
+```
+
+In-memory network 
+
+```shell 
+npx hardhat node
+```
+
+Testing 
+
+```shell
+npx hardhat test
+``` 
+
+or
+
+```shell
+npx hardhat test --network alfajores
+```
+
+Deploy 
+
+```shell
+npx hardhat run scripts/sample-script.js --network alfajores
+```
+
+**Laika (similar as Postman)**
+
+Syn command: 
+
+```shell
+npx hardhat laika-sync --contract Marketplace --address 0x052F92eF1B97c0dD68B7150a8BBeBf962dD8a4e7
+````
 
 ### 7. Issues
 
