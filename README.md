@@ -38,11 +38,11 @@ There are two variant of implementation:
 
 ### 3. Showcase
 
-Home Page
+Marketplace Home Page
 
 ![Home Page](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/Marketplace.png)
 
-Add New Product
+Purchase Product
 
 ![Add New Product](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/Payment.png)
 
