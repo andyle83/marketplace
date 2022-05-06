@@ -135,7 +135,7 @@ celocli account:balance 0xbDEA9f367e9a92b41e91525AEC13d3aDFb027a68
 - Console 
 
 ```shell
-npx hardhat console` (i.e., config)
+npx hardhat console
 ```
 
 - Accounts 
