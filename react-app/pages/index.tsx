@@ -6,7 +6,7 @@ import BigNumber from "bignumber.js"
 
 import AppLayout from "@/components/layout/AppLayout";
 import Products from "@/components/product/Products";
-import { updateLoadingState } from "@/state/app/reducer";
+import { updateLoadingState, updateNotificationMessage } from "@/state/app/reducer";
 
 import marketplaceAbi from '../contract/marketplace.abi.json';
 const MPContractAddress = "0xF377516621Cef90E12C0b5133adc783A336B1123";
@@ -16,6 +16,8 @@ export default function App() {
   const { kit, address, network } = useContractKit();
   const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
+
+  dispatch(updateNotificationMessage({notificationMessage: "⌛ Loading..."}));
 
   // get contract of our marketplace
   // @ts-ignore

@@ -1,16 +1,13 @@
 import * as React from "react";
 import {useSelector, RootStateOrAny } from "react-redux";
 
-interface NotificationProps {
-  message: string,
-}
-
-export default function Notification({ message }: NotificationProps) {
+export default function Notification() {
   const isLoading = useSelector((state:RootStateOrAny) => state.app.isLoading );
+  const notificationMessage = useSelector((state:RootStateOrAny) => state.app.notificationMessage);
 
-  return isLoading && (
+  return isLoading && (notificationMessage != "") && (
     <div className="alert alert-warning sticky-top mt-2" role="alert">
-      <span id="notification">{message}</span>
+      <span id="notification">{notificationMessage}</span>
     </div>
   );
 }

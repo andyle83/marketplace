@@ -51,7 +51,7 @@ export function Header() {
           </span>
         </div>
       </nav>
-      <Notification message="⌛ Loading..." />
+      <Notification />
       <div className="mb-4" style={{marginTop: "1em"}}>
         <a
           className="btn btn-dark"
