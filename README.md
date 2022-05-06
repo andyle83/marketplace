@@ -36,7 +36,18 @@ There are two variant of implementation:
   - Apollo Client for GraphQL queries
   - Bootstrap UI framework
 
-### 3. Testing
+### 3. Showcase
+
+Home Page
+
+![Home Page](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/Marketplace.png)
+
+Add New Product
+
+![Add New Product](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/Payment.png)
+
+
+### 4. Testing
 
 **Running Unit Testing Smart Contract**
 
@@ -72,17 +83,6 @@ npx hardhat run scripts/sample-script.js --network alfajores
 ```shell
 npx hardhat laika-sync --contract Marketplace --address 0x052F92eF1B97c0dD68B7150a8BBeBf962dD8a4e7
 ```
-
-### 4. Application screenshot
-
-Home Page
-
-![Home Page](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/1.png)
-
-Add New Product
-
-![Add New Product](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/2.png)
-
 ### 5. TODO
 
 - CI/CD
