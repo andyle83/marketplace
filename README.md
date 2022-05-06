@@ -40,14 +40,38 @@ There are two variant of implementation:
 
 **Running Unit Testing Smart Contract**
 
-- Local network - Testing using hardhat gauche package: `npm run test`
-- Local network - Testing using hardhat node: `npx hardhat node` , then `npx hardhat test`
-- Testing network:  `npx hardhat test --network alfajores`
+- Local network - Testing using hardhat gauche package: 
+
+```shell
+npm run test
+```
+
+- Local network - Testing using hardhat node: 
+
+```shell
+npx hardhat node
+npx hardhat test
+```
+
+- Testing network:  
+
+```shell
+npx hardhat test --network alfajores
+```
 
 **Running manual test (using Laika)**
   
-- Deploy in testnet: `npx hardhat run scripts/sample-script.js --network alfajores`
-- Sync: `npx hardhat laika-sync --contract Marketplace --address 0x052F92eF1B97c0dD68B7150a8BBeBf962dD8a4e7`
+- Deploy in testnet: 
+
+```shell 
+npx hardhat run scripts/sample-script.js --network alfajores
+```
+
+- Sync: 
+
+```shell
+npx hardhat laika-sync --contract Marketplace --address 0x052F92eF1B97c0dD68B7150a8BBeBf962dD8a4e7
+```
 
 ### 4. Application screenshot
 
@@ -82,25 +106,25 @@ Add New Product
 
 **Celo-cli**
 
-New account 
+- New account 
 
 ```shell 
 celocli account:new
 ```
 
-Check configure 
+- Check configure 
 
 ```shell
 celocli config:get
 ```
 
-Set configure (for network) 
+- Set configure (for network) 
 
 ```shell
 celocli config:set --node=https://alfajores-forno.celo-testnet.org
 ```
 
-Get balance (sample address)
+- Get balance (sample address)
 
 ```shell 
 celocli account:balance 0xbDEA9f367e9a92b41e91525AEC13d3aDFb027a68
@@ -108,49 +132,44 @@ celocli account:balance 0xbDEA9f367e9a92b41e91525AEC13d3aDFb027a68
 
 **Hardhat**
 
-Console 
+- Console 
 
 ```shell
 npx hardhat console` (i.e., config)
 ```
 
-Accounts 
+- Accounts 
 
 ```shell
 npx hardhat accounts
 ```
 
-Clean up 
+- Clean up 
 
 ```shell
 npx hardhat clean
 ```
 
-Compile 
+- Compile 
 
 ```shell
 npx hardhat compile
 ```
 
-In-memory network 
+- In-memory network 
 
 ```shell 
 npx hardhat node
 ```
 
-Testing 
+- Testing 
 
 ```shell
 npx hardhat test
-``` 
-
-or
-
-```shell
 npx hardhat test --network alfajores
 ```
 
-Deploy 
+- Deploy 
 
 ```shell
 npx hardhat run scripts/sample-script.js --network alfajores
@@ -158,7 +177,7 @@ npx hardhat run scripts/sample-script.js --network alfajores
 
 **Laika (similar as Postman)**
 
-Syn command: 
+- Syn command 
 
 ```shell
 npx hardhat laika-sync --contract Marketplace --address 0x052F92eF1B97c0dD68B7150a8BBeBf962dD8a4e7
