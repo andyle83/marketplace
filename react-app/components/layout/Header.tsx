@@ -5,6 +5,7 @@ import { BsWalletFill } from "react-icons/bs";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import Notification from "./Notification";
 import { isMobile } from 'react-device-detect';
+import { IoAdd } from "react-icons/io5";
 
 const classNames = require('classnames');
 
@@ -38,7 +39,7 @@ export function Header() {
               <button type="button" className="btn btn-dark" style={{display: "flex", alignItems: "center"}}
                 onClick={() => connect().catch(e => console.log(e))}
               >
-                Connect wallet <BsWalletFill style={{marginLeft: "0.5rem"}} />
+                Connect wallet <BsWalletFill style={{marginLeft: "0.5rem"}} color="yellow" />
               </button>
             ) :
             (<>
@@ -53,13 +54,14 @@ export function Header() {
       </nav>
       <Notification />
       <div className="mb-4" style={{marginTop: "1em"}}>
-        <a
+        <button
           className="btn btn-dark"
           data-bs-toggle="modal"
           data-bs-target="#addModal"
+          style={{display: "flex", alignItems: "center"}}
         >
-          Add product
-        </a>
+          <IoAdd color="yellow" /> Add product
+        </button>
       </div>
     </header>
   );
