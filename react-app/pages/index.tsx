@@ -8,8 +8,8 @@ import AppLayout from "@/components/layout/AppLayout";
 import Products from "@/components/product/Products";
 import { updateLoadingState, updateNotificationMessage } from "@/state/app/reducer";
 
+import { LoadingProductMessage } from '@/constants';
 import marketplaceAbi from "@/contract/Marketplace.abi.json";
-
 import { MPContractAddress } from '@/constants';
 
 export default function App() {
@@ -17,8 +17,6 @@ export default function App() {
   const { kit, address, network } = useContractKit();
   const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
-
-  dispatch(updateNotificationMessage({ notificationMessage: "⌛ Loading products list..." }));
 
   // get contract of our marketplace
   // @ts-ignore
@@ -47,13 +45,15 @@ export default function App() {
       }
       setProducts(await Promise.all(_products));
     }
+    dispatch(updateNotificationMessage({ notificationMessage: LoadingProductMessage }));
 
-    fetchProducts().catch(e => console.error(e));
+    fetchProducts().then(_ =>
+      dispatch(updateLoadingState({ isLoading: false }))
+    ).catch(e => console.error(e));
   }, [address, network]);
 
   const renderProducts = () => {
     // update notification
-    dispatch(updateLoadingState({ isLoading: false }));
     return products.map((product, index) =>
         <div className="col-md-4" key={index}>
           <Products {...product} />

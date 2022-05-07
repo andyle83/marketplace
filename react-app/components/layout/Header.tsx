@@ -20,7 +20,7 @@ export function Header() {
 
   useEffect(() => {
     if (address) {
-      fetchBalance().then(_ => console.log("fetching balance"));
+      fetchBalance().catch(e => console.error(e));
     }
   }, [network, address])
 
