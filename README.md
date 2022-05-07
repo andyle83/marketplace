@@ -46,6 +46,11 @@ Purchase Product
 
 ![Add New Product](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/Payment.png)
 
+Create Product
+
+Purchase Product
+
+![Create New Product](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/New.png)
 
 ### 4. Testing
 
