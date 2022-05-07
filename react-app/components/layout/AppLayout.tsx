@@ -11,7 +11,7 @@ interface AppLayoutProps {
 
 export default function AppLayout({ title, description, children }: AppLayoutProps) {
   return (
-    <div className="container mt-2">
+    <div className="container mt-2" style={{ maxWidth: "72em"}}>
       <Header />
       <Meta title={title} description={description} />
       {children}
