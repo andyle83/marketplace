@@ -7,7 +7,7 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import Notification from "./Notification";
 import { isMobile } from 'react-device-detect';
 import { IoAdd } from "react-icons/io5";
-import Dialog from "@/components/product/Dialog";
+import Dialog from "../product/dialog/";
 
 const classNames = require('classnames');
 
@@ -42,7 +42,7 @@ export function Header() {
               <button type="button" className="btn btn-dark" style={{display: "flex", alignItems: "center"}}
                 onClick={() => connect().catch(e => console.log(e))}
               >
-                Connect wallet <BsWalletFill style={{marginLeft: "0.5rem"}} color="yellow" />
+                Wallet <BsWalletFill style={{marginLeft: "0.5rem"}} color="yellow" />
               </button>
             ) :
             (<>
