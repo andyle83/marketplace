@@ -42,13 +42,16 @@ export function Header() {
               <button type="button" className="btn btn-outline-danger" style={{display: "flex", alignItems: "center"}}
                 onClick={() => connect().catch(e => console.log(e))}
               >
-                Wallet <BsWalletFill style={{marginLeft: "0.5rem"}} color="red" />
+                Wallet <BsWalletFill style={{marginLeft: "0.5rem"}} />
               </button>
             ) :
             (<>
-              <button type="button" className="btn btn-success" style={{display: "flex", alignItems: "center"}}>
+              <button type="button" className="btn btn-outline-danger" style={{display: "flex", alignItems: "center"}}>
                 <span id="balance" className="m-1">{balance}</span>cUSD
-                <IoIosCloseCircleOutline size={20} color="red" onClick={destroy}  style={{marginLeft: "0.5rem"}}/>
+                <IoIosCloseCircleOutline
+                  size={20}
+                  onClick={destroy}
+                  style={{marginLeft: "0.5rem"}}/>
               </button>
             </>)
           }
@@ -62,7 +65,7 @@ export function Header() {
           style={{display: "flex", alignItems: "center"}}
           onClick={() => setOpenModal(true)}
         >
-          <IoAdd color="red" /> Add product
+          <IoAdd /> Add product
         </button>
         <Dialog openModal={openModal} onClose={() => setOpenModal(false)} />
       </div>
