@@ -6,7 +6,6 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import Notification from "./Notification";
 import { isMobile } from 'react-device-detect';
 import { IoAdd } from "react-icons/io5";
-import Link from 'next/link'
 
 const classNames = require('classnames');
 
@@ -34,7 +33,7 @@ export function Header() {
     <header>
       <nav className="navbar bg-white navbar-light border-bottom">
         <div className="container-fluid">
-          <Link className={titleClass} href="/">Food Marketplace</Link>
+          <a className={titleClass} href="/">Food Marketplace</a>
           <span className="nav-link p-0">
           {!address ? (
               <button type="button" className="btn btn-dark" style={{display: "flex", alignItems: "center"}}
