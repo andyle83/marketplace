@@ -10,7 +10,7 @@ The feature includes:
 - Purchase products with cUSD and pay the owner
 - Add your own products to the dApp
 
-**Demo website**: https://andyle83.github.io/marketplace/
+**Demo website**: https://marketplace-andyle83.vercel.app/
 
 ### 2. Technology:
 
