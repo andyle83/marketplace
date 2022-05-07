@@ -48,8 +48,6 @@ Purchase Product
 
 Create Product
 
-Purchase Product
-
 ![Create New Product](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/New.png)
 
 ### 4. Testing
