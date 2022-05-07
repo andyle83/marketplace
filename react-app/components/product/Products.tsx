@@ -65,6 +65,10 @@ export default function Products({ index, owner, name, image, description, locat
     }
   }
 
+  const showInMapClicked = () => {
+    window.open("https://maps.google.com?q="+0+ "," +0 );
+  };
+
   return (
     <div className="card mb-4">
       <img className="card-img-top" src={image} alt="..." />
@@ -80,11 +84,11 @@ export default function Products({ index, owner, name, image, description, locat
             {description}
           </p>
           <p className="card-text mt-4">
-            <BsPinMap color="red" style={{ verticalAlign: "baseline" }} />
+            <BsPinMap color="red" style={{ verticalAlign: "baseline" }}  onClick={showInMapClicked} />
             <span className="p-2">{location}</span>
           </p>
           <div className="d-grid gap-2">
-            <a className="btn btn-lg btn-outline-primary buyBtn fs-6 p-3"
+            <a className="btn btn-outline-danger buyBtn fs-6 p-3"
                id={index}
                onClick={() => purchaseHandler(index, name, price)}>
               Buy for {price.shiftedBy(-ERC20_DECIMALS).toFixed(2)} cUSD
