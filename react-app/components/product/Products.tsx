@@ -8,6 +8,8 @@ import {useContractKit} from "@celo-tools/use-contractkit";
 import erc20Abi from '@/contract/erc20.abi.json';
 import marketplaceAbi from "@/contract/Marketplace.abi.json";
 import Identicon from "@/components/product/Identicon";
+import { BsPinMap } from "react-icons/bs";
+
 
 import { MPContractAddress, cUSDContractAddress, ERC20_DECIMALS } from '@/constants';
 
@@ -74,12 +76,12 @@ export default function Products({ index, owner, name, image, description, locat
             <Identicon address={owner} />
           </div>
           <h2 className="card-title fs-4 fw-bold mt-2">{name}</h2>
-          <p className="card-text mb-4" style={{minHeight:"82px"}}>
+          <p className="card-text mb-4" style={{ minHeight:"82px" }}>
             {description}
           </p>
           <p className="card-text mt-4">
-            <i className="bi bi-geo-alt-fill"></i>
-            <span>{location}</span>
+            <BsPinMap color="red" style={{ verticalAlign: "baseline" }} />
+            <span className="p-2">{location}</span>
           </p>
           <div className="d-grid gap-2">
             <a className="btn btn-lg btn-outline-primary buyBtn fs-6 p-3"
