@@ -12,7 +12,7 @@ The feature includes:
 
 **Demo website**: https://marketplace-andyle83.vercel.app/
 
-### 2. Technology:
+### 2. Technology Stack
 
 **Blockchain:**
 
@@ -88,7 +88,7 @@ npx hardhat laika-sync --contract Marketplace --address 0x052F92eF1B97c0dD68B715
 ```
 ### 5. TODO
 
-- CI/CD
+- CI/CD (Applying `Vercel`)
   - Integration Testing
   - CI/CD Pipeline
 - New features
