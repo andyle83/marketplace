@@ -1,17 +1,20 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { useContractKit } from "@celo-tools/use-contractkit";
+
 import { BsWalletFill } from "react-icons/bs";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import Notification from "./Notification";
 import { isMobile } from 'react-device-detect';
 import { IoAdd } from "react-icons/io5";
+import Dialog from "@/components/product/Dialog";
 
 const classNames = require('classnames');
 
 export function Header() {
   const { address, network, kit, connect, destroy } = useContractKit();
   const [balance, setBalance] = useState("");
+  const [openModal, setOpenModal] = useState(false);
 
   async function fetchBalance() {
     const { cUSD } = await kit.getTotalBalance(address);
@@ -56,12 +59,12 @@ export function Header() {
       <div className="mb-4" style={{marginTop: "1em"}}>
         <button
           className="btn btn-dark"
-          data-bs-toggle="modal"
-          data-bs-target="#addModal"
           style={{display: "flex", alignItems: "center"}}
+          onClick={() => setOpenModal(true)}
         >
           <IoAdd color="yellow" /> Add product
         </button>
+        <Dialog openModal={openModal} onClose={() => setOpenModal(false)} />
       </div>
     </header>
   );
