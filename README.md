@@ -89,8 +89,14 @@ npx hardhat laika-sync --contract Marketplace --address 0x052F92eF1B97c0dD68B715
 ### 5. TODO
 
 - CI/CD (Applying `Vercel`)
-  - Integration Testing
+  - Integration Testing: [TBD]
   - CI/CD Pipeline
+
+```shell
+vercel
+vercel --prod
+```
+
 - New features
   - Voting / Comment from customer
   - Sorting / Pagination / Category
