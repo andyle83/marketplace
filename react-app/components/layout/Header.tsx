@@ -39,16 +39,16 @@ export function Header() {
           <a className={titleClass} href="/">Food Marketplace</a>
           <span className="nav-link p-0">
           {!address ? (
-              <button type="button" className="btn btn-dark" style={{display: "flex", alignItems: "center"}}
+              <button type="button" className="btn btn-outline-danger" style={{display: "flex", alignItems: "center"}}
                 onClick={() => connect().catch(e => console.log(e))}
               >
-                Wallet <BsWalletFill style={{marginLeft: "0.5rem"}} color="yellow" />
+                Wallet <BsWalletFill style={{marginLeft: "0.5rem"}} color="red" />
               </button>
             ) :
             (<>
-              <button type="button" className="btn btn-dark" style={{display: "flex", alignItems: "center"}}>
+              <button type="button" className="btn btn-success" style={{display: "flex", alignItems: "center"}}>
                 <span id="balance" className="m-1">{balance}</span>cUSD
-                <IoIosCloseCircleOutline size={20} color="yellow" onClick={destroy}  style={{marginLeft: "0.5rem"}}/>
+                <IoIosCloseCircleOutline size={20} color="red" onClick={destroy}  style={{marginLeft: "0.5rem"}}/>
               </button>
             </>)
           }
@@ -58,11 +58,11 @@ export function Header() {
       <Notification />
       <div className="mb-4" style={{marginTop: "1em"}}>
         <button
-          className="btn btn-dark"
+          className="btn btn-outline-danger"
           style={{display: "flex", alignItems: "center"}}
           onClick={() => setOpenModal(true)}
         >
-          <IoAdd color="yellow" /> Add product
+          <IoAdd color="red" /> Add product
         </button>
         <Dialog openModal={openModal} onClose={() => setOpenModal(false)} />
       </div>
