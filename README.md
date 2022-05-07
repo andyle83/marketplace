@@ -14,16 +14,16 @@ The feature includes:
 
 ### 2. Technology Stack
 
-**Blockchain:**
+**Blockchain**
 
 - Written in Solidity for Celo blockchain network
 - Deploying in Celo testnet: https://alfajores-blockscout.celo-testnet.org/
 - Deploy address: `0x052F92eF1B97c0dD68B7150a8BBeBf962dD8a4e7` (can be changed)
 - Development framework: HardHat & Laika
 
-**Frontend:**
+**Frontend**
 
-There are two variant of implementation:
+There are two variants of implementation:
 
 - Node.js application (`app` folder)
   - Webpack as module bundler
