@@ -60,28 +60,10 @@ export function Header() {
               </div>
             </div>
           </form>
-          <span className="nav-link p-2">
-          {!address ? (
-              <button type="button" className="btn btn-outline-danger" style={{display: "flex", alignItems: "center"}}
-                onClick={() => connect().catch(e => console.log(e))}
-              >
-                Wallet <BsWalletFill style={{marginLeft: "0.5rem"}} />
-              </button>
-            ) :
-            (<>
-              <button type="button" className="btn btn-outline-danger" style={{display: "flex", alignItems: "center"}}>
-                <span id="balance" className="m-1">{balance}</span>cUSD
-                <IoIosCloseCircleOutline
-                  size={20}
-                  onClick={destroy}
-                  style={{marginLeft: "0.5rem"}}/>
-              </button>
-            </>)
-          }
-          </span>
       </nav>
       <Notification />
-      <div className="mb-4" style={{marginTop: "1em"}}>
+      <div className="btn-toolbar justify-content-between tw-mt-4 tw-mb-4" role="toolbar"
+           aria-label="Toolbar with button groups">
         <button
           className="btn btn-outline-danger"
           style={{display: "flex", alignItems: "center"}}
@@ -90,6 +72,23 @@ export function Header() {
           <IoAdd /> Add product
         </button>
         <Dialog openModal={openModal} onClose={() => setOpenModal(false)} />
+        {!address ? (
+            <button type="button" className="btn btn-outline-danger" style={{display: "flex", alignItems: "center"}}
+                    onClick={() => connect().catch(e => console.log(e))}
+            >
+              Wallet <BsWalletFill style={{marginLeft: "0.5rem"}} />
+            </button>
+          ) :
+          (<>
+            <button type="button" className="btn btn-outline-danger" style={{display: "flex", alignItems: "center"}}>
+              <span id="balance" className="m-1">{balance}</span>cUSD
+              <IoIosCloseCircleOutline
+                size={20}
+                onClick={destroy}
+                style={{marginLeft: "0.5rem"}}/>
+            </button>
+          </>)
+        }
       </div>
     </header>
   );
