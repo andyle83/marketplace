@@ -29,15 +29,15 @@ export function Header() {
 
   return (
     <header>
-      <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom justify-content-between">
-          <a className="navbar-brand" href="#">
-            <Image src="/banner.png" width={isMobile ? "150" : "300" } height={isMobile ? "40" : "80" } />
-          </a>
+      <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom">
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                   aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <a className="navbar-brand" href="#">
+            <Image src="/banner.png" width={isMobile ? "150" : "300" } height={isMobile ? "40" : "80" } />
+          </a>
+          <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
             <ul className="navbar-nav">
               <li className="nav-item active">
                 <a className="nav-link" href="#">Home</a>
@@ -48,24 +48,26 @@ export function Header() {
               <li className="nav-item">
                 <a className="nav-link" href="#">About Us</a>
               </li>
+              <li className="nav-item">
+                <form className="form-inline">
+                  <div className="input-group">
+                    <input type="text" className="form-control mr-sm-2" placeholder="Search for product" aria-label="Search" />
+                    <div className="input-group-append">
+                      <button className="btn btn-secondary" type="button">
+                        <BsSearch />
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </li>
             </ul>
           </div>
-          <form className="form-inline">
-            <div className="input-group">
-              <input type="text" className="form-control mr-sm-2" placeholder="Search for product" aria-label="Search" />
-              <div className="input-group-append">
-                <button className="btn btn-secondary" type="button">
-                  <BsSearch />
-                </button>
-              </div>
-            </div>
-          </form>
       </nav>
       <Notification />
       <div className="btn-toolbar justify-content-between tw-mt-4 tw-mb-4" role="toolbar"
            aria-label="Toolbar with button groups">
         <button
-          className="btn btn-outline-danger"
+          className="btn btn-outline-danger btn-sm"
           style={{display: "flex", alignItems: "center"}}
           onClick={() => setOpenModal(true)}
         >
@@ -73,7 +75,7 @@ export function Header() {
         </button>
         <Dialog openModal={openModal} onClose={() => setOpenModal(false)} />
         {!address ? (
-            <button type="button" className="btn btn-outline-danger" style={{display: "flex", alignItems: "center"}}
+            <button type="button" className="btn btn-outline-danger btn-sm" style={{display: "flex", alignItems: "center"}}
                     onClick={() => connect().catch(e => console.log(e))}
             >
               Wallet <BsWalletFill style={{marginLeft: "0.5rem"}} />
