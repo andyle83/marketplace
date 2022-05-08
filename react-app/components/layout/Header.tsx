@@ -8,37 +8,44 @@ import Notification from "./Notification";
 import Image from "next/image";
 import { BsSearch } from "react-icons/bs";
 
+function MobileHeader() {
+  return (
+    <div className="d-flex flex-grow-1">
+      <div className="w-100 text-right">
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <a className="navbar-brand-two" href="#">
+        <Image src="/banner.png" width="600" height="140"/>
+      </a>
+      <span className="w-100 d-lg-none d-block"/>
+    </div>
+  )
+}
+
+function DesktopHeader() {
+  return (
+    <div className="d-flex flex-grow-1">
+      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+              aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span className="navbar-toggler-icon"></span>
+      </button>
+      <a className="navbar-brand-two" href="#">
+        <Image src="/banner.png" width="300" height="80" />
+      </a>
+    </div>
+  )
+}
+
 export function Header() {
   const [openModal, setOpenModal] = useState(false);
 
   return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom">
-          { isMobile ? (
-            <div className="d-flex flex-grow-1">
-              <div className="w-100 text-right">
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                  <span className="navbar-toggler-icon"></span>
-                </button>
-              </div>
-              <a className="navbar-brand-two" href="#">
-                <Image src="/banner.png" width="600" height="140"/>
-              </a>
-              <span className="w-100 d-lg-none d-block"/>
-            </div>
-          ) : (
-            <div className="d-flex flex-grow-1">
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                  <span className="navbar-toggler-icon"></span>
-                </button>
-              <a className="navbar-brand-two" href="#">
-                <Image src="/banner.png" width="300" height="80" />
-              </a>
-            </div>
-          )
-          }
+          { isMobile ? <MobileHeader /> : <DesktopHeader /> }
           <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
             <ul className="navbar-nav">
               <li className="nav-item active">
