@@ -37,7 +37,7 @@ export function Header() {
     <header>
       <nav className="navbar bg-white navbar-light border-bottom">
         <div className="container-fluid">
-          <Image src="/banner.png" width="300" height="80" />
+          <Image src="/banner.png" width={isMobile ? "150" : "300" } height={isMobile ? "40" : "80" } />
           <span className="nav-link p-0">
           {!address ? (
               <button type="button" className="btn btn-outline-danger" style={{display: "flex", alignItems: "center"}}
