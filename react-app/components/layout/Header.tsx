@@ -48,21 +48,19 @@ export function Header() {
               <li className="nav-item">
                 <a className="nav-link" href="#">About Us</a>
               </li>
-              <li className="nav-item">
-                <form className="form-inline">
-                  <div className="input-group">
-                    <input type="text" className="form-control mr-sm-2" placeholder="Search for product" aria-label="Search" />
-                      <div className="input-group-append">
-                        <button className="btn btn-outline-danger" type="button">
-                          <BsSearch />
-                        </button>
-                      </div>
-                  </div>
-                </form>
-              </li>
             </ul>
           </div>
-          <span className="nav-link p-0">
+          <form className="form-inline">
+            <div className="input-group">
+              <input type="text" className="form-control mr-sm-2" placeholder="Search for product" aria-label="Search" />
+              <div className="input-group-append">
+                <button className="btn btn-secondary" type="button">
+                  <BsSearch />
+                </button>
+              </div>
+            </div>
+          </form>
+          <span className="nav-link p-2">
           {!address ? (
               <button type="button" className="btn btn-outline-danger" style={{display: "flex", alignItems: "center"}}
                 onClick={() => connect().catch(e => console.log(e))}
