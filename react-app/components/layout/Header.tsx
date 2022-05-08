@@ -8,6 +8,7 @@ import Notification from "./Notification";
 import { isMobile } from 'react-device-detect';
 import { IoAdd } from "react-icons/io5";
 import Dialog from "../product/dialog/";
+import Image from "next/image";
 
 const classNames = require('classnames');
 
@@ -36,7 +37,7 @@ export function Header() {
     <header>
       <nav className="navbar bg-white navbar-light border-bottom">
         <div className="container-fluid">
-          <a className={titleClass} href="/">Food Marketplace</a>
+          <Image src="/banner.png" width="300" height="80" />
           <span className="nav-link p-0">
           {!address ? (
               <button type="button" className="btn btn-outline-danger" style={{display: "flex", alignItems: "center"}}
