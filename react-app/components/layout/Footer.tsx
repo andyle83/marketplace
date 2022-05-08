@@ -1,13 +1,11 @@
 import * as React from "react";
-import { IoIosSend } from "react-icons/io";
-import { BsShop } from "react-icons/bs";
 
 export default function Footer() {
   return (
     <footer className="pt-4 my-md-5 pt-md-5 border-top">
       <div className="row">
         <div className="col-12 col-md text-center">
-          <BsShop size={32} color="red" />
+          <i className="bi bi-shop" color="red"></i>
           <small className="d-block mb-3 text-muted mt-2">© 2022-2050</small>
         </div>
         <div className="col-12 col-md">
@@ -28,7 +26,7 @@ export default function Footer() {
                         className="btn btn-outline-danger mb-4"
                         style={{display: "flex", alignItems: "center"}
                 }>
-                  <IoIosSend />
+                  <i className="bi bi-send" style={{marginRight: "0.5rem"}}></i>
                   Subscribe
                 </button>
               </div>

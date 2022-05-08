@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
 import { isMobile } from 'react-device-detect';
-import { IoAdd } from "react-icons/io5";
 import Dialog from "../product/Dialog";
 import Wallet from "../user/Wallet";
 import Notification from "./Notification";
@@ -80,11 +79,11 @@ export function Header() {
       <div className="btn-toolbar justify-content-between tw-mt-4 tw-mb-4" role="toolbar"
            aria-label="Toolbar with button groups">
         <button
-          className="btn btn-outline-danger btn-sm"
+          className="btn btn-outline-danger"
           style={{display: "flex", alignItems: "center"}}
           onClick={() => setOpenModal(true)}
         >
-          <IoAdd /> Add product
+          <i className="bi bi-plus"></i> Add product
         </button>
         <Dialog openModal={openModal} onClose={() => setOpenModal(false)} />
         <Wallet />
