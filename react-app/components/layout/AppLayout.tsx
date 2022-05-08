@@ -1,5 +1,4 @@
 import * as React from "react";
-import Meta from "../meta/Meta";
 import Footer from "./Footer";
 import { Header } from "./Header";
 
@@ -13,7 +12,6 @@ export default function AppLayout({ title, description, children }: AppLayoutPro
   return (
     <div className="container mt-2" style={{ maxWidth: "72em"}}>
       <Header />
-      <Meta title={title} description={description} />
       {children}
       <Footer />
     </div>

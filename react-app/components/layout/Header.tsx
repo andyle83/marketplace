@@ -36,7 +36,7 @@ export function Header() {
 
   return (
     <header>
-      <nav className="navbar navbar-expand-lg bg-white navbar-light border-bottom justify-content-between">
+      <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom justify-content-between">
           <a className="navbar-brand" href="#">
             <Image src="/banner.png" width={isMobile ? "150" : "300" } height={isMobile ? "40" : "80" } />
           </a>
