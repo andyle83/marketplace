@@ -11,8 +11,6 @@ import Dialog from "../product/dialog/";
 import Image from "next/image";
 import { BsSearch } from "react-icons/bs";
 
-const classNames = require('classnames');
-
 export function Header() {
   const { address, network, kit, connect, destroy } = useContractKit();
   const [balance, setBalance] = useState("");
@@ -28,11 +26,6 @@ export function Header() {
       fetchBalance().catch(e => console.error(e));
     }
   }, [network, address])
-
-  const titleClass = classNames("navbar-brand font-monospace", {
-    'fs-6': isMobile,
-    'fs-3': !isMobile
-  })
 
   return (
     <header>
@@ -69,25 +62,25 @@ export function Header() {
               </li>
             </ul>
           </div>
-          {/*<span className="nav-link p-0">*/}
-          {/*{!address ? (*/}
-          {/*    <button type="button" className="btn btn-outline-danger" style={{display: "flex", alignItems: "center"}}*/}
-          {/*      onClick={() => connect().catch(e => console.log(e))}*/}
-          {/*    >*/}
-          {/*      Wallet <BsWalletFill style={{marginLeft: "0.5rem"}} />*/}
-          {/*    </button>*/}
-          {/*  ) :*/}
-          {/*  (<>*/}
-          {/*    <button type="button" className="btn btn-outline-danger" style={{display: "flex", alignItems: "center"}}>*/}
-          {/*      <span id="balance" className="m-1">{balance}</span>cUSD*/}
-          {/*      <IoIosCloseCircleOutline*/}
-          {/*        size={20}*/}
-          {/*        onClick={destroy}*/}
-          {/*        style={{marginLeft: "0.5rem"}}/>*/}
-          {/*    </button>*/}
-          {/*  </>)*/}
-          {/*}*/}
-          {/*</span>*/}
+          <span className="nav-link p-0">
+          {!address ? (
+              <button type="button" className="btn btn-outline-danger" style={{display: "flex", alignItems: "center"}}
+                onClick={() => connect().catch(e => console.log(e))}
+              >
+                Wallet <BsWalletFill style={{marginLeft: "0.5rem"}} />
+              </button>
+            ) :
+            (<>
+              <button type="button" className="btn btn-outline-danger" style={{display: "flex", alignItems: "center"}}>
+                <span id="balance" className="m-1">{balance}</span>cUSD
+                <IoIosCloseCircleOutline
+                  size={20}
+                  onClick={destroy}
+                  style={{marginLeft: "0.5rem"}}/>
+              </button>
+            </>)
+          }
+          </span>
       </nav>
       <Notification />
       <div className="mb-4" style={{marginTop: "1em"}}>
