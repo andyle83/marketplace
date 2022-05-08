@@ -2,12 +2,14 @@ import * as React from "react";
 import { useState } from "react";
 import { isMobile } from 'react-device-detect';
 import { IoAdd } from "react-icons/io5";
-import Dialog from "../product/dialog/";
+import Dialog from "../product/Dialog";
 import Wallet from "../user/Wallet";
 import Notification from "./Notification";
 import Image from "next/image";
 import { BsSearch } from "react-icons/bs";
 
+
+// Clean code, but this component is not re-usable
 function MobileHeader() {
   return (
     <div className="d-flex flex-grow-1">
@@ -25,6 +27,7 @@ function MobileHeader() {
   )
 }
 
+// Clean code, but this component is not re-usable
 function DesktopHeader() {
   return (
     <div className="d-flex flex-grow-1">
@@ -73,6 +76,7 @@ export function Header() {
           </div>
       </nav>
       <Notification />
+      {/* TODO: Can create a new component for creating a new product */}
       <div className="btn-toolbar justify-content-between tw-mt-4 tw-mb-4" role="toolbar"
            aria-label="Toolbar with button groups">
         <button

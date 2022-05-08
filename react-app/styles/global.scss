@@ -1,0 +1,21 @@
+$theme-colors: (
+'primary': #145bea,
+'secondary': #833bec,
+'success': #1ce1ac,
+'info': #ff7d50,
+'warning': #ffbe0b,
+'danger': #ff007f,
+'light': #c0ccda,
+'dark': #001738,
+);
+
+.customDialogOverlay {
+  background: rgba(36, 123, 160, 0.7);
+}
+
+.customDialogModal {
+  background: #b2dbbf;
+  width: 90%;
+}
+
+@import 'bootstrap/dist/css/bootstrap.css';

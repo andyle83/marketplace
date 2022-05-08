@@ -4,9 +4,10 @@ import { ApolloProvider } from "@apollo/client";
 import client from "@/apollo-client";
 import { Alfajores, Mainnet , ContractKitProvider } from "@celo-tools/use-contractkit";
 import { AppProps } from "next/app";
-import { Provider } from "react-redux"
-import store from "@/state/index"
-import AppUpdater from "@/state/app/updater"
+import { Provider } from "react-redux";
+import store from "@/state/index";
+import AppUpdater from "@/state/app/updater";
+import '../styles/global.scss';
 
 function Updaters() {
   return (

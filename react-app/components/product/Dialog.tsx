@@ -1,6 +1,5 @@
 import * as React from "react";
 import 'react-responsive-modal/styles.css';
-import styles from './Dialog.module.css';
 import { Modal } from 'react-responsive-modal';
 
 interface DialogProps {
@@ -8,7 +7,7 @@ interface DialogProps {
   onClose: () => void,
 }
 
-export function Dialog({ openModal, onClose }: DialogProps) {
+export default function Dialog({ openModal, onClose }: DialogProps) {
   return (
     <Modal
       open={openModal}
@@ -16,8 +15,8 @@ export function Dialog({ openModal, onClose }: DialogProps) {
       showCloseIcon={false}
       center
       classNames={{
-        overlay: styles.customOverlay,
-        modal: styles.customModal
+        overlay: 'customDialogOverlay',
+        modal: 'customDialogModal'
     }}>
       <div className="modal-content">
         <div className="modal-header">
