@@ -1,31 +1,15 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
-import { useContractKit } from "@celo-tools/use-contractkit";
-
-import { BsWalletFill } from "react-icons/bs";
-import { IoIosCloseCircleOutline } from "react-icons/io";
-import Notification from "./Notification";
+import { useState } from "react";
 import { isMobile } from 'react-device-detect';
 import { IoAdd } from "react-icons/io5";
 import Dialog from "../product/dialog/";
+import Wallet from "../user/Wallet";
+import Notification from "./Notification";
 import Image from "next/image";
 import { BsSearch } from "react-icons/bs";
 
 export function Header() {
-  const { address, network, kit, connect, destroy } = useContractKit();
-  const [balance, setBalance] = useState("");
   const [openModal, setOpenModal] = useState(false);
-
-  async function fetchBalance() {
-    const { cUSD } = await kit.getTotalBalance(address);
-    setBalance(kit.web3.utils.fromWei(cUSD.toString(), 'ether'))
-  }
-
-  useEffect(() => {
-    if (address) {
-      fetchBalance().catch(e => console.error(e));
-    }
-  }, [network, address])
 
   return (
     <header>
@@ -92,23 +76,7 @@ export function Header() {
           <IoAdd /> Add product
         </button>
         <Dialog openModal={openModal} onClose={() => setOpenModal(false)} />
-        {!address ? (
-            <button type="button" className="btn btn-outline-danger btn-sm" style={{display: "flex", alignItems: "center"}}
-                    onClick={() => connect().catch(e => console.log(e))}
-            >
-              Wallet <BsWalletFill style={{marginLeft: "0.5rem"}} />
-            </button>
-          ) :
-          (<>
-            <button type="button" className="btn btn-outline-danger btn-sm" style={{display: "flex", alignItems: "center"}}>
-              <span id="balance" >{balance}</span>cUSD
-              <IoIosCloseCircleOutline
-                size={20}
-                onClick={destroy}
-                style={{marginLeft: "0.5rem"}}/>
-            </button>
-          </>)
-        }
+        <Wallet />
       </div>
     </header>
   );
