@@ -5,7 +5,6 @@ import Dialog from "../product/Dialog";
 import Wallet from "../user/Wallet";
 import Notification from "./Notification";
 import Image from "next/image";
-import { BsSearch } from "react-icons/bs";
 
 
 // Clean code, but this component is not re-usable
@@ -65,7 +64,7 @@ export function Header() {
                     <input type="text" className="form-control mr-sm-2" placeholder="Search for product" aria-label="Search" />
                     <div className="input-group-append">
                       <button className="btn btn-secondary" type="button">
-                        <BsSearch />
+                        <i className="bi bi-search"></i>
                       </button>
                     </div>
                   </div>
