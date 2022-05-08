@@ -42,6 +42,10 @@ Marketplace Home Page
 
 ![Home Page](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/Marketplace.png)
 
+Wallet Connect
+
+![Add New Product](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/Wallet.png)
+
 Purchase Product
 
 ![Add New Product](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/Payment.png)
