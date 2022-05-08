@@ -19,7 +19,7 @@ export default function Footer() {
                 </p>
               </div>
               <div className="col-md-4 col-12">
-                <div className="form-outline form-white mb-4 border border-dark">
+                <div className="form-outline form-white mb-4 border">
                   <input type="email" id="form5Example21" className="form-control"/>
                 </div>
               </div>

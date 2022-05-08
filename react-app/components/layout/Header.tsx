@@ -9,6 +9,7 @@ import { isMobile } from 'react-device-detect';
 import { IoAdd } from "react-icons/io5";
 import Dialog from "../product/dialog/";
 import Image from "next/image";
+import { BsSearch } from "react-icons/bs";
 
 const classNames = require('classnames');
 
@@ -35,29 +36,58 @@ export function Header() {
 
   return (
     <header>
-      <nav className="navbar bg-white navbar-light border-bottom">
-        <div className="container-fluid">
-          <Image src="/banner.png" width={isMobile ? "150" : "300" } height={isMobile ? "40" : "80" } />
-          <span className="nav-link p-0">
-          {!address ? (
-              <button type="button" className="btn btn-outline-danger" style={{display: "flex", alignItems: "center"}}
-                onClick={() => connect().catch(e => console.log(e))}
-              >
-                Wallet <BsWalletFill style={{marginLeft: "0.5rem"}} />
-              </button>
-            ) :
-            (<>
-              <button type="button" className="btn btn-outline-danger" style={{display: "flex", alignItems: "center"}}>
-                <span id="balance" className="m-1">{balance}</span>cUSD
-                <IoIosCloseCircleOutline
-                  size={20}
-                  onClick={destroy}
-                  style={{marginLeft: "0.5rem"}}/>
-              </button>
-            </>)
-          }
-          </span>
-        </div>
+      <nav className="navbar navbar-expand-lg bg-white navbar-light border-bottom justify-content-between">
+          <a className="navbar-brand" href="#">
+            <Image src="/banner.png" width={isMobile ? "150" : "300" } height={isMobile ? "40" : "80" } />
+          </a>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                  aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul className="navbar-nav">
+              <li className="nav-item active">
+                <a className="nav-link" href="#">Home</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">Categories</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">About Us</a>
+              </li>
+              <li className="nav-item">
+                <form className="form-inline">
+                  <div className="input-group">
+                    <input type="text" className="form-control mr-sm-2" placeholder="Search for product" aria-label="Search" />
+                      <div className="input-group-append">
+                        <button className="btn btn-outline-danger" type="button">
+                          <BsSearch />
+                        </button>
+                      </div>
+                  </div>
+                </form>
+              </li>
+            </ul>
+          </div>
+          {/*<span className="nav-link p-0">*/}
+          {/*{!address ? (*/}
+          {/*    <button type="button" className="btn btn-outline-danger" style={{display: "flex", alignItems: "center"}}*/}
+          {/*      onClick={() => connect().catch(e => console.log(e))}*/}
+          {/*    >*/}
+          {/*      Wallet <BsWalletFill style={{marginLeft: "0.5rem"}} />*/}
+          {/*    </button>*/}
+          {/*  ) :*/}
+          {/*  (<>*/}
+          {/*    <button type="button" className="btn btn-outline-danger" style={{display: "flex", alignItems: "center"}}>*/}
+          {/*      <span id="balance" className="m-1">{balance}</span>cUSD*/}
+          {/*      <IoIosCloseCircleOutline*/}
+          {/*        size={20}*/}
+          {/*        onClick={destroy}*/}
+          {/*        style={{marginLeft: "0.5rem"}}/>*/}
+          {/*    </button>*/}
+          {/*  </>)*/}
+          {/*}*/}
+          {/*</span>*/}
       </nav>
       <Notification />
       <div className="mb-4" style={{marginTop: "1em"}}>
