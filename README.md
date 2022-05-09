@@ -38,9 +38,15 @@ There are two variants of implementation:
 
 ### 3. Showcase
 
-Marketplace Home Page
+Marketplace 
+
+- Desktop
 
 ![Home Page](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/Marketplace.png)
+
+- Mobile
+
+![Home Page](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/Mobile.png)
 
 Wallet Connect
 
