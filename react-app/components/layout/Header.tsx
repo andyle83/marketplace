@@ -12,13 +12,13 @@ function MobileHeader() {
   return (
     <div className="d-flex flex-grow-1">
       <div className="w-100 text-right">
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        <button className="navbar-toggler mt-3" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
       </div>
       <a className="navbar-brand-two" href="#">
-        <Image src="/banner.png" width="600" height="140"/>
+        <Image src="/banner.png" width="1000" height="300"/>
       </a>
       <span className="w-100 d-lg-none d-block"/>
     </div>
