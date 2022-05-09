@@ -16,8 +16,6 @@ class MyDocument extends Document {
                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
                             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
                             crossOrigin="anonymous"></script>
-                    <title>A commune marketplace</title>
-                    <meta name="viewport" content="width=device-width, initial-scale=1" />
                 </Head>
                 <body>
                 <Main />

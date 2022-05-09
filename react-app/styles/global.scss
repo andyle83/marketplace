@@ -12,13 +12,12 @@ $greenColor:#8DC741;
 
 
 .customDialogOverlay {
-  background: rgba(36, 123, 160, 0.7);
+  background: rgba(36, 123, 160, 0.7) !important;
 }
 
 .customDialogModal {
-  background: #b2dbbf;
+  background: #b2dbbf !important;
   width: 90%;
 }
 
-//@import 'bootstrap/dist/css/bootstrap.css';
 @import 'bootstrap-icons/font/bootstrap-icons.css';

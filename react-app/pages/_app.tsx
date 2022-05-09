@@ -7,6 +7,7 @@ import { AppProps } from "next/app";
 import { Provider } from "react-redux";
 import store from "@/state/index";
 import AppUpdater from "@/state/app/updater";
+import Head from 'next/head'
 import '../styles/global.scss';
 
 function Updaters() {
@@ -31,6 +32,10 @@ function MyApp({ Component, pageProps }: AppProps): React.ReactElement {
           networks={[Alfajores, Mainnet]}
           network={Alfajores}
         >
+            <Head>
+              <title>A commune marketplace</title>
+              <meta name="viewport" content="width=device-width, initial-scale=1" />
+            </Head>
             <Updaters/>
             <ApolloProvider client={client}>
               <div suppressHydrationWarning>

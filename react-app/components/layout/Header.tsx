@@ -55,7 +55,7 @@ export function Header() {
               <li className="nav-item">
                 <a className="nav-link" href="#">Categories</a>
               </li>
-              <li className="nav-item">
+              <li className="nav-item md:tw-mr-12">
                 <a className="nav-link" href="#">About Us</a>
               </li>
               <li className="nav-item">
