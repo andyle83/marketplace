@@ -23,7 +23,7 @@ export default function Footer() {
               </div>
               <div className="col-auto">
                 <button type="submit"
-                        className="btn btn-outline-danger mb-4"
+                        className="btn btn-outline-primary mb-4"
                         style={{display: "flex", alignItems: "center"}
                 }>
                   <i className="bi bi-send" style={{marginRight: "0.5rem"}}></i>

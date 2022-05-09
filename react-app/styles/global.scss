@@ -1,13 +1,15 @@
-$theme-colors: (
-'primary': #145bea,
-'secondary': #833bec,
-'success': #1ce1ac,
-'info': #ff7d50,
-'warning': #ffbe0b,
-'danger': #ff007f,
-'light': #c0ccda,
-'dark': #001738,
-);
+@import "bootstrap";
+
+$greenColor:#8DC741;
+
+.btn-primary {
+  @include button-variant($greenColor, darken($greenColor, 7.5%), darken($greenColor, 10%), lighten($greenColor,5%), lighten($greenColor, 10%), darken($greenColor,30%));
+}
+
+.btn-outline-primary {
+  @include button-outline-variant($greenColor, #222222, lighten($greenColor,10%), $greenColor);
+}
+
 
 .customDialogOverlay {
   background: rgba(36, 123, 160, 0.7);
@@ -18,5 +20,5 @@ $theme-colors: (
   width: 90%;
 }
 
-@import 'bootstrap/dist/css/bootstrap.css';
+//@import 'bootstrap/dist/css/bootstrap.css';
 @import 'bootstrap-icons/font/bootstrap-icons.css';

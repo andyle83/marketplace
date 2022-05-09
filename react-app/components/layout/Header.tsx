@@ -61,9 +61,9 @@ export function Header() {
               <li className="nav-item">
                 <form className="form-inline">
                   <div className="input-group">
-                    <input type="text" className="form-control mr-sm-2" placeholder="Search for product" aria-label="Search" />
+                    <input type="text" style={{borderRadius: 0}} className="form-control mr-sm-2" placeholder="Search for product" aria-label="Search" />
                     <div className="input-group-append">
-                      <button className="btn btn-secondary" type="button">
+                      <button className="btn btn-danger" type="button" style={{borderRadius: 0}}>
                         <i className="bi bi-search"></i>
                       </button>
                     </div>
@@ -78,7 +78,7 @@ export function Header() {
       <div className="btn-toolbar justify-content-between tw-mt-4 tw-mb-4" role="toolbar"
            aria-label="Toolbar with button groups">
         <button
-          className="btn btn-outline-danger"
+          className="btn btn-outline-primary"
           style={{display: "flex", alignItems: "center"}}
           onClick={() => setOpenModal(true)}
         >

@@ -18,14 +18,14 @@ export default function Wallet() {
   }, [network, address])
 
   return !address ? (
-      <button type="button" className="btn btn-outline-danger" style={{display: "flex", alignItems: "center"}}
+      <button type="button" className="btn btn-outline-primary" style={{display: "flex", alignItems: "center"}}
               onClick={() => connect().catch(e => console.log(e))}
       >
         Wallet <i className="bi bi-wallet" style={{marginLeft: "0.5rem"}}></i>
       </button>
     ) :
     (
-      <button type="button" className="btn btn-outline-danger" style={{display: "flex", alignItems: "center"}}>
+      <button type="button" className="btn btn-outline-primary" style={{display: "flex", alignItems: "center"}}>
         <span id="balance" >{balance}</span>cUSD
         <i className="bi bi-x-circle" onClick={destroy} style={{marginLeft: "0.5rem"}}></i>
       </button>
