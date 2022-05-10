@@ -62,7 +62,7 @@ export default function App() {
   }
 
   return (
-    <AppLayout title="Marketplace" description="A commune marketplace">
+    <AppLayout>
       <main id="marketplace" className="row">
         {renderProducts()}
       </main>
