@@ -79,7 +79,7 @@ export function Header() {
            aria-label="Toolbar with button groups">
         <button
           className="btn btn-outline-primary"
-          style={{display: "flex", alignItems: "center"}}
+          style={{alignItems: "center"}}
           onClick={() => setOpenModal(true)}
         >
           <i className="bi bi-plus"></i> Add product

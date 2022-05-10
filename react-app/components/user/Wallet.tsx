@@ -18,10 +18,10 @@ export default function Wallet() {
   }, [network, address])
 
   return !address ? (
-      <button type="button" className="btn btn-outline-primary" style={{display: "flex", alignItems: "center"}}
+      <button type="button" className="btn btn-outline-primary" style={{ alignItems: "center"}}
               onClick={() => connect().catch(e => console.log(e))}
       >
-        Wallet <i className="bi bi-wallet" style={{marginLeft: "0.5rem"}}></i>
+        <i className="bi bi-wallet" style={{marginRight: "0.3rem"}}></i> Wallet
       </button>
     ) :
     (
