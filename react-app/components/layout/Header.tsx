@@ -50,10 +50,10 @@ export function Header() {
           <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
             <ul className="navbar-nav">
               <li className="nav-item active">
-                <a className="nav-link" href="#">Home</a>
+                <a className="nav-link md:tw-mr-12" href="#">Home</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Categories</a>
+                <a className="nav-link md:tw-mr-12" href="#">Categories</a>
               </li>
               <li className="nav-item md:tw-mr-12">
                 <a className="nav-link" href="#">About Us</a>
