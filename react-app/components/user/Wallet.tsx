@@ -21,7 +21,7 @@ export default function Wallet() {
       <button type="button" className="btn btn-outline-primary" style={{ alignItems: "center"}}
               onClick={() => connect().catch(e => console.log(e))}
       >
-        <i className="bi bi-wallet" style={{marginRight: "0.3rem"}}></i> Wallet
+        <i className="bi bi-wallet" style={{marginRight: "0.3rem"}}></i> Connect
       </button>
     ) :
     (
