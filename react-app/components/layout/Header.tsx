@@ -1,10 +1,8 @@
 import * as React from "react";
-import { useState } from "react";
 import { isMobile } from 'react-device-detect';
-import Dialog from "../product/Dialog";
-import Wallet from "../user/Wallet";
 import Notification from "./Notification";
 import Image from "next/image";
+import Toolbar from "@/components/layout/Toolbar";
 
 
 // Clean code, but this component is not re-usable
@@ -41,8 +39,6 @@ function DesktopHeader() {
 }
 
 export function Header() {
-  const [openModal, setOpenModal] = useState(false);
-
   return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom">
@@ -50,16 +46,16 @@ export function Header() {
           <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
             <ul className="navbar-nav">
               <li className="nav-item active">
-                <a className="nav-link md:tw-mr-12" href="#">Home</a>
+                <a className="nav-link md:tw-mr-12" href="/">Home</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link md:tw-mr-12" href="/account">Orders</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link md:tw-mr-12" href="#">Categories</a>
+                <a className="nav-link md:tw-mr-12" href="/categories">Categories</a>
               </li>
               <li className="nav-item md:tw-mr-12">
-                <a className="nav-link" href="#">About Us</a>
+                <a className="nav-link" href="/about">About Us</a>
               </li>
               <li className="nav-item">
                 <form className="form-inline">
@@ -77,19 +73,7 @@ export function Header() {
           </div>
       </nav>
       <Notification />
-      {/* TODO: Can create a new component for creating a new product */}
-      <div className="btn-toolbar justify-content-between tw-mt-4 tw-mb-4" role="toolbar"
-           aria-label="Toolbar with button groups">
-        <button
-          className="btn btn-outline-primary"
-          style={{alignItems: "center"}}
-          onClick={() => setOpenModal(true)}
-        >
-          <i className="bi bi-plus"></i> Add product
-        </button>
-        <Dialog openModal={openModal} onClose={() => setOpenModal(false)} />
-        <Wallet />
-      </div>
+      <Toolbar />
     </header>
   );
 }
