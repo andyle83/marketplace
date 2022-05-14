@@ -45,17 +45,17 @@ export function Header() {
           { isMobile ? <MobileHeader /> : <DesktopHeader /> }
           <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
             <ul className="navbar-nav">
-              <li className="nav-item active">
-                <a className="nav-link md:tw-mr-12" href="/">Home</a>
+              <li className="nav-item">
+                <a className="nav-link md:tw-mr-12" href="/account">HOME</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link md:tw-mr-12" href="/account">Orders</a>
+                <a className="nav-link md:tw-mr-12" href="/account">ORDERS</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link md:tw-mr-12" href="/categories">Categories</a>
+                <a className="nav-link md:tw-mr-12" href="/categories">CATEGORIES</a>
               </li>
               <li className="nav-item md:tw-mr-12">
-                <a className="nav-link" href="/about">About Us</a>
+                <a className="nav-link" href="/about">ABOUT US</a>
               </li>
               <li className="nav-item">
                 <form className="form-inline">

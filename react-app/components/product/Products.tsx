@@ -87,7 +87,7 @@ export default function Products({ index, owner, name, image, description, locat
             <span className="p-2">{location}</span>
           </p>
           <div className="d-grid gap-2">
-            <a className="btn btn-outline-primary btn-sm fs-6 p-3"
+            <a className="btn btn-outline-primary"
                id={index}
                onClick={() => purchaseHandler(index, name, price)}>
               Buy for {price.shiftedBy(-ERC20_DECIMALS).toFixed(2)} cUSD
