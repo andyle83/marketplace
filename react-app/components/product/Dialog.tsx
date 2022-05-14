@@ -1,7 +1,10 @@
 import * as React from "react";
-import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 import { useForm, SubmitHandler } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { object, string, number } from "yup";
+
+import 'react-responsive-modal/styles.css';
 
 interface DialogProps {
   openModal: boolean,
@@ -16,8 +19,18 @@ type IFormInputs = {
   description: string,
 }
 
+const validProductSchema = object({
+  name: string().required(),
+  imageUrl: string().url().required(),
+  location: string().required(),
+  price: number().positive().integer().required(),
+  description: string().required()
+}).required();
+
 export default function Dialog({ openModal, onClose }: DialogProps) {
-  const { register, handleSubmit, formState: { errors } } = useForm<IFormInputs>();
+  const { register, handleSubmit, formState: { errors } } = useForm<IFormInputs>({
+    resolver: yupResolver(validProductSchema)
+  });
   const onSubmit: SubmitHandler<IFormInputs> = data => {
     console.log(data);
   }
@@ -41,24 +54,17 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
             <div className="mb-3">
               <label htmlFor="name" className="col-form-label">Name:</label>
               <input type="text" className="form-control" id="name" {...register("name", { required: true })}  />
-              {/* use role="alert" to announce the error message */}
-              {errors.name && errors.name.type === "required" && (
-                <div role="alert" className="mt-2 text-danger">Name is required</div>
-              )}
+              <div role="alert" className="mt-2 text-danger">{errors.name?.message}</div>
             </div>
             <div className="mb-3">
               <label htmlFor="imageUrl" className="col-form-label">Image URL:</label>
               <input type="text" className="form-control" id="imageUrl" {...register("imageUrl", { required: true })} />
-              {errors.name && errors.name.type === "required" && (
-                <div role="alert" className="mt-2 text-danger">Image URL is required</div>
-              )}
+              <div role="alert" className="mt-2 text-danger">{errors.imageUrl?.message}</div>
             </div>
             <div className="mb-3">
               <label htmlFor="location" className="col-form-label">Location:</label>
               <input className="form-control" id="location" {...register("location", { required: true })} />
-              {errors.name && errors.name.type === "required" && (
-                <div role="alert" className="mt-2 text-danger">Location is required</div>
-              )}
+              <div role="alert" className="mt-2 text-danger">{errors.location?.message}</div>
             </div>
             <div className="mb-3">
               <label htmlFor="price" className="col-form-label">Price:</label>
@@ -67,17 +73,16 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
                 <div className="input-group-append">
                   <span className="input-group-text">cUSD</span>
                 </div>
+                {/* Customize error */}
                 {errors.name && errors.name.type === "required" && (
-                  <div role="alert" className="mt-2 text-danger">Price is required</div>
+                  <div role="alert" className="mt-2 text-danger">Price must be a positive number</div>
                 )}
               </div>
             </div>
             <div className="mb-3">
               <label htmlFor="description" className="col-form-label">Description:</label>
               <textarea className="form-control" id="description" {...register("description", { required: true })} />
-              {errors.name && errors.name.type === "required" && (
-                <div role="alert" className="mt-2 text-danger">Description is required</div>
-              )}
+              <div role="alert" className="mt-2 text-danger">{errors.description?.message}</div>
             </div>
           </form>
         </div>
