@@ -1,5 +1,5 @@
 import * as React from "react";
-import { isMobile } from 'react-device-detect';
+import { isMobile, MobileView, BrowserView } from 'react-device-detect';
 import Notification from "./Notification";
 import Image from "next/image";
 import Toolbar from "@/components/layout/Toolbar";
