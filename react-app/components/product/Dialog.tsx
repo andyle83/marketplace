@@ -17,13 +17,10 @@ type IFormInputs = {
 }
 
 export default function Dialog({ openModal, onClose }: DialogProps) {
-  const { register, handleSubmit, watch } = useForm<IFormInputs>();
+  const { register, handleSubmit, formState: { errors } } = useForm<IFormInputs>();
   const onSubmit: SubmitHandler<IFormInputs> = data => {
-    console.log('This is called');
     console.log(data);
   }
-
-  console.log(watch("name")) // watch input value by passing the name of it
 
   return (
     <Modal
@@ -44,27 +41,43 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
             <div className="mb-3">
               <label htmlFor="name" className="col-form-label">Name:</label>
               <input type="text" className="form-control" id="name" {...register("name", { required: true })}  />
+              {/* use role="alert" to announce the error message */}
+              {errors.name && errors.name.type === "required" && (
+                <div role="alert" className="mt-2 text-danger">Name is required</div>
+              )}
             </div>
             <div className="mb-3">
               <label htmlFor="imageUrl" className="col-form-label">Image URL:</label>
-              <input type="text" className="form-control" id="imageUrl" {...register("imageUrl")} />
+              <input type="text" className="form-control" id="imageUrl" {...register("imageUrl", { required: true })} />
+              {errors.name && errors.name.type === "required" && (
+                <div role="alert" className="mt-2 text-danger">Image URL is required</div>
+              )}
             </div>
             <div className="mb-3">
               <label htmlFor="location" className="col-form-label">Location:</label>
-              <input className="form-control" id="location" {...register("location")} />
+              <input className="form-control" id="location" {...register("location", { required: true })} />
+              {errors.name && errors.name.type === "required" && (
+                <div role="alert" className="mt-2 text-danger">Location is required</div>
+              )}
             </div>
             <div className="mb-3">
               <label htmlFor="price" className="col-form-label">Price:</label>
               <div className="input-group">
-                <input className="form-control" id="price" {...register("price")} />
+                <input className="form-control" id="price" {...register("price", { required: true })} />
                 <div className="input-group-append">
                   <span className="input-group-text">cUSD</span>
                 </div>
+                {errors.name && errors.name.type === "required" && (
+                  <div role="alert" className="mt-2 text-danger">Price is required</div>
+                )}
               </div>
             </div>
             <div className="mb-3">
               <label htmlFor="description" className="col-form-label">Description:</label>
-              <textarea className="form-control" id="description" {...register("description")} />
+              <textarea className="form-control" id="description" {...register("description", { required: true })} />
+              {errors.name && errors.name.type === "required" && (
+                <div role="alert" className="mt-2 text-danger">Description is required</div>
+              )}
             </div>
           </form>
         </div>
