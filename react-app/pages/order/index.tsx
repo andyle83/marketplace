@@ -12,7 +12,7 @@ export default function Orders() {
     <AppLayout>
       <main id="marketplace">
         {
-          !address ? <div className="text-center">{OderHistoryWalletRequest}</div> :
+          !address ? <div className="text-center p-5">{OderHistoryWalletRequest}</div> :
             <>
               <h5 className="pt-3 pb-3">Your order history</h5>
               <Order name="Giant BBQ" total={new BigNumber(500)} order_time={new Date()} />
