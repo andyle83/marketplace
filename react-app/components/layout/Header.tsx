@@ -49,7 +49,7 @@ export function Header() {
                 <a className="nav-link md:tw-mr-12" href="/">HOME</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link md:tw-mr-12" href="/Orders">ORDERS</a>
+                <a className="nav-link md:tw-mr-12" href="/order">ORDERS</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link md:tw-mr-12" href="/categories">CATEGORIES</a>
