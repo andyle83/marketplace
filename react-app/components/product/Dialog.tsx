@@ -9,11 +9,11 @@ interface DialogProps {
 }
 
 type IFormInputs = {
-  productName: string,
+  name: string,
   imageUrl: string,
   location: string,
   price: number,
-  productDescription: string,
+  description: string,
 }
 
 export default function Dialog({ openModal, onClose }: DialogProps) {
@@ -23,7 +23,7 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
     console.log(data);
   }
 
-  console.log(watch("productName")) // watch input value by passing the name of it
+  console.log(watch("name")) // watch input value by passing the name of it
 
   return (
     <Modal
@@ -40,37 +40,37 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
           <h5 className="modal-title">Enter a new product:</h5>
         </div>
         <div className="modal-body">
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)} id="newProduct">
             <div className="mb-3">
-              <label htmlFor="product-name" className="col-form-label">Name:</label>
-              <input type="text" className="form-control" id="product-name" {...register("productName", { required: true })}  />
+              <label htmlFor="name" className="col-form-label">Name:</label>
+              <input type="text" className="form-control" id="name" {...register("name", { required: true })}  />
             </div>
             <div className="mb-3">
-              <label htmlFor="product-image-url" className="col-form-label">Image URL:</label>
-              <input type="text" className="form-control" id="product-image-url" {...register("imageUrl")} />
+              <label htmlFor="imageUrl" className="col-form-label">Image URL:</label>
+              <input type="text" className="form-control" id="imageUrl" {...register("imageUrl")} />
             </div>
             <div className="mb-3">
-              <label htmlFor="product-location" className="col-form-label">Location:</label>
-              <input className="form-control" id="product-location" {...register("location")} />
+              <label htmlFor="location" className="col-form-label">Location:</label>
+              <input className="form-control" id="location" {...register("location")} />
             </div>
             <div className="mb-3">
-              <label htmlFor="product-price" className="col-form-label">Price:</label>
+              <label htmlFor="price" className="col-form-label">Price:</label>
               <div className="input-group">
-                <input className="form-control" id="product-price" {...register("price")} />
+                <input className="form-control" id="price" {...register("price")} />
                 <div className="input-group-append">
                   <span className="input-group-text">cUSD</span>
                 </div>
               </div>
             </div>
             <div className="mb-3">
-              <label htmlFor="product-description" className="col-form-label">Description:</label>
-              <textarea className="form-control" id="product-description" {...register("productDescription")} />
+              <label htmlFor="description" className="col-form-label">Description:</label>
+              <textarea className="form-control" id="description" {...register("description")} />
             </div>
           </form>
         </div>
         <div className="modal-footer">
           <button type="button" className="btn btn-outline-secondary" onClick={onClose}>Close</button>
-          <button type="submit" className="btn btn-outline-primary">Create</button>
+          <button type="submit" className="btn btn-outline-primary" form="newProduct">Create</button>
         </div>
       </div>
     </Modal>
