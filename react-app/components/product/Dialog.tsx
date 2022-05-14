@@ -54,7 +54,12 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
             </div>
             <div className="mb-3">
               <label htmlFor="product-price" className="col-form-label">Price:</label>
-              <input className="form-control" id="product-price" value={price} onChange={e => onPriceChange(e)}></input>
+              <div className="input-group">
+                <input className="form-control" id="product-price" value={price} onChange={e => onPriceChange(e)}></input>
+                <div className="input-group-append">
+                  <span className="input-group-text">cUSD</span>
+                </div>
+              </div>
             </div>
             <div className="mb-3">
               <label htmlFor="product-description" className="col-form-label">Description:</label>
