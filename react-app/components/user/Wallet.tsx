@@ -26,8 +26,8 @@ export default function Wallet() {
     ) :
     (
       <button type="button" className="btn btn-outline-primary" style={{display: "flex", alignItems: "center"}}>
+        <i className="bi bi-x-circle" onClick={destroy} style={{marginRight: "0.5rem"}}></i>
         <span id="balance" >{balance}</span>cUSD
-        <i className="bi bi-x-circle" onClick={destroy} style={{marginLeft: "0.5rem"}}></i>
       </button>
     )
 }

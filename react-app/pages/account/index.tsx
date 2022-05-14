@@ -9,32 +9,29 @@ export default function Account() {
         <div className="card">
           <div className="card-header">
             <div className="row">
-              <div className="col-sm">
+              <div className="col-6">
                 Order Place
               </div>
-              <div className="col-sm">
+              <div className="col-4">
                 Total
-              </div>
-              <div className="col-sm">
-                Transaction
               </div>
             </div>
             <div className="row">
-              <div className="col-sm">
+              <div className="col-6">
                 20/05/2022
               </div>
-              <div className="col-sm">
+              <div className="col-4">
                 230 cUSD
-              </div>
-              <div className="col-sm">
-                0x8787HHKHGHBJ
               </div>
             </div>
           </div>
           <div className="card-body">
             <h5 className="card-title">Giant BBQ</h5>
-            <p className="card-text">Any details information of this order.</p>
-            <a href="#" className="btn btn-outline-primary">Buy Again</a>
+            <p className="card-text">Transaction Information (Sender / Receiver)</p>
+            <a href="#" className="btn btn-outline-primary">
+              <i className="bi bi-bootstrap-reboot" style={{marginRight: "0.5rem"}}></i>
+              Buy Again
+            </a>
           </div>
         </div>
       </main>
