@@ -8,7 +8,7 @@ interface DialogProps {
   onClose: () => void,
 }
 
-type Inputs = {
+type IFormInputs = {
   productName: string,
   imageUrl: string,
   location: string,
@@ -17,8 +17,8 @@ type Inputs = {
 }
 
 export default function Dialog({ openModal, onClose }: DialogProps) {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> =  data => {
+  const { register, handleSubmit, watch } = useForm<IFormInputs>();
+  const onSubmit: SubmitHandler<IFormInputs> = data => {
     console.log('This is called');
     console.log(data);
   }
@@ -37,13 +37,13 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
     }}>
       <div className="modal-content">
         <div className="modal-header">
-          <h5 className="modal-title">Create a new product</h5>
+          <h5 className="modal-title">Enter a new product:</h5>
         </div>
         <div className="modal-body">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-3">
-              <label htmlFor="product-name" className="col-form-label">Product Name:</label>
-              <input type="text" className="form-control" id="product-name" {...register("productName")} />
+              <label htmlFor="product-name" className="col-form-label">Name:</label>
+              <input type="text" className="form-control" id="product-name" {...register("productName", { required: true })}  />
             </div>
             <div className="mb-3">
               <label htmlFor="product-image-url" className="col-form-label">Image URL:</label>
@@ -51,20 +51,20 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
             </div>
             <div className="mb-3">
               <label htmlFor="product-location" className="col-form-label">Location:</label>
-              <input className="form-control" id="product-location" {...register("location")}></input>
+              <input className="form-control" id="product-location" {...register("location")} />
             </div>
             <div className="mb-3">
               <label htmlFor="product-price" className="col-form-label">Price:</label>
               <div className="input-group">
-                <input className="form-control" id="product-price" {...register("price")}></input>
+                <input className="form-control" id="product-price" {...register("price")} />
                 <div className="input-group-append">
                   <span className="input-group-text">cUSD</span>
                 </div>
               </div>
             </div>
             <div className="mb-3">
-              <label htmlFor="product-description" className="col-form-label">Product Description:</label>
-              <textarea className="form-control" id="product-description" {...register("productDescription")}></textarea>
+              <label htmlFor="product-description" className="col-form-label">Description:</label>
+              <textarea className="form-control" id="product-description" {...register("productDescription")} />
             </div>
           </form>
         </div>
