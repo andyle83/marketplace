@@ -42,7 +42,7 @@ export function Header() {
   return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom">
-          { isMobile ? <MobileHeader /> : <DesktopHeader /> }
+          { !isMobile ? <DesktopHeader /> : <MobileHeader /> }
           <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
             <ul className="navbar-nav">
               <li className="nav-item">
