@@ -75,7 +75,7 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
                 </div>
                 {/* Customize error */}
                 {errors.name && errors.name.type === "required" && (
-                  <div role="alert" className="mt-2 text-danger">Price must be a positive number</div>
+                  <div role="alert" className="mt-2 text-danger">price must be a positive number</div>
                 )}
               </div>
             </div>
