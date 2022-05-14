@@ -8,7 +8,7 @@ import AppLayout from "@/components/layout/AppLayout";
 import Products from "@/components/product/Products";
 import { updateLoadingState, updateNotificationMessage } from "@/state/app/reducer";
 
-import { LoadingProductMessage } from '@/constants';
+import { LoadingProductStatus } from '@/constants';
 import marketplaceAbi from "@/contract/Marketplace.abi.json";
 import { MPContractAddress } from '@/constants';
 
@@ -45,7 +45,7 @@ export default function App() {
       }
       setProducts(await Promise.all(_products));
     }
-    dispatch(updateNotificationMessage({ notificationMessage: LoadingProductMessage }));
+    dispatch(updateNotificationMessage({ notificationMessage: LoadingProductStatus }));
 
     fetchProducts().then(_ =>
       dispatch(updateLoadingState({ isLoading: false }))
