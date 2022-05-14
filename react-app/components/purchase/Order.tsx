@@ -11,7 +11,7 @@ interface OrderProps {
 
 export default function Order({ name, total, order_time }: OrderProps) {
   return (
-    <div className="card">
+    <div className="card mb-4">
       <div className="card-header text-secondary">
         <div className="row">
           <div className="col-6">
