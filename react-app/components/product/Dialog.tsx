@@ -2,7 +2,7 @@ import * as React from "react";
 import { Modal } from 'react-responsive-modal';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import { object, string, number } from "yup";
+import { object, string, number, mixed } from "yup";
 
 import 'react-responsive-modal/styles.css';
 import {
@@ -28,10 +28,17 @@ type IFormInputs = {
 
 const validProductSchema = object({
   name: string().required(ValidProductName),
-  imageUrl: string().required(ValidImageURL),
   location: string().required(ValidProductLocation),
   price: number().positive().integer().required(ValidProductPrice),
-  description: string().required(ValidProductDescription)
+  description: string().required(ValidProductDescription),
+  imageUrl: mixed().required(ValidImageURL)
+    .test("fileSize", "File sizes is too large", (value) => {
+      // empty or has size smaller than 5 mb.
+      return (value.length == 0) || ((value.length > 0) && (value[0].size <= 5242880));
+    })
+    .test("fileType", "Unsupported file format", (value) =>{
+      return value.length && ["image/jpeg", "image/png", "image/jpg"].includes(value[0].type)
+    })
 }).required();
 
 export default function Dialog({ openModal, onClose }: DialogProps) {
