@@ -44,27 +44,22 @@ const validProductSchema = object({
 
 export default function Dialog({ openModal, onClose }: DialogProps) {
   let { uploadToS3, files } = useS3Upload();
+  const [previewImage, setPreviewImage] = useState('');
 
   const { register, watch, handleSubmit, formState: { errors } } = useForm<IFormInputs>({
     resolver: yupResolver(validProductSchema)
   });
 
-  const [image, setImage] = useState("");
-
   const convert2base64 = file => {
-    console.log(`convert2base64`);
     const reader = new FileReader();
-
     reader.onloadend = () => {
-      console.log("loading end");
-      setImage(reader.result.toString());
+      setPreviewImage(reader.result.toString());
     }
-
     reader.readAsDataURL(file);
   };
 
   const onSubmit: SubmitHandler<IFormInputs> = data => {
-    console.log(data);
+    // console.log(data);
     if (data.imageUrl.length > 0) {
       convert2base64(data.imageUrl[0]);
     }
@@ -96,16 +91,12 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
                 <>
                   <label htmlFor="imageUrl" className="col-form-label">Image URL</label>
                   <div className="input-group">
-                    <input type="file" className="form-control" id="imageUrl" {...register("imageUrl", { required: true })} />
+                    <input type="file" className="form-control" id="imageUrl"
+                           {...register("imageUrl", { required: true , onChange: (e) => {console.log('hello' )}})} />
                   </div>
                   <div role="alert" className="mt-2 text-danger">{errors.imageUrl?.message}</div>
                 </>
-                ) : (
-                  <>
-                    <img src={image} width="450" />
-                    <strong>{watch("imageUrl")[0].name}</strong>
-                  </>
-                )
+                ) : <img src={previewImage} width="450" />
               }
             </div>
             <div className="mb-3">
