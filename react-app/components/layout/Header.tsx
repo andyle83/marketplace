@@ -31,7 +31,7 @@ function DesktopHeader() {
               aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
-      <a className="navbar-brand-two" href="#">
+      <a className="navbar-brand-two" href="/">
         <Image src="/banner.png" width="300" height="80" />
       </a>
     </div>
