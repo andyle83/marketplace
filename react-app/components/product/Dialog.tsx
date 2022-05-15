@@ -3,6 +3,7 @@ import { Modal } from 'react-responsive-modal';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { object, string, number, mixed } from "yup";
+import { useS3Upload } from "next-s3-upload";
 
 import 'react-responsive-modal/styles.css';
 import {
@@ -12,6 +13,7 @@ import {
   ValidProductName,
   ValidProductPrice
 } from "@/constants";
+import {useState} from "react";
 
 interface DialogProps {
   openModal: boolean,
@@ -33,7 +35,6 @@ const validProductSchema = object({
   description: string().required(ValidProductDescription),
   imageUrl: mixed().required(ValidImageURL)
     .test("fileSize", "File sizes is too large", (value) => {
-      // empty or has size smaller than 5 mb.
       return (value.length == 0) || ((value.length > 0) && (value[0].size <= 5242880));
     })
     .test("fileType", "Unsupported file format", (value) =>{
@@ -42,11 +43,31 @@ const validProductSchema = object({
 }).required();
 
 export default function Dialog({ openModal, onClose }: DialogProps) {
-  const { register, handleSubmit, formState: { errors } } = useForm<IFormInputs>({
+  let { uploadToS3, files } = useS3Upload();
+
+  const { register, watch, handleSubmit, formState: { errors } } = useForm<IFormInputs>({
     resolver: yupResolver(validProductSchema)
   });
+
+  const [image, setImage] = useState("");
+
+  const convert2base64 = file => {
+    console.log(`convert2base64`);
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      console.log("loading end");
+      setImage(reader.result.toString());
+    }
+
+    reader.readAsDataURL(file);
+  };
+
   const onSubmit: SubmitHandler<IFormInputs> = data => {
     console.log(data);
+    if (data.imageUrl.length > 0) {
+      convert2base64(data.imageUrl[0]);
+    }
   }
 
   return (
@@ -71,11 +92,21 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
               <div role="alert" className="mt-2 text-danger">{errors.name?.message}</div>
             </div>
             <div className="mb-3">
-              <label htmlFor="imageUrl" className="col-form-label">Image URL</label>
-              <div className="input-group">
-                <input type="file" className="form-control" id="imageUrl" {...register("imageUrl", { required: true })} />
-              </div>
-              <div role="alert" className="mt-2 text-danger">{errors.imageUrl?.message}</div>
+              {!watch("imageUrl") || watch("imageUrl").length === 0 ? (
+                <>
+                  <label htmlFor="imageUrl" className="col-form-label">Image URL</label>
+                  <div className="input-group">
+                    <input type="file" className="form-control" id="imageUrl" {...register("imageUrl", { required: true })} />
+                  </div>
+                  <div role="alert" className="mt-2 text-danger">{errors.imageUrl?.message}</div>
+                </>
+                ) : (
+                  <>
+                    <img src={image} width="450" />
+                    <strong>{watch("imageUrl")[0].name}</strong>
+                  </>
+                )
+              }
             </div>
             <div className="mb-3">
               <label htmlFor="location" className="col-form-label">Location</label>
