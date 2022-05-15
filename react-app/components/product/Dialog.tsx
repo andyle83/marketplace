@@ -5,6 +5,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { object, string, number } from "yup";
 
 import 'react-responsive-modal/styles.css';
+import {
+  ValidImageURL,
+  ValidProductDescription,
+  ValidProductLocation,
+  ValidProductName,
+  ValidProductPrice
+} from "@/constants";
 
 interface DialogProps {
   openModal: boolean,
@@ -20,11 +27,11 @@ type IFormInputs = {
 }
 
 const validProductSchema = object({
-  name: string().required(),
-  imageUrl: string().url().required(),
-  location: string().required(),
-  price: number().positive().integer().required(),
-  description: string().required()
+  name: string().required(ValidProductName),
+  imageUrl: string().url().required(ValidImageURL),
+  location: string().required(ValidProductLocation),
+  price: number().positive().integer().required(ValidProductPrice),
+  description: string().required(ValidProductDescription)
 }).required();
 
 export default function Dialog({ openModal, onClose }: DialogProps) {
@@ -47,40 +54,37 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
     }}>
       <div className="modal-content">
         <div className="modal-header">
-          <h5 className="modal-title">Enter a new product:</h5>
+          <h5 className="modal-title">Enter a new product</h5>
         </div>
         <div className="modal-body">
           <form onSubmit={handleSubmit(onSubmit)} id="newProduct">
             <div className="mb-3">
-              <label htmlFor="name" className="col-form-label">Name:</label>
+              <label htmlFor="name" className="col-form-label">Name</label>
               <input type="text" className="form-control" id="name" {...register("name", { required: true })}  />
               <div role="alert" className="mt-2 text-danger">{errors.name?.message}</div>
             </div>
             <div className="mb-3">
-              <label htmlFor="imageUrl" className="col-form-label">Image URL:</label>
+              <label htmlFor="imageUrl" className="col-form-label">Image URL</label>
               <input type="text" className="form-control" id="imageUrl" {...register("imageUrl", { required: true })} />
               <div role="alert" className="mt-2 text-danger">{errors.imageUrl?.message}</div>
             </div>
             <div className="mb-3">
-              <label htmlFor="location" className="col-form-label">Location:</label>
+              <label htmlFor="location" className="col-form-label">Location</label>
               <input className="form-control" id="location" {...register("location", { required: true })} />
               <div role="alert" className="mt-2 text-danger">{errors.location?.message}</div>
             </div>
             <div className="mb-3">
-              <label htmlFor="price" className="col-form-label">Price:</label>
+              <label htmlFor="price" className="col-form-label">Price</label>
               <div className="input-group">
                 <input className="form-control" id="price" {...register("price", { required: true })} />
                 <div className="input-group-append">
                   <span className="input-group-text">cUSD</span>
                 </div>
-                {/* Customize error */}
-                {errors.name && errors.name.type === "required" && (
-                  <div role="alert" className="mt-2 text-danger">price must be a positive number</div>
-                )}
               </div>
+              <div role="alert" className="mt-2 text-danger">{errors.location?.message}</div>
             </div>
             <div className="mb-3">
-              <label htmlFor="description" className="col-form-label">Description:</label>
+              <label htmlFor="description" className="col-form-label">Description</label>
               <textarea className="form-control" id="description" {...register("description", { required: true })} />
               <div role="alert" className="mt-2 text-danger">{errors.description?.message}</div>
             </div>
