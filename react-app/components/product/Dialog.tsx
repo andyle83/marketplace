@@ -28,7 +28,7 @@ type IFormInputs = {
 
 const validProductSchema = object({
   name: string().required(ValidProductName),
-  imageUrl: string().url().required(ValidImageURL),
+  imageUrl: string().required(ValidImageURL),
   location: string().required(ValidProductLocation),
   price: number().positive().integer().required(ValidProductPrice),
   description: string().required(ValidProductDescription)
@@ -65,7 +65,9 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
             </div>
             <div className="mb-3">
               <label htmlFor="imageUrl" className="col-form-label">Image URL</label>
-              <input type="text" className="form-control" id="imageUrl" {...register("imageUrl", { required: true })} />
+              <div className="input-group">
+                <input type="file" className="form-control" id="imageUrl" {...register("imageUrl", { required: true })} />
+              </div>
               <div role="alert" className="mt-2 text-danger">{errors.imageUrl?.message}</div>
             </div>
             <div className="mb-3">

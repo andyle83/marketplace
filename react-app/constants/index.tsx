@@ -7,7 +7,7 @@ export const OderHistoryWalletRequest = "Please connect to your Celo wallet to v
 export const ValidProductName = "Product name is required";
 export const ValidProductLocation = "Location is required";
 export const ValidProductPrice = "Price must be a positive number";
-export const ValidImageURL = "Image URL is required";
+export const ValidImageURL = "Product image is required";
 export const ValidProductDescription = "Description is required";
 
 export const ERC20_DECIMALS = 18;
