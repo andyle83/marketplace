@@ -58,11 +58,15 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
     reader.readAsDataURL(file);
   };
 
-  const onSubmit: SubmitHandler<IFormInputs> = data => {
-    // console.log(data);
-    if (data.imageUrl.length > 0) {
-      convert2base64(data.imageUrl[0]);
+  const onPreviewImageChange = () => {
+    let imageUrl = watch("imageUrl");
+    if (imageUrl || imageUrl.length === 0) {
+      convert2base64(imageUrl[0]);
     }
+  }
+
+  const onSubmit: SubmitHandler<IFormInputs> = data => {
+    console.log(data);
   }
 
   return (
@@ -92,11 +96,11 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
                   <label htmlFor="imageUrl" className="col-form-label">Image URL</label>
                   <div className="input-group">
                     <input type="file" className="form-control" id="imageUrl"
-                           {...register("imageUrl", { required: true , onChange: (e) => {console.log('hello' )}})} />
+                           {...register("imageUrl", { required: true , onChange: onPreviewImageChange})} />
                   </div>
                   <div role="alert" className="mt-2 text-danger">{errors.imageUrl?.message}</div>
                 </>
-                ) : <img src={previewImage} width="450" />
+                ) : <img src={previewImage} alt="Preview Image" width="450" />
               }
             </div>
             <div className="mb-3">
