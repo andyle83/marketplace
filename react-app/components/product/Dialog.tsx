@@ -91,24 +91,6 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
               <div role="alert" className="mt-2 text-danger">{errors.name?.message}</div>
             </div>
             <div className="mb-3">
-              {!watch("imageUrl") || watch("imageUrl").length === 0 ? (
-                <>
-                  <label htmlFor="imageUrl" className="col-form-label">Image URL</label>
-                  <div className="row">
-                    <div className="col-12 col-sm-4 pb-2">
-                      <img src="https://via.placeholder.com/200" alt="Medium" />
-                    </div>
-                    <div className="col-12 col-sm-8">
-                        <input type="file" className="form-control" id="imageUrl"
-                               {...register("imageUrl", { required: true , onChange: onPreviewImageChange})} />
-                    </div>
-                  </div>
-                  <div role="alert" className="mt-2 text-danger">{errors.imageUrl?.message}</div>
-                </>
-                ) : <img src={previewImage} alt="Preview Image" width="450" />
-              }
-            </div>
-            <div className="mb-3">
               <label htmlFor="location" className="col-form-label">Location</label>
               <input className="form-control" id="location" {...register("location", { required: true })} />
               <div role="alert" className="mt-2 text-danger">{errors.location?.message}</div>
@@ -127,6 +109,25 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
               <label htmlFor="description" className="col-form-label">Description</label>
               <textarea className="form-control" id="description" {...register("description", { required: true })} />
               <div role="alert" className="mt-2 text-danger">{errors.description?.message}</div>
+            </div>
+            <div className="mb-3">
+              <>
+                <label htmlFor="imageUrl" className="col-form-label">Image URL</label>
+                <div className="row">
+                  <div className="col-12 col-sm-4 pb-2">
+                    {
+                      !watch("imageUrl") || watch("imageUrl").length === 0 ? (
+                        <img src="https://via.placeholder.com/200" alt="Medium"/>
+                      ) : <img src={previewImage} alt="Preview Image" width="200" height="200" />
+                    }
+                  </div>
+                  <div className="col-12 col-sm-8">
+                    <input type="file" className="form-control" id="imageUrl" data-iconName="bi bi-cloud-upload"
+                           {...register("imageUrl", { required: true , onChange: onPreviewImageChange})} />
+                  </div>
+                </div>
+                <div role="alert" className="mt-2 text-danger">{errors.imageUrl?.message}</div>
+              </>
             </div>
           </form>
         </div>
