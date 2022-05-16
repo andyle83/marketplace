@@ -31,7 +31,7 @@ type IFormInputs = {
 const validProductSchema = object({
   name: string().required(ValidProductName),
   location: string().required(ValidProductLocation),
-  price: number().positive().integer().required(ValidProductPrice),
+  price: number().positive(ValidProductPrice).required(ValidProductPrice),
   description: string().required(ValidProductDescription),
   imageUrl: mixed().required(ValidImageURL)
     .test("fileSize", "File sizes is too large", (value) => {
@@ -103,7 +103,7 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
                   <span className="input-group-text">cUSD</span>
                 </div>
               </div>
-              <div role="alert" className="mt-2 text-danger">{errors.location?.message}</div>
+              <div role="alert" className="mt-2 text-danger">{errors.price?.message}</div>
             </div>
             <div className="mb-3">
               <label htmlFor="description" className="col-form-label">Description</label>
