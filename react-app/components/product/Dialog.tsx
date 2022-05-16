@@ -3,7 +3,6 @@ import { Modal } from 'react-responsive-modal';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { object, string, number, mixed } from "yup";
-// import { useS3Upload } from "next-s3-upload";
 
 import 'react-responsive-modal/styles.css';
 import {
@@ -14,6 +13,7 @@ import {
   ValidProductPrice
 } from "@/constants";
 import {useState} from "react";
+import axios from "axios";
 
 interface DialogProps {
   openModal: boolean,
@@ -43,27 +43,52 @@ const validProductSchema = object({
 }).required();
 
 export default function Dialog({ openModal, onClose }: DialogProps) {
-  // let { uploadToS3, files } = useS3Upload();
-  const [previewImage, setPreviewImage] = useState('');
+  const [previewImage, setPreviewImage] = useState<string>('');
+  const [fileImage, setFileImage] = useState<any>();
 
   const { register, watch, handleSubmit, formState: { errors } } = useForm<IFormInputs>({
     resolver: yupResolver(validProductSchema)
   });
 
   const onPreviewImageChange = (event) => {
-    let imageUrl = event.target.files[0]; // file refer
-    if (imageUrl) {
+    let file = event.target.files[0];
+    if (file) {
       const reader = new FileReader();
-      reader.readAsDataURL(imageUrl);
+      reader.readAsDataURL(file);
 
       reader.onloadend = () => {
         setPreviewImage(reader.result.toString());
+        setFileImage(file);
       }
     }
   }
 
-  const onSubmit: SubmitHandler<IFormInputs> = data => {
+  const uploadFile = async () => {
+    // Making a POST request to API route
+    let { data } = await axios.post("/api/s3/uploadFile", {
+      name: fileImage.name,
+      type: fileImage.type,
+    });
+
+    // Fetch URL
+    const url = data.url;
+
+    // Doing Upload
+    await axios.put(url, fileImage, {
+      headers: {
+        "Content-type": fileImage.type,
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+
+    console.log(url);
+  };
+
+  const onSubmit: SubmitHandler<IFormInputs> = async data => {
     console.log(data);
+
+    // upload data when submit
+    await uploadFile();
   }
 
   return (
