@@ -3,7 +3,7 @@ import { Modal } from 'react-responsive-modal';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { object, string, number, mixed } from "yup";
-import { useS3Upload } from "next-s3-upload";
+// import { useS3Upload } from "next-s3-upload";
 
 import 'react-responsive-modal/styles.css';
 import {
@@ -38,12 +38,12 @@ const validProductSchema = object({
       return (value.length == 0) || ((value.length > 0) && (value[0].size <= 5242880));
     })
     .test("fileType", "Unsupported file format", (value) =>{
-      return value.length && ["image/jpeg", "image/png", "image/jpg"].includes(value[0].type)
+      return (value.length > 0) && ["image/jpeg", "image/png", "image/jpg"].includes(value[0].type)
     })
 }).required();
 
 export default function Dialog({ openModal, onClose }: DialogProps) {
-  let { uploadToS3, files } = useS3Upload();
+  // let { uploadToS3, files } = useS3Upload();
   const [previewImage, setPreviewImage] = useState('');
 
   const { register, watch, handleSubmit, formState: { errors } } = useForm<IFormInputs>({
@@ -94,9 +94,14 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
               {!watch("imageUrl") || watch("imageUrl").length === 0 ? (
                 <>
                   <label htmlFor="imageUrl" className="col-form-label">Image URL</label>
-                  <div className="input-group">
-                    <input type="file" className="form-control" id="imageUrl"
-                           {...register("imageUrl", { required: true , onChange: onPreviewImageChange})} />
+                  <div className="row">
+                    <div className="col-12 col-sm-4 pb-2">
+                      <img src="https://via.placeholder.com/200" alt="Medium" />
+                    </div>
+                    <div className="col-12 col-sm-8">
+                        <input type="file" className="form-control" id="imageUrl"
+                               {...register("imageUrl", { required: true , onChange: onPreviewImageChange})} />
+                    </div>
                   </div>
                   <div role="alert" className="mt-2 text-danger">{errors.imageUrl?.message}</div>
                 </>
