@@ -119,7 +119,7 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
                     }
                   </div>
                   <div className="col-12 col-sm-8">
-                    <input type="file" className="form-control" id="imageUrl" data-iconName="bi bi-cloud-upload"
+                    <input type="file" className="form-control" id="imageUrl"
                            {...register("imageUrl", { required: true , onChange: onPreviewImageChange})} />
                   </div>
                 </div>
