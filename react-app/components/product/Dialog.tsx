@@ -50,18 +50,15 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
     resolver: yupResolver(validProductSchema)
   });
 
-  const convert2base64 = file => {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setPreviewImage(reader.result.toString());
-    }
-    reader.readAsDataURL(file);
-  };
+  const onPreviewImageChange = (event) => {
+    let imageUrl = event.target.files[0]; // file refer
+    if (imageUrl) {
+      const reader = new FileReader();
+      reader.readAsDataURL(imageUrl);
 
-  const onPreviewImageChange = () => {
-    let imageUrl = watch("imageUrl");
-    if (imageUrl || imageUrl.length === 0) {
-      convert2base64(imageUrl[0]);
+      reader.onloadend = () => {
+        setPreviewImage(reader.result.toString());
+      }
     }
   }
 
