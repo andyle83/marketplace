@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 
 export default function Wallet() {
   const { address, network, kit, connect, destroy } = useContractKit();
-  const [balance, setBalance] = useState("");
+  const [balance, setBalance] = useState<string>("");
 
   async function fetchBalance() {
     const { cUSD } = await kit.getTotalBalance(address);

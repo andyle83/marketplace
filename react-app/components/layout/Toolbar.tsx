@@ -4,7 +4,7 @@ import Wallet from "@/components/user/Wallet";
 import {useState} from "react";
 
 export default function Toolbar() {
-  const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
 
   return (
     <div className="btn-toolbar justify-content-between tw-mt-4 tw-mb-4" role="toolbar"
