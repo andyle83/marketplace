@@ -42,9 +42,11 @@ const validProductSchema = object({
     })
 }).required();
 
+
 export default function Dialog({ openModal, onClose }: DialogProps) {
   const [previewImage, setPreviewImage] = useState<string>('');
   const [fileImage, setFileImage] = useState<any>();
+  const [uploadProgress, setUploadProgress] = useState<number>(0);
 
   const { register, watch, handleSubmit, formState: { errors } } = useForm<IFormInputs>({
     resolver: yupResolver(validProductSchema)
@@ -79,7 +81,10 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
         "Content-type": fileImage.type,
         "Access-Control-Allow-Origin": "*",
       },
-      onUploadProgress: progressEvent => console.log((progressEvent.loaded * 100)/progressEvent.total)
+      onUploadProgress: progressEvent => {
+        let uploadPercentage = (progressEvent.loaded * 100) / progressEvent.total;
+        setUploadProgress(uploadPercentage);
+      }
     });
 
     console.log(url);
@@ -147,6 +152,12 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
                   <div className="col-12 col-sm-8">
                     <input type="file" className="form-control" id="imageUrl"
                            {...register("imageUrl", { required: true , onChange: onPreviewImageChange})} />
+                    <progress id="uploadProgress" max="100" style={{width: "100%", marginTop: "8px", marginBottom: "8px"}} value={uploadProgress}></progress>
+                    <div>
+                      <button type="button" className="btn btn-outline-primary">
+                        <i className="bi bi-cloud-upload" style={{marginRight: "0.5rem"}}></i>
+                        Upload</button>
+                    </div>
                   </div>
                 </div>
                 <div role="alert" className="mt-2 text-danger">{errors.imageUrl?.message}</div>
