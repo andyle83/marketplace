@@ -64,16 +64,16 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
   }
 
   const uploadFile = async () => {
-    // Making a POST request to API route
+    // Generate a signed URL for file upload with aws-sdk
     let { data } = await axios.post("/api/s3/uploadFile", {
       name: fileImage.name,
       type: fileImage.type,
     });
 
-    // Fetch URL
+    // Get the signed URL
     const url = data.url;
 
-    // Doing Upload
+    // Upload local file
     await axios.put(url, fileImage, {
       headers: {
         "Content-type": fileImage.type,
