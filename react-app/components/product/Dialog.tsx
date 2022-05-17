@@ -79,6 +79,7 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
         "Content-type": fileImage.type,
         "Access-Control-Allow-Origin": "*",
       },
+      onUploadProgress: progressEvent => console.log((progressEvent.loaded * 100)/progressEvent.total)
     });
 
     console.log(url);
