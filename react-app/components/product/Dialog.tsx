@@ -14,6 +14,7 @@ import {
 } from "@/constants";
 import {useState} from "react";
 import axios from "axios";
+import {useS3Upload} from "next-s3-upload";
 
 interface DialogProps {
   openModal: boolean,
@@ -45,6 +46,8 @@ const validProductSchema = object({
 export default function Dialog({ openModal, onClose }: DialogProps) {
   const [previewImage, setPreviewImage] = useState<string>('');
   const [fileImage, setFileImage] = useState<any>();
+
+  let { uploadToS3, files } = useS3Upload();
 
   const { register, watch, handleSubmit, formState: { errors } } = useForm<IFormInputs>({
     resolver: yupResolver(validProductSchema)
@@ -84,11 +87,19 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
     console.log(url);
   };
 
+  let handleFileChange = async ()  => {
+    console.log('uploading.....');
+    await uploadToS3(fileImage);
+  };
+
   const onSubmit: SubmitHandler<IFormInputs> = async data => {
     console.log(data);
 
-    // upload data when submit
-    await uploadFile();
+    // upload data when submit - implemented manually
+    // await uploadFile();
+
+    // using library
+    await handleFileChange();
   }
 
   return (
