@@ -6,14 +6,16 @@ import { object, string, number, mixed } from "yup";
 
 import 'react-responsive-modal/styles.css';
 import {
+  ERC20_DECIMALS,
   ValidImageURL,
   ValidProductDescription,
   ValidProductLocation,
   ValidProductName,
   ValidProductPrice
 } from "@/constants";
+import Upload from "@/components/product/Upload";
 import {useState} from "react";
-import axios from "axios";
+import BigNumber from "bignumber.js";
 
 interface DialogProps {
   openModal: boolean,
@@ -42,64 +44,23 @@ const validProductSchema = object({
     })
 }).required();
 
-
 export default function Dialog({ openModal, onClose }: DialogProps) {
-  const [previewImage, setPreviewImage] = useState<string>('');
-  const [fileImage, setFileImage] = useState<any>(null);
-  const [uploadProgress, setUploadProgress] = useState<number>(0);
-  const [isUploadCompleted, setIsUploadCompleted] = useState<boolean>(false);
-
-  const { register, watch, handleSubmit, formState: { errors } } = useForm<IFormInputs>({
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<IFormInputs>({
     resolver: yupResolver(validProductSchema)
   });
 
-  const onPreviewImageChange = (event) => {
-    setIsUploadCompleted(false);
-    let file = event.target.files[0];
-    if (file) {
-      // Reset upload progress
-      setUploadProgress(0);
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-
-      reader.onloadend = () => {
-        setPreviewImage(reader.result.toString());
-        setFileImage(file);
-      }
-    }
-  }
-
-  const uploadFile = async () => {
-    if (fileImage == null) return;
-    // Generate a signed URL for file upload with aws-sdk
-    let { data } = await axios.post("/api/s3/uploadFile", {
-      name: fileImage.name,
-      type: fileImage.type,
-    });
-
-    // Get the signed URL
-    const url = data.url;
-
-    // Upload local file
-    await axios.put(url, fileImage, {
-      headers: {
-        "Content-type": fileImage.type,
-        "Access-Control-Allow-Origin": "*",
-      },
-      onUploadProgress: progressEvent => {
-        let uploadPercentage = (progressEvent.loaded * 100) / progressEvent.total;
-        setUploadProgress(uploadPercentage);
-
-        if (uploadPercentage == 100) setIsUploadCompleted(true);
-      }
-    });
-  };
+  const [imageUrl, setImageUrl] = useState<string>(null);
 
   const onSubmit: SubmitHandler<IFormInputs> = async data => {
-    console.log(data);
+    const params = [
+      data.name,
+      imageUrl,
+      data.description,
+      data.location,
+      new BigNumber(data.price).shiftedBy(ERC20_DECIMALS).toString()
+    ]
 
-    // upload data when submit
-    await uploadFile();
+    console.log(params);
   }
 
   return (
@@ -144,38 +105,10 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
               <div role="alert" className="mt-2 text-danger">{errors.description?.message}</div>
             </div>
             <div className="mb-3">
-              <>
-                <label htmlFor="imageUrl" className="col-form-label">Image URL</label>
-                <div className="row">
-                  <div className="col-12 col-sm-4 pb-2">
-                    {
-                      !watch("imageUrl") || watch("imageUrl").length === 0 ? (
-                        <img src="https://via.placeholder.com/200" alt="Medium"/>
-                      ) : <img src={previewImage} alt="Preview Image" width="200" height="200" />
-                    }
-                  </div>
-                  <div className="col-12 col-sm-8">
-                    <input type="file" className="form-control" id="imageUrl"
-                           {...register("imageUrl", { required: true , onChange: onPreviewImageChange})} />
-                    <progress id="uploadProgress" max="100" style={{width: "100%", marginTop: "8px", marginBottom: "8px"}} value={uploadProgress}></progress>
-                    <div>
-                      { (isUploadCompleted) ? (
-                          <button type="button" className="btn btn-secondary disabled">
-                            <i className="bi bi-cloud-upload-fill" style={{marginRight: "0.5rem"}}></i>
-                            Done
-                          </button>
-                        ) : (
-                          <button type="button" className="btn btn-outline-primary" onClick={uploadFile}>
-                            <i className="bi bi-cloud-upload" style={{marginRight: "0.5rem"}}></i>
-                            Upload
-                          </button>
-                        )
-                      }
-                    </div>
-                  </div>
-                </div>
-                <div role="alert" className="mt-2 text-danger">{errors.imageUrl?.message}</div>
-              </>
+              <Upload register={register}
+                      errors={errors}
+                      watch={watch}
+                      onCompleted={(filePath) => setImageUrl(filePath)} />
             </div>
           </form>
         </div>
