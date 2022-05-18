@@ -68,7 +68,7 @@ export default function Upload({ onCompleted, register, watch, errors } : Upload
       <div className="row">
         <div className="col-12 col-sm-4 pb-2">
           {
-            !watch("imageUrl") || watch("imageUrl").length === 0 ? (
+            !previewImage ? (
               <img src="https://via.placeholder.com/200" alt="Medium"/>
             ) : <img src={previewImage} alt="Preview Image" width="200" height="200" />
           }
