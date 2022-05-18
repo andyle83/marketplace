@@ -23,11 +23,11 @@ export default function Footer() {
               <div className="col-auto">
                 <div className="form-inline form-white border">
                   <div className="input-group">
-                    <input type="email" id="email" className="form-control"/>
+                    <input type="email" id="email" className="form-control" style={{borderRadius: 0}}/>
                     <div className="input-group-append">
                       <button type="submit"
                               className="btn btn-danger"
-                              style={{display: "flex", alignItems: "center"}
+                              style={{display: "flex", alignItems: "center", borderRadius: 0}
                               }>
                         <i className="bi bi-send" style={{marginRight: "0.5rem"}}></i>
                         Subscribe
