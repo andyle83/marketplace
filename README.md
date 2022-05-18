@@ -108,7 +108,9 @@ Marketplace deployed to: 0xf8fF35Bf5ceEcBE62C4C70245189C9A27b3A1430
 npx hardhat laika-sync --contract Marketplace --address 0xf8fF35Bf5ceEcBE62C4C70245189C9A27b3A1430
 ```
 
-![Laika](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/Laika.png)
+![Laika Initialize](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/Laika_Init.png)
+
+![Laika New Product](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/Laika_New.png)
 
 ### 5. TODO
 
