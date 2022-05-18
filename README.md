@@ -112,6 +112,8 @@ npx hardhat laika-sync --contract Marketplace --address 0xf8fF35Bf5ceEcBE62C4C70
 
 ![Laika New Product](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/Laika_New.png)
 
+![Laika Get Number](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/Laika_Get.png)
+
 ### 5. TODO
 
 - CI/CD (Applying `Vercel`)
