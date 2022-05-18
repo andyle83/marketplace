@@ -42,7 +42,7 @@ Marketplace
 
 - Desktop
 
-![Home Page](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/Marketplace.png)
+![Home Page](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/Desktop.png)
 
 - Mobile
 
