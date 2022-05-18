@@ -45,16 +45,20 @@ const validProductSchema = object({
 
 export default function Dialog({ openModal, onClose }: DialogProps) {
   const [previewImage, setPreviewImage] = useState<string>('');
-  const [fileImage, setFileImage] = useState<any>();
+  const [fileImage, setFileImage] = useState<any>(null);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
+  const [isUploadCompleted, setIsUploadCompleted] = useState<boolean>(false);
 
   const { register, watch, handleSubmit, formState: { errors } } = useForm<IFormInputs>({
     resolver: yupResolver(validProductSchema)
   });
 
   const onPreviewImageChange = (event) => {
+    setIsUploadCompleted(false);
     let file = event.target.files[0];
     if (file) {
+      // Reset upload progress
+      setUploadProgress(0);
       const reader = new FileReader();
       reader.readAsDataURL(file);
 
@@ -66,6 +70,7 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
   }
 
   const uploadFile = async () => {
+    if (fileImage == null) return;
     // Generate a signed URL for file upload with aws-sdk
     let { data } = await axios.post("/api/s3/uploadFile", {
       name: fileImage.name,
@@ -84,10 +89,10 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
       onUploadProgress: progressEvent => {
         let uploadPercentage = (progressEvent.loaded * 100) / progressEvent.total;
         setUploadProgress(uploadPercentage);
+
+        if (uploadPercentage == 100) setIsUploadCompleted(true);
       }
     });
-
-    console.log(url);
   };
 
   const onSubmit: SubmitHandler<IFormInputs> = async data => {
@@ -154,9 +159,18 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
                            {...register("imageUrl", { required: true , onChange: onPreviewImageChange})} />
                     <progress id="uploadProgress" max="100" style={{width: "100%", marginTop: "8px", marginBottom: "8px"}} value={uploadProgress}></progress>
                     <div>
-                      <button type="button" className="btn btn-outline-primary">
-                        <i className="bi bi-cloud-upload" style={{marginRight: "0.5rem"}}></i>
-                        Upload</button>
+                      { (isUploadCompleted) ? (
+                          <button type="button" className="btn btn-secondary disabled">
+                            <i className="bi bi-cloud-upload-fill" style={{marginRight: "0.5rem"}}></i>
+                            Done
+                          </button>
+                        ) : (
+                          <button type="button" className="btn btn-outline-primary" onClick={uploadFile}>
+                            <i className="bi bi-cloud-upload" style={{marginRight: "0.5rem"}}></i>
+                            Upload
+                          </button>
+                        )
+                      }
                     </div>
                   </div>
                 </div>
