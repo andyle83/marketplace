@@ -95,10 +95,17 @@ npx hardhat test --network alfajores
 npx hardhat run scripts/sample-script.js --network alfajores
 ```
 
+Output
+
+```shell
+No need to generate any newer typings.
+Marketplace deployed to: 0xf8fF35Bf5ceEcBE62C4C70245189C9A27b3A1430
+```
+
 - Sync: 
 
 ```shell
-npx hardhat laika-sync --contract Marketplace --address 0x052F92eF1B97c0dD68B7150a8BBeBf962dD8a4e7
+npx hardhat laika-sync --contract Marketplace --address 0xf8fF35Bf5ceEcBE62C4C70245189C9A27b3A1430
 ```
 ### 5. TODO
 
