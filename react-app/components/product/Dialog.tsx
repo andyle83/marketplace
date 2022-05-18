@@ -16,6 +16,7 @@ import {
 import Upload from "@/components/product/Upload";
 import {useState} from "react";
 import BigNumber from "bignumber.js";
+import {useContractKit} from "@celo-tools/use-contractkit";
 
 interface DialogProps {
   openModal: boolean,
@@ -45,6 +46,7 @@ const validProductSchema = object({
 }).required();
 
 export default function Dialog({ openModal, onClose }: DialogProps) {
+  const { kit, address } = useContractKit();
   const { register, handleSubmit, watch, formState: { errors } } = useForm<IFormInputs>({
     resolver: yupResolver(validProductSchema)
   });
@@ -61,6 +63,12 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
     ]
 
     console.log(params);
+
+    if (!address) {
+      console.error("You have to connect your wallet");
+    } else {
+      // call the contract
+    }
   }
 
   return (
