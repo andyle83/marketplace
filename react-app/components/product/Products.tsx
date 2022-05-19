@@ -19,10 +19,11 @@ interface ProductProps {
   description: string,
   location: string,
   price: BigNumber,
-  sold: number
+  sold: number,
+  onReload: (isReload: boolean) => void,
 }
 
-export default function Products({ index, owner, name, image, description, location, price, sold }: ProductProps) {
+export default function Products( { index, owner, name, image, description, location, price, sold, onReload }: ProductProps) {
   const { kit } = useContractKit();
 
   // @ts-ignore
@@ -59,7 +60,8 @@ export default function Products({ index, owner, name, image, description, locat
       dispatchMessage(`🎉 You successfully bought "${name}".`);
 
       // TODO: ask parent to fetch and reload product only + update balance
-      window.location.reload();
+      onReload(true);
+      // window.location.reload();
     } catch (e) {
 
       // TODO: Revert the balance if exception occur

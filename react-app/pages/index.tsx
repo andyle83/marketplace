@@ -16,6 +16,7 @@ export default function App() {
   // get contract kit
   const { kit, address, network } = useContractKit();
   const [products, setProducts] = useState([]);
+  const [isReload, setIsReload] = useState<boolean>(true);
   const dispatch = useDispatch();
 
   // get contract of our marketplace
@@ -45,18 +46,23 @@ export default function App() {
       }
       setProducts(await Promise.all(_products));
     }
-    dispatch(updateNotification({ message: LoadingProductStatus }));
 
-    fetchProducts().then(_ =>
-      dispatch(updateLoadingState({ isLoading: false }))
-    ).catch(e => console.error(e));
-  }, [address, network]);
+    if (isReload) {
+      dispatch(updateNotification({message: LoadingProductStatus}));
+
+      fetchProducts().then(_ =>
+        dispatch(updateLoadingState({isLoading: false}))
+      ).catch(e => console.error(e));
+
+      setIsReload(false);
+    }
+  }, [address, network, isReload]);
 
   const renderProducts = () => {
     // update notification
     return products.map((product, index) =>
         <div className="col-md-4" key={index}>
-          <Products {...product} />
+          <Products {...product} onReload={(shouldReload) => setIsReload(shouldReload)}  />
         </div>
     )
   }
