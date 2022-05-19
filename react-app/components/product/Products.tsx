@@ -57,8 +57,12 @@ export default function Products({ index, owner, name, image, description, locat
 
       // update notification message and rerender component
       dispatchMessage(`🎉 You successfully bought "${name}".`);
+
+      // TODO: ask parent to fetch and reload product only + update balance
       window.location.reload();
     } catch (e) {
+
+      // TODO: Revert the balance if exception occur
       dispatchMessage(`⚠️ ${e}.`);
     }
   }
