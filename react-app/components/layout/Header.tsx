@@ -3,7 +3,7 @@ import Notification from "./Notification";
 import Image from "next/image";
 import Toolbar from "@/components/layout/Toolbar";
 
-import {useCheckMobileScreen} from "@/utils";
+import { useCheckMobileScreen } from "@/utils";
 
 // Clean code, but this component is not re-usable
 function MobileHeader() {
