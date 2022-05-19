@@ -1,6 +1,6 @@
 import * as React from "react";
-import {useContractKit} from "@celo-tools/use-contractkit";
-import {useEffect, useState} from "react";
+import { useContractKit } from "@celo-tools/use-contractkit";
+import { useEffect, useState } from "react";
 
 export default function Wallet() {
   const { address, network, kit, connect, destroy } = useContractKit();

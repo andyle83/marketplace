@@ -1,9 +1,9 @@
 import * as React from "react";
 import BigNumber from "bignumber.js"
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { updateNotification } from "@/state/app/reducer";
-import {useContractKit} from "@celo-tools/use-contractkit";
+import { useContractKit } from "@celo-tools/use-contractkit";
 
 import erc20Abi from '@/contract/erc20.abi.json';
 import marketplaceAbi from "@/contract/Marketplace.abi.json";
@@ -20,10 +20,10 @@ interface ProductProps {
   location: string,
   price: BigNumber,
   sold: number,
-  onReload: (isReload: boolean) => void,
+  reloadProduct: (isReload: boolean) => void,
 }
 
-export default function Products( { index, owner, name, image, description, location, price, sold, onReload }: ProductProps) {
+export default function Products( { index, owner, name, image, description, location, price, sold, reloadProduct }: ProductProps) {
   const { kit } = useContractKit();
 
   // @ts-ignore
@@ -60,10 +60,9 @@ export default function Products( { index, owner, name, image, description, loca
       dispatchMessage(`🎉 You successfully bought "${name}".`);
 
       // TODO: ask parent to fetch and reload product only + update balance
-      onReload(true);
+      reloadProduct(true);
       // window.location.reload();
     } catch (e) {
-
       // TODO: Revert the balance if exception occur
       dispatchMessage(`⚠️ ${e}.`);
     }

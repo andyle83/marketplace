@@ -1,6 +1,6 @@
 import * as React from "react";
-import {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useContractKit } from "@celo-tools/use-contractkit";
 import BigNumber from "bignumber.js"
 
@@ -9,8 +9,8 @@ import Products from "@/components/product/Products";
 import { updateLoadingState, updateNotification } from "@/state/app/reducer";
 
 import { LoadingProductStatus } from '@/constants';
-import marketplaceAbi from "@/contract/Marketplace.abi.json";
 import { MPContractAddress } from '@/constants';
+import marketplaceAbi from "@/contract/Marketplace.abi.json";
 
 export default function App() {
   // get contract kit
@@ -62,7 +62,7 @@ export default function App() {
     // update notification
     return products.map((product, index) =>
         <div className="col-md-4" key={index}>
-          <Products {...product} onReload={(shouldReload) => setIsReload(shouldReload)}  />
+          <Products {...product} reloadProduct={(reload) => setIsReload(reload)}  />
         </div>
     )
   }
