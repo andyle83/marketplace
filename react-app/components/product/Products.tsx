@@ -9,7 +9,12 @@ import erc20Abi from '@/contract/erc20.abi.json';
 import marketplaceAbi from "@/contract/Marketplace.abi.json";
 import Identicon from "@/components/product/Identicon";
 
-import { MPContractAddress, cUSDContractAddress, ERC20_DECIMALS } from '@/constants';
+import {
+  MPContractAddress,
+  cUSDContractAddress,
+  ERC20_DECIMALS,
+  BuyNewProductSuccess
+} from '@/constants';
 
 interface ProductProps {
   index: string,
@@ -57,7 +62,7 @@ export default function Products( { index, owner, name, image, description, loca
       await contract.methods.buyProduct(index).send({ from: kit.defaultAccount })
 
       // update notification message and rerender component
-      dispatchMessage(`🎉 You successfully bought "${name}".`);
+      dispatchMessage(BuyNewProductSuccess(name));
 
       // TODO: update balance
       reloadProduct(true);

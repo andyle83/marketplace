@@ -11,4 +11,7 @@ export const ValidProductPrice        = "Price must be a positive number";
 export const ValidImageURL            = "Product image is required";
 export const ValidProductDescription  = "Description is required";
 
+export const BuyNewProductSuccess     = (message) => `🎉 You successfully bought "${message}". Please reload.`;
+export const AddNewProductSuccess     = (message) => `🎉 You successfully added "${message}". Please reload !`;
+
 export const ERC20_DECIMALS           = 18;

@@ -8,6 +8,7 @@ import marketplaceAbi from "@/contract/Marketplace.abi.json";
 
 import 'react-responsive-modal/styles.css';
 import {
+  AddNewProductSuccess,
   ERC20_DECIMALS, MPContractAddress,
   ValidImageURL,
   ValidProductDescription,
@@ -80,7 +81,7 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
         dispatch(updateNotification({ message: `⚠️ ${error}.` }));
       }
 
-      dispatch(updateNotification({ message: `🎉 You successfully added "${params[0]}".` }));
+      dispatch(updateNotification({ message: AddNewProductSuccess(params[0]) }));
       onClose();
     }
   }
