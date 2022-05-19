@@ -1,6 +1,6 @@
 import * as React from "react";
 import BigNumber from "bignumber.js"
-import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { updateNotification } from "@/state/app/reducer";
 import { useContractKit } from "@celo-tools/use-contractkit";
