@@ -8,7 +8,7 @@ export interface ApplicationState {
   },
   profile: {
     address: string,
-    balance: string,
+    balance: number,
   }
 }
 
@@ -16,11 +16,11 @@ const initialState: ApplicationState = {
   blockNumber: 0,
   notification: {
     isLoading: false,
-    message: '',
+    message: null,
   },
   profile: {
-    address: '',
-    balance: '',
+    address: null,
+    balance: 0,
   }
 }
 

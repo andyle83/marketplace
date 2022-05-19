@@ -61,6 +61,7 @@ export default function Products( { index, owner, name, image, description, loca
 
       // TODO: update balance
       reloadProduct(true);
+      // This is expensive UX feeling !
       // window.location.reload();
     } catch (e) {
       // TODO: Revert the balance if exception occur
