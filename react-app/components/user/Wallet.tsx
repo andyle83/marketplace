@@ -1,8 +1,8 @@
 import * as React from "react";
-import {useContractKit} from "@celo-tools/use-contractkit";
-import {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
-import {updateProfile} from "@/state/app/reducer";
+import { useContractKit } from "@celo-tools/use-contractkit";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateProfile } from "@/state/app/reducer";
 
 export default function Wallet() {
   const { address, network, kit, connect, destroy } = useContractKit();
