@@ -4,11 +4,12 @@ import {useEffect, useState} from "react";
 
 export default function Wallet() {
   const { address, network, kit, connect, destroy } = useContractKit();
-  const [balance, setBalance] = useState<string>("");
+  const [balance, setBalance] = useState<string>('');
 
   async function fetchBalance() {
     const { cUSD } = await kit.getTotalBalance(address);
-    setBalance(kit.web3.utils.fromWei(cUSD.toString(), 'ether'))
+    const roundingBalance = parseFloat(kit.web3.utils.fromWei(cUSD.toString(), 'ether')).toFixed(2);
+    setBalance(roundingBalance);
   }
 
   useEffect(() => {
