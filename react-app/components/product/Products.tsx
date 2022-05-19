@@ -2,7 +2,7 @@ import * as React from "react";
 import BigNumber from "bignumber.js"
 import {useDispatch} from "react-redux";
 
-import { updateNotificationMessage } from "@/state/app/reducer";
+import { updateNotification } from "@/state/app/reducer";
 import {useContractKit} from "@celo-tools/use-contractkit";
 
 import erc20Abi from '@/contract/erc20.abi.json';
@@ -39,7 +39,7 @@ export default function Products({ index, owner, name, image, description, locat
   }
 
   const dispatchMessage = (message: string) => {
-    dispatch(updateNotificationMessage({ notificationMessage: message }));
+    dispatch(updateNotification({ message: message }));
   }
 
   const purchaseHandler = async (index: string, name: string, price: BigNumber) => {

@@ -6,7 +6,7 @@ import BigNumber from "bignumber.js"
 
 import AppLayout from "@/components/layout/AppLayout";
 import Products from "@/components/product/Products";
-import { updateLoadingState, updateNotificationMessage } from "@/state/app/reducer";
+import { updateLoadingState, updateNotification } from "@/state/app/reducer";
 
 import { LoadingProductStatus } from '@/constants';
 import marketplaceAbi from "@/contract/Marketplace.abi.json";
@@ -45,7 +45,7 @@ export default function App() {
       }
       setProducts(await Promise.all(_products));
     }
-    dispatch(updateNotificationMessage({ notificationMessage: LoadingProductStatus }));
+    dispatch(updateNotification({ message: LoadingProductStatus }));
 
     fetchProducts().then(_ =>
       dispatch(updateLoadingState({ isLoading: false }))

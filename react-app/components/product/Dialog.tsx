@@ -16,11 +16,11 @@ import {
   ValidProductPrice
 } from "@/constants";
 import Upload from "@/components/product/Upload";
-import {useState} from "react";
+import { useState } from "react";
 import BigNumber from "bignumber.js";
-import {useContractKit} from "@celo-tools/use-contractkit";
-import {useDispatch} from "react-redux";
-import {updateNotificationMessage} from "@/state/app/reducer";
+import { useContractKit } from "@celo-tools/use-contractkit";
+import { useDispatch } from "react-redux";
+import { updateNotification } from "@/state/app/reducer";
 
 interface DialogProps {
   openModal: boolean,
@@ -77,10 +77,10 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
           .writeProduct(...params)
           .send({from: kit.defaultAccount})
       } catch (error) {
-        dispatch(updateNotificationMessage({ notificationMessage: `⚠️ ${error}.` }));
+        dispatch(updateNotification({ message: `⚠️ ${error}.` }));
       }
 
-      dispatch(updateNotificationMessage({ notificationMessage: `🎉 You successfully added "${params[0]}".` }));
+      dispatch(updateNotification({ message: `🎉 You successfully added "${params[0]}".` }));
       onClose();
     }
   }
