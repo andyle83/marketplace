@@ -43,13 +43,9 @@ const appSlice = createSlice({
     updateProfile(state, action) {
       const { address, balance } = action.payload;
       state.profile = { address, balance };
-    },
-    updateBalance(state, action) {
-      const { balance } = action.payload;
-      state.profile.balance = balance;
     }
   },
 })
 
-export const { updateBlockNumber, updateLoadingState, updateNotification, updateProfile, updateBalance } = appSlice.actions;
+export const { updateBlockNumber, updateLoadingState, updateNotification, updateProfile } = appSlice.actions;
 export default appSlice.reducer;

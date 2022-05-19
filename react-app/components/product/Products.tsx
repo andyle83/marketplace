@@ -1,9 +1,9 @@
 import * as React from "react";
 import BigNumber from "bignumber.js"
-import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import {useDispatch} from "react-redux";
 
 import { updateNotification } from "@/state/app/reducer";
-import { useContractKit } from "@celo-tools/use-contractkit";
+import {useContractKit} from "@celo-tools/use-contractkit";
 
 import erc20Abi from '@/contract/erc20.abi.json';
 import marketplaceAbi from "@/contract/Marketplace.abi.json";
@@ -25,7 +25,6 @@ interface ProductProps {
 
 export default function Products( { index, owner, name, image, description, location, price, sold, onReload }: ProductProps) {
   const { kit } = useContractKit();
-  const productPrice = parseFloat(price.shiftedBy(-ERC20_DECIMALS).toFixed(2));
 
   // @ts-ignore
   const cUSDContract = new kit.web3.eth.Contract(erc20Abi, cUSDContractAddress);
@@ -62,6 +61,7 @@ export default function Products( { index, owner, name, image, description, loca
 
       // TODO: ask parent to fetch and reload product only + update balance
       onReload(true);
+      // window.location.reload();
     } catch (e) {
 
       // TODO: Revert the balance if exception occur
@@ -88,6 +88,7 @@ export default function Products( { index, owner, name, image, description, loca
             {description}
           </p>
           <p className="card-text mt-4">
+            {/*<BsPinMap color="red" style={{ verticalAlign: "baseline" }} />*/}
             <i className="bi bi-pin-map-fill" onClick={showInMapClicked}></i>
             <span className="p-2">{location}</span>
           </p>
@@ -95,7 +96,7 @@ export default function Products( { index, owner, name, image, description, loca
             <a className="btn btn-outline-primary"
                id={index}
                onClick={() => purchaseHandler(index, name, price)}>
-              Buy for {productPrice} cUSD
+              Buy for {price.shiftedBy(-ERC20_DECIMALS).toFixed(2)} cUSD
             </a>
           </div>
         </div>
