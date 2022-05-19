@@ -5,6 +5,10 @@ export interface ApplicationState {
   notification: {
     isLoading: boolean,
     message: string,
+  },
+  profile: {
+    address: string,
+    balance: string,
   }
 }
 
@@ -13,6 +17,10 @@ const initialState: ApplicationState = {
   notification: {
     isLoading: false,
     message: '',
+  },
+  profile: {
+    address: '',
+    balance: '',
   }
 }
 
@@ -30,11 +38,14 @@ const appSlice = createSlice({
     },
     updateNotification(state, action) {
       const { message } = action.payload;
-      state.notification.message = message;
-      state.notification.isLoading = true;
+      state.notification = { message, isLoading: true };
+    },
+    updateProfile(state, action) {
+      const { address, balance } = action.payload;
+      state.profile = { address, balance };
     }
   },
 })
 
-export const { updateBlockNumber, updateLoadingState, updateNotification } = appSlice.actions
-export default appSlice.reducer
+export const { updateBlockNumber, updateLoadingState, updateNotification, updateProfile } = appSlice.actions;
+export default appSlice.reducer;
