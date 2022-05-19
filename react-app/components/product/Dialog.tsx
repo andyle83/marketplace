@@ -4,9 +4,11 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { object, string, number, mixed } from "yup";
 
+import marketplaceAbi from "@/contract/Marketplace.abi.json";
+
 import 'react-responsive-modal/styles.css';
 import {
-  ERC20_DECIMALS,
+  ERC20_DECIMALS, MPContractAddress,
   ValidImageURL,
   ValidProductDescription,
   ValidProductLocation,
@@ -17,6 +19,8 @@ import Upload from "@/components/product/Upload";
 import {useState} from "react";
 import BigNumber from "bignumber.js";
 import {useContractKit} from "@celo-tools/use-contractkit";
+import {useDispatch} from "react-redux";
+import {updateNotificationMessage} from "@/state/app/reducer";
 
 interface DialogProps {
   openModal: boolean,
@@ -47,6 +51,7 @@ const validProductSchema = object({
 
 export default function Dialog({ openModal, onClose }: DialogProps) {
   const { kit, address } = useContractKit();
+  const dispatch = useDispatch();
   const { register, handleSubmit, watch, formState: { errors } } = useForm<IFormInputs>({
     resolver: yupResolver(validProductSchema)
   });
@@ -64,10 +69,19 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
 
     console.log(params);
 
-    if (!address) {
-      console.error("You have to connect your wallet");
-    } else {
-      // call the contract
+    if (address) {
+      // @ts-ignore
+      const contract = new kit.web3.eth.Contract(marketplaceAbi, MPContractAddress);
+      try {
+        contract.methods
+          .writeProduct(...params)
+          .send({from: kit.defaultAccount})
+      } catch (error) {
+        dispatch(updateNotificationMessage({ notificationMessage: `⚠️ ${error}.` }));
+      }
+
+      dispatch(updateNotificationMessage({ notificationMessage: `🎉 You successfully added "${params[0]}".` }));
+      onClose();
     }
   }
 
