@@ -21,6 +21,9 @@ The feature includes:
 - Deploy address: `0x052F92eF1B97c0dD68B7150a8BBeBf962dD8a4e7` (can be changed)
 - Development framework: HardHat & Laika
 
+**Backend** [TBD]
+- Using ORM (i.e, Prisma) and Postgres database to store off-chain data / fall-over solution
+
 **Frontend**
 
 There are two variants of implementation:
