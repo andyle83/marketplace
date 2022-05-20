@@ -1,5 +1,6 @@
 import * as React from "react";
 import moment from "moment";
+import {useContractKit} from "@celo-tools/use-contractkit";
 
 type OrderProps = {
   name: string;
@@ -9,6 +10,8 @@ type OrderProps = {
 }
 
 const Order = ({ name, total, txid, order_time }: OrderProps): JSX.Element => {
+  const { network } = useContractKit();
+  const txUrl = `${network.explorer}/tx/${txid}`;
   return (
     <div className="card mb-4">
       <div className="card-header text-secondary">
@@ -31,7 +34,9 @@ const Order = ({ name, total, txid, order_time }: OrderProps): JSX.Element => {
       </div>
       <div className="card-body">
         <h6>{name}</h6>
-        <p className="card-text">Transaction: {txid}</p>
+        <p className="card-text">
+          Transaction: <a href={txUrl}>{txid}</a>
+        </p>
         <a href="#" className="btn btn-outline-primary">
           <i className="bi bi-bootstrap-reboot" style={{marginRight: "0.5rem"}}></i>
           Buy Again
