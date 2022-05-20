@@ -15,6 +15,7 @@ import {
   ERC20_DECIMALS,
   BuyNewProductSuccess
 } from '@/constants';
+import Image from "next/image";
 
 interface ProductProps {
   index: string,
@@ -80,31 +81,32 @@ export default function Products( { index, owner, name, image, description, loca
 
   return (
     <div className="card mb-4">
-      <img className="card-img-top" src={image} alt="..." />
-        <div className="position-absolute top-0 end-0 bg-warning mt-4 px-2 py-1 rounded-start">
-          {sold} Sold
+      {/*<img className="card-img-top" src={image} alt="..." />*/}
+      <Image src={image} width={300} height={300} alt={name} />
+      <div className="position-absolute top-0 end-0 bg-warning mt-4 px-2 py-1 rounded-start">
+        {sold} Sold
+      </div>
+      <div className="card-body text-left p-4 position-relative">
+        <div className="translate-middle-y position-absolute top-0">
+          <Identicon address={owner} />
         </div>
-        <div className="card-body text-left p-4 position-relative">
-          <div className="translate-middle-y position-absolute top-0">
-            <Identicon address={owner} />
-          </div>
-          <h2 className="card-title fs-4 fw-bold mt-2">{name}</h2>
-          <p className="card-text mb-4" style={{ minHeight:"82px" }}>
-            {description}
-          </p>
-          <p className="card-text mt-4">
-            {/*<BsPinMap color="red" style={{ verticalAlign: "baseline" }} />*/}
-            <i className="bi bi-pin-map-fill" onClick={showInMapClicked}></i>
-            <span className="p-2">{location}</span>
-          </p>
-          <div className="d-grid gap-2">
-            <a className="btn btn-outline-primary"
-               id={index}
-               onClick={() => purchaseHandler(index, name, price)}>
-              Buy for {price.shiftedBy(-ERC20_DECIMALS).toFixed(2)} cUSD
-            </a>
-          </div>
+        <h2 className="card-title fs-4 fw-bold mt-2">{name}</h2>
+        <p className="card-text mb-4" style={{ minHeight:"82px" }}>
+          {description}
+        </p>
+        <p className="card-text mt-4">
+          {/*<BsPinMap color="red" style={{ verticalAlign: "baseline" }} />*/}
+          <i className="bi bi-pin-map-fill" onClick={showInMapClicked}></i>
+          <span className="p-2">{location}</span>
+        </p>
+        <div className="d-grid gap-2">
+          <a className="btn btn-outline-primary"
+             id={index}
+             onClick={() => purchaseHandler(index, name, price)}>
+            Buy for {price.shiftedBy(-ERC20_DECIMALS).toFixed(2)} cUSD
+          </a>
         </div>
+      </div>
     </div>
   );
 }
