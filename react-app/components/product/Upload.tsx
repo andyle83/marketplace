@@ -1,18 +1,17 @@
 import * as React from "react";
-import {useState} from "react";
-import {UseFormRegister, UseFormWatch} from "react-hook-form/dist/types/form";
+import { useState } from "react";
+import { UseFormRegister } from "react-hook-form/dist/types/form";
 import axios from "axios";
-import {FieldErrors} from "react-hook-form/dist/types/errors";
+import { FieldErrors } from "react-hook-form/dist/types/errors";
 import Image from "next/image";
 
 interface UploadProps {
   register: UseFormRegister<any>,
   errors: FieldErrors<any>,
-  watch: UseFormWatch<any>,
   onCompleted: (filePath: string) => void,
 }
 
-export default function Upload({ onCompleted, register, watch, errors } : UploadProps) {
+export default function Upload({ onCompleted, register, errors } : UploadProps) {
   const [previewImage, setPreviewImage] = useState<string>('');
   const [fileImage, setFileImage] = useState<any>(null);
   const [uploadProgress, setUploadProgress] = useState<number>(0);

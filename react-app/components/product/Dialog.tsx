@@ -53,7 +53,7 @@ const validProductSchema = object({
 export default function Dialog({ openModal, onClose }: DialogProps) {
   const { kit, address } = useContractKit();
   const dispatch = useDispatch();
-  const { register, handleSubmit, watch, formState: { errors } } = useForm<IFormInputs>({
+  const { register, handleSubmit, formState: { errors } } = useForm<IFormInputs>({
     resolver: yupResolver(validProductSchema)
   });
 
@@ -130,7 +130,6 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
             <div className="mb-3">
               <Upload register={register}
                       errors={errors}
-                      watch={watch}
                       onCompleted={(filePath) => setImageUrl(filePath)} />
             </div>
           </form>
