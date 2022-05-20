@@ -1,7 +1,6 @@
 import * as React from "react";
 import AppLayout from "@/components/layout/AppLayout";
 import Order from "@/components/purchase/Order";
-import BigNumber from "bignumber.js";
 import { useContractKit } from "@celo-tools/use-contractkit";
 import { OderHistoryWalletRequest} from "@/constants";
 import prisma from '../../lib/prisma';
@@ -36,8 +35,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return { props: { purchases } };
 };
 
-const Orders: React.FC<Props> = (props) => {
-  console.log(props.purchases.length);
+const Orders: React.FC<Props> = ({ purchases }) => {
+  console.log(JSON.stringify(purchases));
   const { address } = useContractKit();
 
   return (
@@ -46,10 +45,18 @@ const Orders: React.FC<Props> = (props) => {
         {
           !address ? <div className="text-center p-5">{OderHistoryWalletRequest}</div> :
             <>
-              <h5 className="pt-3 pb-3">Your order history</h5>
-              <Order name="Giant BBQ" total={new BigNumber(500)} order_time={new Date()} />
-              <Order name="BBQ Chicken" total={new BigNumber(500)} order_time={new Date()} />
-              <Order name="Beef burrito" total={new BigNumber(500)} order_time={new Date()} />
+              {
+                purchases.length == 0 ?
+                  <h5 className="pt-3 pb-3">You have no purchase record</h5>
+                  : (
+                    <>
+                    <h5 className="pt-3 pb-3">Your order history</h5>
+                      {purchases.map(purchase =>
+                        <Order key={purchase.id} name="Product Name" total={purchase.amount} order_time={new Date()} />
+                      )}
+                    </>
+                  )
+              }
             </>
         }
       </main>
