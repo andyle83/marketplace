@@ -20,7 +20,7 @@ export default function Identicon({ address }: IdenticonProps) {
   return (
     <div className="rounded-circle overflow-hidden d-inline-block border border-white border-2 shadow-sm m-0">
       <a href={transaction} target="_blank" rel="noreferrer">
-        <Image src={icon} width={48} height={48} alt={address} />
+        <img src={icon} width={48} height={48} alt={address} />
       </a>
     </div>
   )
