@@ -4,6 +4,7 @@ export const cUSDContractAddress      = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369
 
 export const LoadingProductStatus     = "⌛ Loading products list...";
 export const OderHistoryWalletRequest = "Please connect to your Celo wallet to view your orders history.";
+export const NoPurchaseRecord         = "You have no purchase 😥";
 
 export const ValidProductName         = "Product name is required";
 export const ValidProductLocation     = "Location is required";

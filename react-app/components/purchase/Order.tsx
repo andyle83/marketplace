@@ -30,7 +30,7 @@ const Order = ({ name, total, order_time }: OrderProps): JSX.Element => {
       </div>
       <div className="card-body">
         <h6>{name}</h6>
-        <p className="card-text">Transaction Information (Sender / Receiver)</p>
+        <p className="card-text">Transaction Information (txid, seller)</p>
         <a href="#" className="btn btn-outline-primary">
           <i className="bi bi-bootstrap-reboot" style={{marginRight: "0.5rem"}}></i>
           Buy Again

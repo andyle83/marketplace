@@ -21,8 +21,11 @@ model Profile {
 
 model Purchase {
   id        String   @id @default(cuid())
+  product   String
   amount    Float    @default(0.00)
   profile   Profile  @relation(fields: [profileId], references: [address])
   profileId String
+  seller    String
+  txid      String
   createdAt DateTime @default(now()) @map(name: "created_at")
 }

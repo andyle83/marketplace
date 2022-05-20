@@ -2,13 +2,15 @@ import * as React from "react";
 import AppLayout from "@/components/layout/AppLayout";
 import Order from "@/components/purchase/Order";
 import { useContractKit } from "@celo-tools/use-contractkit";
-import { OderHistoryWalletRequest} from "@/constants";
+import {NoPurchaseRecord, OderHistoryWalletRequest} from "@/constants";
 import prisma from '../../lib/prisma';
 import { GetServerSideProps } from "next";
 
 type PurchaseProps = {
   id: string;
   amount: number;
+  product: string;
+  seller: string;
   profile: {
     address: string;
     balance: number;
@@ -24,6 +26,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
     select : {
       id: true,
       amount: true,
+      product: true,
+      seller: true,
       profile: {
         select: {
           address: true,
@@ -47,12 +51,12 @@ const Orders: React.FC<Props> = ({ purchases }) => {
             <>
               {
                 purchases.length == 0 ?
-                  <h5 className="pt-3 pb-3">You have no purchase record</h5>
+                  <div className="text-center p-5">{NoPurchaseRecord}</div>
                   : (
                     <>
                     <h5 className="pt-3 pb-3">Your order history</h5>
                       {purchases.map(purchase =>
-                        <Order key={purchase.id} name="Product Name" total={purchase.amount} order_time={new Date()} />
+                        <Order key={purchase.id} name={purchase.product} total={purchase.amount} order_time={new Date()} />
                       )}
                     </>
                   )
