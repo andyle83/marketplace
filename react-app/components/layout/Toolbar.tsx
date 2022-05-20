@@ -1,8 +1,8 @@
 import * as React from "react";
 import Dialog from "@/components/product/Dialog";
 import Wallet from "@/components/user/Wallet";
-import {useState} from "react";
-import {useContractKit} from "@celo-tools/use-contractkit";
+import { useState } from "react";
+import { useContractKit } from "@celo-tools/use-contractkit";
 import classNames from "classnames";
 
 const Toolbar = (): JSX.Element => {

@@ -1,6 +1,6 @@
 import * as React from "react";
-import {useContractKit} from "@celo-tools/use-contractkit";
-import {RootStateOrAny, useSelector} from "react-redux";
+import { useContractKit } from "@celo-tools/use-contractkit";
+import { RootStateOrAny, useSelector } from "react-redux";
 
 const Footer = (): JSX.Element => {
   const blockNumber = useSelector((state:RootStateOrAny) => state.app.blockNumber);

@@ -1,5 +1,5 @@
 import * as React from "react";
-import {useSelector, RootStateOrAny } from "react-redux";
+import { useSelector, RootStateOrAny } from "react-redux";
 
 const Notification = ():JSX.Element => {
   const [isLoading, message] = useSelector(

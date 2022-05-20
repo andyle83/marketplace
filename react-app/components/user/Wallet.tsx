@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useContractKit } from "@celo-tools/use-contractkit";
-import {useCallback, useEffect, useState} from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const Wallet = ():JSX.Element => {
   const { address, network, kit, connect, destroy } = useContractKit();
@@ -19,14 +19,17 @@ const Wallet = ():JSX.Element => {
   }, [network, address, fetchBalance])
 
   return !address ? (
-      <button type="button" className="btn btn-outline-primary" style={{ alignItems: "center"}}
-              onClick={() => connect().catch(e => console.log(e))}
-      >
+      <button type="button"
+              className="btn btn-outline-primary"
+              style={{ alignItems: "center"}}
+              onClick={() => connect().catch(e => console.log(e))}>
         <i className="bi bi-wallet" style={{marginRight: "0.3rem"}}></i> Connect
       </button>
     ) :
     (
-      <button type="button" className="btn btn-outline-primary" style={{display: "flex", alignItems: "center"}}>
+      <button type="button"
+              className="btn btn-outline-primary"
+              style={{display: "flex", alignItems: "center"}}>
         <i className="bi bi-x-circle" onClick={destroy} style={{marginRight: "0.5rem"}}></i>
         <span id="balance" >{balance}</span>cUSD
       </button>

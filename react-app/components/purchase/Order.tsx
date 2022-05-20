@@ -1,6 +1,6 @@
 import * as React from "react";
 import BigNumber from "bignumber.js";
-import {ERC20_DECIMALS} from "@/constants";
+import { ERC20_DECIMALS } from "@/constants";
 import moment from "moment";
 
 interface OrderProps {
