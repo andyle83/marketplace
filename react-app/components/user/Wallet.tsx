@@ -6,7 +6,7 @@ export default function Wallet() {
   const { address, network, kit, connect, destroy } = useContractKit();
   const [balance, setBalance] = useState<string>('');
 
-  async function fetchBalance() {
+  const fetchBalance = async () => {
     const { cUSD } = await kit.getTotalBalance(address);
     const roundingBalance = parseFloat(kit.web3.utils.fromWei(cUSD.toString(), 'ether')).toFixed(2);
     setBalance(roundingBalance);

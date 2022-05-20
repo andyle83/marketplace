@@ -1,5 +1,6 @@
 import * as React from "react";
 import blockies from 'ethereum-blockies';
+import Image from "next/image";
 
 interface IdenticonProps {
   address: string;
@@ -19,7 +20,7 @@ export default function Identicon({ address }: IdenticonProps) {
   return (
     <div className="rounded-circle overflow-hidden d-inline-block border border-white border-2 shadow-sm m-0">
       <a href={transaction} target="_blank" rel="noreferrer">
-        <img src={icon} width="48" alt={address} />
+        <Image src={icon} width={48} height={48} alt={address} />
       </a>
     </div>
   )

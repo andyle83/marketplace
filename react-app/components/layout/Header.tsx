@@ -16,7 +16,7 @@ function MobileHeader() {
         </button>
       </div>
       <a className="navbar-brand-two" href="#">
-        <Image src="/banner.png" width="1000" height="300"/>
+        <Image src="/banner.png" width="1000" height="300" alt="Marketplace" />
       </a>
       <span className="w-100 d-lg-none d-block"/>
     </div>
@@ -32,7 +32,7 @@ function DesktopHeader() {
         <span className="navbar-toggler-icon"></span>
       </button>
       <a className="navbar-brand-two" href="/">
-        <Image src="/banner.png" width="300" height="80" />
+        <Image src="/banner.png" width="300" height="80" alt="Marketplace" />
       </a>
     </div>
   )

@@ -3,6 +3,7 @@ import {useState} from "react";
 import {UseFormRegister, UseFormWatch} from "react-hook-form/dist/types/form";
 import axios from "axios";
 import {FieldErrors} from "react-hook-form/dist/types/errors";
+import Image from "next/image";
 
 interface UploadProps {
   register: UseFormRegister<any>,
@@ -69,8 +70,8 @@ export default function Upload({ onCompleted, register, watch, errors } : Upload
         <div className="col-12 col-sm-4 pb-2">
           {
             !previewImage ? (
-              <img src="https://via.placeholder.com/200" alt="Medium"/>
-            ) : <img src={previewImage} alt="Preview Image" width="200" height="200" />
+              <img src="https://via.placeholder.com/200" alt="Placeholder"/>
+            ) : <Image src={previewImage} alt="Preview Image" width="200" height="200" />
           }
         </div>
         <div className="col-12 col-sm-8">

@@ -1,7 +1,11 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['i.imgur.com', 'marketplacecelo.s3.ap-southeast-2.amazonaws.com'],
+    domains: [
+        'i.imgur.com',
+        'marketplacecelo.s3.ap-southeast-2.amazonaws.com',
+        'via.placeholder.com'
+    ],
   },
   pwa: {
     dest: "public",
