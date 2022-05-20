@@ -1,7 +1,7 @@
 {
   "name": "marketplace",
-  "version": "0.1",
   "description": "front-end of marketplace",
+  "version": "1.0.0",
   "licenses": [
     {
       "type": "MIT",
@@ -28,6 +28,7 @@
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@hookform/resolvers": "^2.8.8",
+    "@prisma/client": "3.12.0",
     "@reduxjs/toolkit": "^1.8.1",
     "autoprefixer": "^10.4.2",
     "aws-sdk": "^2.1135.0",
@@ -41,7 +42,6 @@
     "graphql": "^16.3.0",
     "moment": "^2.29.3",
     "next": "^12.1.6",
-    "prisma": "^3.14.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-hook-form": "^7.31.1",
@@ -58,6 +58,7 @@
     "@types/react": "^17.0.38",
     "eslint": "8.6.0",
     "eslint-config-next": "12.0.7",
-    "eslint-plugin-react-hooks": "^4.3.0"
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "prisma": "3.12"
   }
 }
