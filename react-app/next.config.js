@@ -3,8 +3,7 @@ module.exports = {
   images: {
     domains: [
         'i.imgur.com',
-        'marketplacecelo.s3.ap-southeast-2.amazonaws.com',
-        'via.placeholder.com'
+        'marketplacecelo.s3.ap-southeast-2.amazonaws.com'
     ],
   },
   pwa: {

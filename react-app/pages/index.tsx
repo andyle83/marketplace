@@ -56,7 +56,7 @@ export default function App() {
 
       setIsReload(false);
     }
-  }, [address, network, isReload]);
+  }, [address, network, isReload, dispatch, contract.methods]);
 
   const renderProducts = () => {
     // update notification

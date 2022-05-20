@@ -70,8 +70,8 @@ export default function Upload({ onCompleted, register, watch, errors } : Upload
         <div className="col-12 col-sm-4 pb-2">
           {
             !previewImage ? (
-              <img src="https://via.placeholder.com/200" alt="Placeholder"/>
-            ) : <Image src={previewImage} alt="Preview Image" width="200" height="200" />
+              <Image src="/placeholder.png" width={200} height={200} alt="Placeholder"/>
+            ) : <Image src={previewImage} alt="Preview Image" width={200} height={200} />
           }
         </div>
         <div className="col-12 col-sm-8">

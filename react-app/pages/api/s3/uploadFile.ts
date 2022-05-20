@@ -8,7 +8,7 @@ const s3 = new S3({
   signatureVersion: "v4",
 });
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const uploadFile =  async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed" });
   }
@@ -37,3 +37,5 @@ export const config = {
     },
   },
 };
+
+export default  uploadFile;
