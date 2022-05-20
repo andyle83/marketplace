@@ -1,6 +1,7 @@
 import * as React from "react";
 import moment from "moment";
 import {useContractKit} from "@celo-tools/use-contractkit";
+import {truncate} from "@/utils";
 
 type OrderProps = {
   name: string;
@@ -35,7 +36,13 @@ const Order = ({ name, total, txid, order_time }: OrderProps): JSX.Element => {
       <div className="card-body">
         <h6>{name}</h6>
         <p className="card-text">
-          Transaction: <a href={txUrl}>{txid}</a>
+          <ul>
+            <li>Tracking transaction:
+              <span className="badge alert-warning">
+                <a href={txUrl} className="link-secondary">{truncate(txid)}</a>
+              </span>
+            </li>
+          </ul>
         </p>
         <a href="#" className="btn btn-outline-primary">
           <i className="bi bi-bootstrap-reboot" style={{marginRight: "0.5rem"}}></i>

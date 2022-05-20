@@ -1,4 +1,8 @@
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
+
+export const truncate = (str, n = 10) => {
+  return (str.length > n) ? str.slice(0, n) : str;
+};
 
 export const useCheckMobileScreen = () => {
   const [width, setWidth] = useState(window.innerWidth);
