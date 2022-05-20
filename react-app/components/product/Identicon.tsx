@@ -1,6 +1,5 @@
 import * as React from "react";
 import blockies from 'ethereum-blockies';
-import Image from "next/image";
 
 interface IdenticonProps {
   address: string;
