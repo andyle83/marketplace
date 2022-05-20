@@ -2,10 +2,42 @@ import * as React from "react";
 import AppLayout from "@/components/layout/AppLayout";
 import Order from "@/components/purchase/Order";
 import BigNumber from "bignumber.js";
-import {useContractKit} from "@celo-tools/use-contractkit";
-import {OderHistoryWalletRequest} from "@/constants";
+import { useContractKit } from "@celo-tools/use-contractkit";
+import { OderHistoryWalletRequest} from "@/constants";
+import prisma from '../../lib/prisma';
+import { GetServerSideProps } from "next";
 
-export default function Orders() {
+type PurchaseProps = {
+  id: string;
+  amount: number;
+  profile: {
+    address: string;
+    balance: number;
+  }
+}
+
+type Props = {
+  purchases: PurchaseProps[]
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const purchases = await prisma.purchase.findMany({
+    select : {
+      id: true,
+      amount: true,
+      profile: {
+        select: {
+          address: true,
+          balance: true
+        }
+      }
+    },
+  });
+  return { props: { purchases } };
+};
+
+const Orders: React.FC<Props> = (props) => {
+  console.log(props.purchases.length);
   const { address } = useContractKit();
 
   return (
@@ -24,3 +56,5 @@ export default function Orders() {
     </AppLayout>
   );
 }
+
+export default Orders;
