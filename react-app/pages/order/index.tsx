@@ -11,9 +11,9 @@ type PurchaseProps = {
   amount: number;
   product: string;
   seller: string;
-  profile: {
+  txid: string;
+  business: {
     address: string;
-    balance: number;
   }
 }
 
@@ -27,12 +27,11 @@ export const getServerSideProps: GetServerSideProps = async () => {
       id: true,
       amount: true,
       product: true,
-      seller: true,
-      profile: {
+      txid: true,
+      business : {
         select: {
-          address: true,
-          balance: true
-        }
+          address: true
+        },
       }
     },
   });
@@ -56,7 +55,7 @@ const Orders: React.FC<Props> = ({ purchases }) => {
                     <>
                     <h5 className="pt-3 pb-3">Your order history</h5>
                       {purchases.map(purchase =>
-                        <Order key={purchase.id} name={purchase.product} total={purchase.amount} order_time={new Date()} />
+                        <Order key={purchase.id} name={purchase.product} total={purchase.amount} txid={purchase.txid} order_time={new Date()} />
                       )}
                     </>
                   )

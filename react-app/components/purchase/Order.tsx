@@ -1,13 +1,14 @@
 import * as React from "react";
 import moment from "moment";
 
-interface OrderProps {
-  name: string,
-  total: number,
-  order_time: Date,
+type OrderProps = {
+  name: string;
+  total: number;
+  txid: string;
+  order_time: Date;
 }
 
-const Order = ({ name, total, order_time }: OrderProps): JSX.Element => {
+const Order = ({ name, total, txid, order_time }: OrderProps): JSX.Element => {
   return (
     <div className="card mb-4">
       <div className="card-header text-secondary">
@@ -30,7 +31,7 @@ const Order = ({ name, total, order_time }: OrderProps): JSX.Element => {
       </div>
       <div className="card-body">
         <h6>{name}</h6>
-        <p className="card-text">Transaction Information (txid, seller)</p>
+        <p className="card-text">Transaction: {txid}</p>
         <a href="#" className="btn btn-outline-primary">
           <i className="bi bi-bootstrap-reboot" style={{marginRight: "0.5rem"}}></i>
           Buy Again
