@@ -6,7 +6,7 @@ import Toolbar from "@/components/layout/Toolbar";
 import { useCheckMobileScreen } from "@/utils";
 
 // Clean code, but this component is not re-usable
-const MobileHeader = () => {
+const MobileHeader = (): JSX.Element => {
   return (
     <div className="d-flex flex-grow-1">
       <div className="w-100 text-right">
@@ -24,7 +24,7 @@ const MobileHeader = () => {
 }
 
 // Clean code, but this component is not re-usable
-const DesktopHeader = () => {
+const DesktopHeader = (): JSX.Element => {
   return (
     <div className="d-flex flex-grow-1">
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"

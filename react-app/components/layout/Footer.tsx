@@ -2,7 +2,7 @@ import * as React from "react";
 import {useContractKit} from "@celo-tools/use-contractkit";
 import {RootStateOrAny, useSelector} from "react-redux";
 
-const Footer: React.FC = () => {
+const Footer = (): JSX.Element => {
   const blockNumber = useSelector((state:RootStateOrAny) => state.app.blockNumber);
   const { network: { name } } = useContractKit();
 

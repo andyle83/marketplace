@@ -9,7 +9,7 @@ interface OrderProps {
   order_time: Date,
 }
 
-export default function Order({ name, total, order_time }: OrderProps) {
+const Order = ({ name, total, order_time }: OrderProps): JSX.Element => {
   return (
     <div className="card mb-4">
       <div className="card-header text-secondary">
@@ -41,3 +41,5 @@ export default function Order({ name, total, order_time }: OrderProps) {
     </div>
   )
 }
+
+export default Order;

@@ -29,7 +29,8 @@ interface ProductProps {
   reloadProduct: (isReload: boolean) => void,
 }
 
-export default function Products( { index, owner, name, image, description, location, price, sold, reloadProduct }: ProductProps) {
+const Products = (
+  { index, owner, name, image, description, location, price, sold, reloadProduct }: ProductProps):JSX.Element => {
   const { kit } = useContractKit();
 
   // @ts-ignore
@@ -110,3 +111,5 @@ export default function Products( { index, owner, name, image, description, loca
     </div>
   );
 }
+
+export default Products;

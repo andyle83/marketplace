@@ -2,7 +2,7 @@ import * as React from "react";
 import { useContractKit } from "@celo-tools/use-contractkit";
 import {useCallback, useEffect, useState} from "react";
 
-export default function Wallet() {
+const Wallet = ():JSX.Element => {
   const { address, network, kit, connect, destroy } = useContractKit();
   const [balance, setBalance] = useState<string>('');
 
@@ -32,3 +32,5 @@ export default function Wallet() {
       </button>
     )
 }
+
+export default Wallet;

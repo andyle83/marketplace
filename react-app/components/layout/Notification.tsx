@@ -1,7 +1,7 @@
 import * as React from "react";
 import {useSelector, RootStateOrAny } from "react-redux";
 
-export default function Notification() {
+const Notification = ():JSX.Element => {
   const [isLoading, message] = useSelector(
     (state:RootStateOrAny) => [state.app.notification.isLoading, state.app.notification.message]
   );
@@ -12,3 +12,5 @@ export default function Notification() {
     </div>
   );
 }
+
+export default Notification;

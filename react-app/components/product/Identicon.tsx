@@ -1,11 +1,11 @@
 import * as React from "react";
 import blockies from 'ethereum-blockies';
 
-interface IdenticonProps {
+type IdenticonProps = {
   address: string;
 }
 
-export default function Identicon({ address }: IdenticonProps) {
+const Identicon = ({ address }: IdenticonProps): JSX.Element => {
   const icon = blockies
     .create({
       seed: address,
@@ -24,3 +24,5 @@ export default function Identicon({ address }: IdenticonProps) {
     </div>
   )
 }
+
+export default Identicon;
