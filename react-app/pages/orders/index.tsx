@@ -2,7 +2,7 @@ import * as React from "react";
 import AppLayout from "@/components/layout/AppLayout";
 import Order from "@/components/purchase/Order";
 import { useContractKit } from "@celo-tools/use-contractkit";
-import { NoPurchaseRecord, OderHistoryWalletRequest } from "@/constants";
+import { NoPurchaseRecord, OderHistoryWalletRequest, OrderHistoryLabel } from "@/constants";
 import prisma from '../../lib/prisma';
 import { GetServerSideProps } from "next";
 
@@ -54,7 +54,7 @@ const Orders: React.FC<Props> = ({ purchases }) => {
                   <div className="text-center p-5">{NoPurchaseRecord}</div>
                   : (
                     <>
-                    <h5 className="pt-3 pb-3">Your order history</h5>
+                    <h5 className="pt-3 pb-3">{OrderHistoryLabel}</h5>
                       {purchases.map(({ id, product, amount, txid, createdAt }) =>
                         <Order key={id} name={product} total={amount} txid={txid} createdAt={createdAt} />
                       )}

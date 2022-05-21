@@ -4,8 +4,11 @@ export const cUSDContractAddress      = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369
 
 export const LoadingProductStatus     = "⌛ Loading products list...";
 export const OderHistoryWalletRequest = "Please connect to your Celo wallet to view your orders history.";
-export const BusinessWalletRequest    = "Please connect to your Celo wallet to register as a business.";
+export const OrderHistoryLabel        = "Your order history";
 export const NoPurchaseRecord         = "You have no purchase 😥";
+
+export const BusinessWalletRequest    = "Please connect to your Celo wallet to register as a business.";
+export const BusinessRegisterLabel    = "Business Registration";
 
 export const ValidProductName         = "Product name is required";
 export const ValidProductLocation     = "Location is required";
