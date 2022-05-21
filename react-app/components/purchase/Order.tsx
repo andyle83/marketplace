@@ -7,10 +7,10 @@ type OrderProps = {
   name: string;
   total: number;
   txid: string;
-  order_time: Date;
+  createdAt: Date;
 }
 
-const Order = ({ name, total, txid, order_time }: OrderProps): JSX.Element => {
+const Order = ({ name, total, txid, createdAt }: OrderProps): JSX.Element => {
   const { network } = useContractKit();
   const txUrl = `${network.explorer}/tx/${txid}`;
   return (
@@ -26,7 +26,7 @@ const Order = ({ name, total, txid, order_time }: OrderProps): JSX.Element => {
         </div>
         <div className="row">
           <div className="col-6">
-            {moment(order_time).format('l')}
+            {moment(createdAt).format('LLL')}
           </div>
           <div className="col-4">
             {total} cUSD
@@ -38,7 +38,7 @@ const Order = ({ name, total, txid, order_time }: OrderProps): JSX.Element => {
         <p className="card-text">
           <ul>
             <li>Tracking transaction:
-              <span className="badge alert-warning">
+              <span className="badge alert-danger">
                 <a href={txUrl} className="link-secondary">{truncate(txid)}</a>
               </span>
             </li>
