@@ -13,13 +13,10 @@ const Wallet = ():JSX.Element => {
     setBalance(roundingBalance);
 
     // upsert user data
-    let user = await axios.post("/api/prisma/upsertUser", {
+    await axios.post("/api/prisma/upsertUser", {
       address: address,
       balance: parseFloat(roundingBalance)
     })
-
-    console.log(JSON.stringify(user));
-
   }, [address, kit]);
 
   useEffect(() => {
