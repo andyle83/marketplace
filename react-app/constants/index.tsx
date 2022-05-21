@@ -7,6 +7,7 @@ export const OderHistoryWalletRequest = "Please connect to your Celo wallet to v
 export const OrderHistoryLabel        = "Your order history";
 export const NoPurchaseRecord         = "You have no purchase 😥";
 
+export const BusinessWelcomeMessage   = "To selling product, you need to submit this business form with your wallet address. When it is verified, you can make your own business in this website."
 export const BusinessWalletRequest    = "Please connect to your Celo wallet to register as a business.";
 export const BusinessRegisterLabel    = "Business Registration";
 

@@ -3,7 +3,7 @@ import AppLayout from "@/components/layout/AppLayout";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { object, string } from "yup";
 import { useContractKit } from "@celo-tools/use-contractkit";
-import { BusinessRegisterLabel, BusinessWalletRequest } from "@/constants";
+import { BusinessRegisterLabel, BusinessWalletRequest, BusinessWelcomeMessage } from "@/constants";
 import {yupResolver} from "@hookform/resolvers/yup";
 
 type IFormInputs = {
@@ -37,11 +37,10 @@ const Business: React.FC = (): JSX.Element => {
       {!address ? <div className="text-center p-5">{BusinessWalletRequest}</div> :
         <main id="marketplace">
           <div className="alert alert-warning" role="alert">
-            To selling product, you need to submit this business form with your wallet address.
-            When it's verified, you can make your own business in this website.
+            {BusinessWelcomeMessage}
           </div>
           <div className="card mb-4">
-            <div className="card-header text-center ">
+            <div className="card-header text-center">
               { BusinessRegisterLabel }
             </div>
             <div className="card-body">
