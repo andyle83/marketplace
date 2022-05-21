@@ -3,7 +3,13 @@ import AppLayout from "@/components/layout/AppLayout";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { object, string } from "yup";
 import { useContractKit } from "@celo-tools/use-contractkit";
-import { BusinessRegisterLabel, BusinessWalletRequest, BusinessWelcomeMessage } from "@/constants";
+import {
+  BusinessRegisterLabel,
+  BusinessWalletRequest,
+  BusinessWelcomeMessage, ValidBusinessLocation,
+  ValidBusinessName, ValidPhoneNumber,
+  ValidWalletAddress
+} from "@/constants";
 import {yupResolver} from "@hookform/resolvers/yup";
 
 type IFormInputs = {
@@ -14,10 +20,10 @@ type IFormInputs = {
 }
 
 const validBusinessSchema = object({
-  name: string().required("Required Full Name"),
-  address: string().required("Wallet Address"),
-  location: string().required("Register Business Location"),
-  phone: string().required("Contact Phone Number")
+  name: string().required({ValidBusinessName}),
+  address: string().required({ValidWalletAddress}),
+  location: string().required({ValidBusinessLocation}),
+  phone: string().required({ValidPhoneNumber})
 }).required();
 
 const Business: React.FC = (): JSX.Element => {
@@ -49,8 +55,8 @@ const Business: React.FC = (): JSX.Element => {
                   <label htmlFor="name" className="col-sm-2 col-form-label">Business Name</label>
                   <div className="col-sm-6">
                     <input type="text" className="form-control" id="name" {...register("name", { required: true })}  />
+                    <div role="alert" className="mt-2 text-danger">{errors.name?.message}</div>
                   </div>
-                  <div role="alert" className="mt-2 text-danger">{errors.name?.message}</div>
                 </div>
                 <div className="row mb-4 justify-content-center">
                   <label htmlFor="address" className="col-sm-2 col-form-label">Wallet Address</label>
@@ -62,16 +68,16 @@ const Business: React.FC = (): JSX.Element => {
                   <label htmlFor="location" className="col-sm-2 col-form-label">Register Location</label>
                   <div className="col-sm-6">
                     <input type="text" className="form-control" id="location" {...register("location", { required: true })}  />
+                    <div role="alert" className="mt-2 text-danger">{errors.location?.message}</div>
                   </div>
-                  <div role="alert" className="mt-2 text-danger">{errors.location?.message}</div>
                 </div>
                 <div className="row mb-4 justify-content-center">
                   <label htmlFor="phone" className="col-sm-2 col-form-label">Mobile Number</label>
                   <div className="col-sm-3">
                     <input type="text" className="form-control" id="phone" placeholder="000-000-0000" {...register("phone", { required: true })}  />
+                    <div role="alert" className="mt-2 text-danger">{errors.phone?.message}</div>
                   </div>
                   <div className="col-sm-3" />
-                  <div role="alert" className="mt-2 text-danger">{errors.phone?.message}</div>
                 </div>
                 <div className="row mb-4 justify-content-center">
                   <div className="col-sm-4">
