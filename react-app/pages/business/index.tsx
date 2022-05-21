@@ -67,9 +67,10 @@ const Business: React.FC = (): JSX.Element => {
                 </div>
                 <div className="row mb-4 justify-content-center">
                   <label htmlFor="phone" className="col-sm-2 col-form-label">Mobile Number</label>
-                  <div className="col-sm-6">
-                    <input type="text" className="form-control" id="phone" {...register("phone", { required: true })}  />
+                  <div className="col-sm-3">
+                    <input type="text" className="form-control" id="phone" placeholder="000-000-0000" {...register("phone", { required: true })}  />
                   </div>
+                  <div className="col-sm-3" />
                   <div role="alert" className="mt-2 text-danger">{errors.phone?.message}</div>
                 </div>
                 <div className="row mb-4 justify-content-center">

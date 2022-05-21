@@ -9,7 +9,7 @@ export const NoPurchaseRecord         = "You have no purchase 😥";
 
 export const BusinessWelcomeMessage   = "To selling product, you need to submit this business form with your wallet address. When it is verified, you can make your own business in this website."
 export const BusinessWalletRequest    = "🙏 Please connect to your Celo wallet to register as a business.";
-export const BusinessRegisterLabel    = "Business Registration";
+export const BusinessRegisterLabel    = "Business Form Registration";
 
 export const ValidProductName         = "Product name is required";
 export const ValidProductLocation     = "Location is required";
