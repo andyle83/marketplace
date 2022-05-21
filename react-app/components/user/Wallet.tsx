@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useContractKit } from "@celo-tools/use-contractkit";
 import { useCallback, useEffect, useState } from "react";
+import axios from "axios";
 
 const Wallet = ():JSX.Element => {
   const { address, network, kit, connect, destroy } = useContractKit();
@@ -10,6 +11,15 @@ const Wallet = ():JSX.Element => {
     const { cUSD } = await kit.getTotalBalance(address);
     const roundingBalance = parseFloat(kit.web3.utils.fromWei(cUSD.toString(), 'ether')).toFixed(2);
     setBalance(roundingBalance);
+
+    // upsert user data
+    let user = await axios.post("/api/prisma/upsertUser", {
+      address: address,
+      balance: parseFloat(roundingBalance)
+    })
+
+    console.log(JSON.stringify(user));
+
   }, [address, kit]);
 
   useEffect(() => {

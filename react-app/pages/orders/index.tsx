@@ -2,7 +2,7 @@ import * as React from "react";
 import AppLayout from "@/components/layout/AppLayout";
 import Order from "@/components/purchase/Order";
 import { useContractKit } from "@celo-tools/use-contractkit";
-import {NoPurchaseRecord, OderHistoryWalletRequest} from "@/constants";
+import { NoPurchaseRecord, OderHistoryWalletRequest } from "@/constants";
 import prisma from '../../lib/prisma';
 import { GetServerSideProps } from "next";
 
