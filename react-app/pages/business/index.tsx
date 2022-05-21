@@ -36,6 +36,10 @@ const Business: React.FC = (): JSX.Element => {
       {/* Check if user is already a business by look up Prisma */}
       {!address ? <div className="text-center p-5">{BusinessWalletRequest}</div> :
         <main id="marketplace">
+          <div className="alert alert-warning" role="alert">
+            To selling product, you need to submit this business form with your wallet address.
+            When it's verified, you can make your own business in this website.
+          </div>
           <div className="card mb-4">
             <div className="card-header text-center ">
               { BusinessRegisterLabel }
