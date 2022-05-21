@@ -33,24 +33,27 @@ type BusinessProps = {
   phone: string;
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const business = await prisma.business.findFirst({
+type Props = {
+  businesses: BusinessProps[]
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const businesses = await prisma.business.findMany({
     select: {
       id: true,
       address: true,
       location: true,
       phone: true,
-    },
-    where: {
-      address: String(params?.address)
     }
   });
 
-  return { props : { business }}
+  return { props : { businesses }}
 }
 
-const Business: React.FC = (): JSX.Element => {
+const Business: React.FC<Props> = ({ businesses}): JSX.Element => {
   const { address } = useContractKit();
+
+  console.log(JSON.stringify(businesses));
 
   const { register, handleSubmit, formState: { errors } } = useForm<IFormInputs>({
     resolver: yupResolver(validBusinessSchema)
