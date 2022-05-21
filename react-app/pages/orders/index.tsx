@@ -12,6 +12,7 @@ type PurchaseProps = {
   product: string;
   seller: string;
   txid: string;
+  createdAt: Date;
   business: {
     address: string;
   }
@@ -28,6 +29,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       amount: true,
       product: true,
       txid: true,
+      createdAt: true,
       business : {
         select: {
           address: true
@@ -39,7 +41,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
 };
 
 const Orders: React.FC<Props> = ({ purchases }) => {
-  console.log(JSON.stringify(purchases));
   const { address } = useContractKit();
 
   return (
@@ -54,8 +55,8 @@ const Orders: React.FC<Props> = ({ purchases }) => {
                   : (
                     <>
                     <h5 className="pt-3 pb-3">Your order history</h5>
-                      {purchases.map(purchase =>
-                        <Order key={purchase.id} name={purchase.product} total={purchase.amount} txid={purchase.txid} order_time={new Date()} />
+                      {purchases.map(({ id, product, amount, txid, createdAt }) =>
+                        <Order key={id} name={product} total={amount} txid={txid} createdAt={createdAt} />
                       )}
                     </>
                   )
