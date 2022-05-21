@@ -50,7 +50,7 @@ const validProductSchema = object({
     })
 }).required();
 
-export default function Dialog({ openModal, onClose }: DialogProps) {
+const Dialog = ({ openModal, onClose }: DialogProps): JSX.Element => {
   const { kit, address } = useContractKit();
   const dispatch = useDispatch();
   const { register, handleSubmit, formState: { errors } } = useForm<IFormInputs>({
@@ -142,3 +142,5 @@ export default function Dialog({ openModal, onClose }: DialogProps) {
     </Modal>
   )
 }
+
+export default Dialog;

@@ -29,7 +29,8 @@ interface ProductProps {
   reloadProduct: (isReload: boolean) => void,
 }
 
-export default function Products( { index, owner, name, image, description, location, price, sold, reloadProduct }: ProductProps) {
+const Products = (
+  { index, owner, name, image, description, location, price, sold, reloadProduct }: ProductProps):JSX.Element => {
   const { kit } = useContractKit();
 
   // @ts-ignore
@@ -94,10 +95,13 @@ export default function Products( { index, owner, name, image, description, loca
         <p className="card-text mb-4" style={{ minHeight:"82px" }}>
           {description}
         </p>
-        <p className="card-text mt-4">
-          {/*<BsPinMap color="red" style={{ verticalAlign: "baseline" }} />*/}
-          <i className="bi bi-pin-map-fill" onClick={showInMapClicked}></i>
+        <p className="card-text tw-text-sm mb-2">
+          <i className="bi bi-pin-map-fill" onClick={showInMapClicked} />
           <span className="p-2">{location}</span>
+        </p>
+        <p className="card-text tw-text-sm">
+          <i className="bi bi-telephone-fill" />
+          <span className="p-2">043-000-482</span>
         </p>
         <div className="d-grid gap-2">
           <a className="btn btn-outline-primary"
@@ -110,3 +114,5 @@ export default function Products( { index, owner, name, image, description, loca
     </div>
   );
 }
+
+export default Products;

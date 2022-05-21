@@ -1,11 +1,11 @@
 import * as React from "react";
 import Dialog from "@/components/product/Dialog";
 import Wallet from "@/components/user/Wallet";
-import {useState} from "react";
-import {useContractKit} from "@celo-tools/use-contractkit";
+import { useState } from "react";
+import { useContractKit } from "@celo-tools/use-contractkit";
 import classNames from "classnames";
 
-export default function Toolbar() {
+const Toolbar = (): JSX.Element => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const { address } = useContractKit();
 
@@ -29,3 +29,5 @@ export default function Toolbar() {
     </div>
   )
 }
+
+export default Toolbar;

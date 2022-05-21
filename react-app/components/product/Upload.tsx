@@ -11,7 +11,7 @@ interface UploadProps {
   onCompleted: (filePath: string) => void,
 }
 
-export default function Upload({ onCompleted, register, errors } : UploadProps) {
+const Upload = ({ onCompleted, register, errors } : UploadProps): JSX.Element => {
   const [previewImage, setPreviewImage] = useState<string>('');
   const [fileImage, setFileImage] = useState<any>(null);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
@@ -97,3 +97,5 @@ export default function Upload({ onCompleted, register, errors } : UploadProps) 
     </>
   )
 }
+
+export default Upload;

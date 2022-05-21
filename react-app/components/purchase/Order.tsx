@@ -1,15 +1,18 @@
 import * as React from "react";
-import BigNumber from "bignumber.js";
-import {ERC20_DECIMALS} from "@/constants";
 import moment from "moment";
+import {useContractKit} from "@celo-tools/use-contractkit";
+import {truncate} from "@/utils";
 
-interface OrderProps {
-  name: string,
-  total: BigNumber,
-  order_time: Date,
+type OrderProps = {
+  name: string;
+  total: number;
+  txid: string;
+  order_time: Date;
 }
 
-export default function Order({ name, total, order_time }: OrderProps) {
+const Order = ({ name, total, txid, order_time }: OrderProps): JSX.Element => {
+  const { network } = useContractKit();
+  const txUrl = `${network.explorer}/tx/${txid}`;
   return (
     <div className="card mb-4">
       <div className="card-header text-secondary">
@@ -26,13 +29,21 @@ export default function Order({ name, total, order_time }: OrderProps) {
             {moment(order_time).format('l')}
           </div>
           <div className="col-4">
-            {total.shiftedBy(-ERC20_DECIMALS).toFixed(2)} cUSD
+            {total} cUSD
           </div>
         </div>
       </div>
       <div className="card-body">
         <h6>{name}</h6>
-        <p className="card-text">Transaction Information (Sender / Receiver)</p>
+        <p className="card-text">
+          <ul>
+            <li>Tracking transaction:
+              <span className="badge alert-warning">
+                <a href={txUrl} className="link-secondary">{truncate(txid)}</a>
+              </span>
+            </li>
+          </ul>
+        </p>
         <a href="#" className="btn btn-outline-primary">
           <i className="bi bi-bootstrap-reboot" style={{marginRight: "0.5rem"}}></i>
           Buy Again
@@ -41,3 +52,5 @@ export default function Order({ name, total, order_time }: OrderProps) {
     </div>
   )
 }
+
+export default Order;
