@@ -10,6 +10,8 @@ const Wallet = ():JSX.Element => {
   const fetchBalance = useCallback(async () => {
     const { cUSD } = await kit.getTotalBalance(address);
     const roundingBalance = parseFloat(kit.web3.utils.fromWei(cUSD.toString(), 'ether')).toFixed(2);
+
+    // update balance in wallet
     setBalance(roundingBalance);
 
     // upsert user data
