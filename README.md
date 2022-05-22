@@ -114,13 +114,13 @@ Output
 
 ```shell
 No need to generate any newer typings.
-Marketplace deployed to: 0xf8fF35Bf5ceEcBE62C4C70245189C9A27b3A1430
+Marketplace deployed to: 0xB67880E89e79aA1529532677Cc07e2ab007e6443
 ```
 
 - Sync: 
 
 ```shell
-npx hardhat laika-sync --contract Marketplace --address 0xf8fF35Bf5ceEcBE62C4C70245189C9A27b3A1430
+npx hardhat laika-sync --contract Marketplace --address 0xB67880E89e79aA1529532677Cc07e2ab007e6443
 ```
 
 ![Laika Initialize](https://raw.githubusercontent.com/andyle83/marketplace/main/demo/Laika_Init.png)
