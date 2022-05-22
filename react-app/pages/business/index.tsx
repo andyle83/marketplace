@@ -2,7 +2,6 @@ import * as React from "react";
 import AppLayout from "@/components/layout/AppLayout";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { object, string, number } from "yup";
-import { useContractKit } from "@celo-tools/use-contractkit";
 import {
   BusinessRegisterLabel,
   BusinessWalletRequest,
