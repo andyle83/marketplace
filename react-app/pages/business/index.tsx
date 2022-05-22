@@ -53,7 +53,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 const Business: React.FC<Props> = ({ businesses}): JSX.Element => {
   const { address } = useContractKit();
 
-  // console.log(JSON.stringify(businesses));
+  const isBusiness = businesses.length > 0 && businesses.find(business => business.address === address);
 
   const { register, handleSubmit, formState: { errors } } = useForm<IFormInputs>({
     resolver: yupResolver(validBusinessSchema)
@@ -65,15 +65,15 @@ const Business: React.FC<Props> = ({ businesses}): JSX.Element => {
 
   return (
     <AppLayout>
-      {/* Check if user is already a business by look up Prisma */}
+      {/* Only display welcome when customer is not register yet */}
+      {!isBusiness && (<div className="alert alert-warning" role="alert">
+        {BusinessWelcomeMessage}
+      </div>)}
       {!address ? <div className="text-center p-5">{BusinessWalletRequest}</div> :
         <main id="marketplace">
-          <div className="alert alert-warning" role="alert">
-            {BusinessWelcomeMessage}
-          </div>
           <div className="card mb-4">
             <div className="card-header text-center">
-              { BusinessRegisterLabel }
+              {BusinessRegisterLabel}
             </div>
             <div className="card-body">
               <form onSubmit={handleSubmit(onSubmit)} id="newBusiness">
@@ -107,7 +107,7 @@ const Business: React.FC<Props> = ({ businesses}): JSX.Element => {
                 </div>
                 <div className="row mb-4 justify-content-center">
                   <div className="col-sm-4">
-                    <button type="submit" className="btn btn-outline-primary tw-mr-2" form="newBusiness">Submit</button>
+                    <button type="submit" className="btn btn-outline-primary tw-mr-2" form="newBusiness">{!isBusiness ? "Submit" : "Update"}</button>
                     <button type="reset" className="btn btn-outline-primary" form="newBusiness">Reset</button>
                   </div>
                 </div>
