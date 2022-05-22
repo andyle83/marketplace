@@ -21,7 +21,7 @@ export const ValidBusinessLocation    = "Business location is required";
 export const ValidPhoneNumber         = "Phone number is required";
 export const ValidWalletAddress       = "Celo Wallet address is required";
 
-export const BuyNewProductSuccess     = (message) => `🎉 You successfully bought "${message}". Please reload.`;
-export const AddNewProductSuccess     = (message) => `🎉 You successfully added "${message}". Please reload !`;
+export const BuyNewProductSuccess     = (message) => `🎉 You successfully bought "${message}". Please reload the page !`;
+export const AddNewProductSuccess     = (message) => `🎉 You successfully added "${message}". Please reload the page !`;
 
 export const ERC20_DECIMALS           = 18;
