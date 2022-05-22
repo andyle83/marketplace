@@ -2,13 +2,17 @@ import * as React from "react";
 import { useContractKit } from "@celo-tools/use-contractkit";
 import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
-import {useDispatch} from "react-redux";
-import {updateLoadingState, updateProfile} from "@/state/app/reducer";
+import {RootStateOrAny, useDispatch, useSelector} from "react-redux";
+import {updateProfile} from "@/state/app/reducer";
 
 const Wallet = ():JSX.Element => {
   const { address, network, kit, connect, destroy } = useContractKit();
   const [balance, setBalance] = useState<string>('');
   const dispatch = useDispatch();
+
+  const { balance: rBalance } = useSelector(
+    (state:RootStateOrAny) => state.app.profile
+  );
 
   const fetchBalance = useCallback(async () => {
     const { cUSD } = await kit.getTotalBalance(address);
@@ -29,9 +33,15 @@ const Wallet = ():JSX.Element => {
 
   useEffect(() => {
     if (address) {
-      fetchBalance().catch(e => console.error(e));
+      if (parseFloat(rBalance) == 0) {
+        console.log('fetch...');
+        fetchBalance().catch(e => console.error(e));
+      } else {
+        console.log('redux...');
+        setBalance(rBalance);
+      }
     }
-  }, [network, address, fetchBalance])
+  }, [network, address, fetchBalance, rBalance])
 
   const onDisconnect = useCallback(async () => {
     dispatch(updateProfile({ address: null, balance: 0 }))
