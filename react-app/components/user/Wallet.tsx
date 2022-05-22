@@ -44,8 +44,8 @@ const Wallet = ():JSX.Element => {
   }, [network, address, fetchBalance, rBalance])
 
   const onDisconnect = useCallback(async () => {
-    dispatch(updateProfile({ address: null, balance: 0 }))
     await destroy();
+    dispatch(updateProfile({ address: null, balance: 0 }))
   }, [destroy]);
 
   return !address ? (
