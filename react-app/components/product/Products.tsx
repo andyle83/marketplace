@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch } from "react-redux";
 
-import {updateBalance, updateNotification, updateProfile} from "@/state/app/reducer";
+import { updateBalance, updateNotification } from "@/state/app/reducer";
 import { useContractKit } from "@celo-tools/use-contractkit";
 
 import erc20Abi from '@/contract/erc20.abi.json';
@@ -67,13 +67,12 @@ const Products = (
       // update notification message and rerender component
       dispatchMessage(BuyNewProductSuccess(name));
 
-      // TODO: update balance
+      // reloading product with new number of purchase
       reloadProduct(true);
+
+      // update balance in wallet
       dispatch(updateBalance({ amount: showingPrice }));
-      // This is expensive UX feeling !
-      // window.location.reload();
     } catch (e) {
-      // TODO: Revert the balance if exception occur
       dispatchMessage(`⚠️ ${e}.`);
     }
   }
