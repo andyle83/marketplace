@@ -13,6 +13,7 @@ import {
 import {yupResolver} from "@hookform/resolvers/yup";
 import {GetServerSideProps} from "next";
 import prisma from "@/lib/prisma";
+import {RootStateOrAny, useSelector} from "react-redux";
 
 type IFormInputs = {
   name: string;
@@ -54,7 +55,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
 }
 
 const Business: React.FC<Props> = ({ businesses}): JSX.Element => {
-  const { address } = useContractKit();
+  const {balance, address} = useSelector(
+    (state:RootStateOrAny) => state.app.profile
+  );
 
   const isBusiness = businesses.length > 0 && businesses.find(business => business.address === address);
 
@@ -69,7 +72,7 @@ const Business: React.FC<Props> = ({ businesses}): JSX.Element => {
   return (
     <AppLayout>
       {/* Only display welcome when customer is not register yet */}
-      {!isBusiness && (<div className="alert alert-warning" role="alert">
+      {!isBusiness && address && (<div className="alert alert-warning" role="alert">
         {BusinessWelcomeMessage}
       </div>)}
       {!address ? <div className="text-center p-5">{BusinessWalletRequest}</div> :
@@ -104,7 +107,7 @@ const Business: React.FC<Props> = ({ businesses}): JSX.Element => {
                   <label htmlFor="balance" className="col-sm-2 col-form-label">Wallet balance</label>
                   <div className="col-sm-3">
                     <div className="input-group">
-                      <input type="text" className="form-control" id="balance" disabled value="123" />
+                      <input type="text" className="form-control" id="balance" disabled value={balance} />
                       <div className="input-group-append">
                         <span className="input-group-text">cUSD</span>
                       </div>

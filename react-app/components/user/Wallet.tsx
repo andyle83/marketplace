@@ -2,10 +2,13 @@ import * as React from "react";
 import { useContractKit } from "@celo-tools/use-contractkit";
 import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
+import {useDispatch} from "react-redux";
+import {updateLoadingState, updateProfile} from "@/state/app/reducer";
 
 const Wallet = ():JSX.Element => {
   const { address, network, kit, connect, destroy } = useContractKit();
   const [balance, setBalance] = useState<string>('');
+  const dispatch = useDispatch();
 
   const fetchBalance = useCallback(async () => {
     const { cUSD } = await kit.getTotalBalance(address);
@@ -13,6 +16,9 @@ const Wallet = ():JSX.Element => {
 
     // update balance in wallet
     setBalance(roundingBalance);
+
+    // update redux
+    dispatch(updateProfile({address, balance: roundingBalance}))
 
     // upsert user data
     await axios.post("/api/prisma/upsertUser", {
@@ -27,6 +33,11 @@ const Wallet = ():JSX.Element => {
     }
   }, [network, address, fetchBalance])
 
+  const onDisconnect = useCallback(async () => {
+    dispatch(updateProfile({ address: null, balance: 0 }))
+    await destroy();
+  }, [destroy]);
+
   return !address ? (
       <button type="button"
               className="btn btn-outline-primary"
@@ -39,7 +50,7 @@ const Wallet = ():JSX.Element => {
       <button type="button"
               className="btn btn-outline-primary"
               style={{display: "flex", alignItems: "center"}}>
-        <i className="bi bi-x-circle" onClick={destroy} style={{marginRight: "0.5rem"}}></i>
+        <i className="bi bi-x-circle" onClick={onDisconnect} style={{marginRight: "0.5rem"}}></i>
         <span id="balance" >{balance}</span>cUSD
       </button>
     )
