@@ -1,5 +1,4 @@
 import * as React from "react";
-import BigNumber from "bignumber.js"
 import { useDispatch } from "react-redux";
 
 import { updateNotification } from "@/state/app/reducer";
@@ -12,7 +11,6 @@ import Identicon from "@/components/product/Identicon";
 import {
   MPContractAddress,
   cUSDContractAddress,
-  ERC20_DECIMALS,
   BuyNewProductSuccess
 } from '@/constants';
 import Image from "next/image";
@@ -24,7 +22,7 @@ interface ProductProps {
   image: string,
   description: string,
   location: string,
-  price: BigNumber,
+  price: number,
   sold: number,
   reloadProduct: (isReload: boolean) => void,
 }
@@ -40,7 +38,7 @@ const Products = (
 
   const dispatch = useDispatch();
 
-  const approve = async (price: BigNumber) => {
+  const approve = async (price: number) => {
     return await cUSDContract.methods
                   .approve(MPContractAddress, price)
                   .send({ from: kit.defaultAccount })
@@ -50,8 +48,10 @@ const Products = (
     dispatch(updateNotification({ message: message }));
   }
 
-  const purchaseHandler = async (index: string, name: string, price: BigNumber) => {
+  const purchaseHandler = async (index: string, name: string, price: number) => {
     dispatchMessage(`⌛ Waiting payment approval for ${name}`);
+
+    console.log(`approve call with price ${price} cUSD`)
 
     try {
       await approve(price)
@@ -107,7 +107,7 @@ const Products = (
           <a className="btn btn-outline-primary"
              id={index}
              onClick={() => purchaseHandler(index, name, price)}>
-            Buy for {price.shiftedBy(-ERC20_DECIMALS).toFixed(2)} cUSD
+            Buy for {price} cUSD
           </a>
         </div>
       </div>

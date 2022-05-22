@@ -26,10 +26,9 @@ function MyApp({ Component, pageProps }: AppProps): React.ReactElement {
           dapp={{
             name: "market place",
             description: "a commune marketplace based on Celo blockchain",
-            url: "https://use-contractkit.vercel.app",
+            url: "https://marketplace-andyle83.vercel.app/",
             icon: "https://use-contractkit.vercel.app/favicon.ico",
           }}
-          networks={[Alfajores, Mainnet]}
           network={Alfajores}
         >
             <Head>

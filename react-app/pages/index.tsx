@@ -2,7 +2,6 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useContractKit } from "@celo-tools/use-contractkit";
-import BigNumber from "bignumber.js"
 
 import AppLayout from "@/components/layout/AppLayout";
 import Products from "@/components/product/Products";
@@ -38,7 +37,7 @@ export default function App() {
             image: p[2],
             description: p[3],
             location: p[4],
-            price: new BigNumber(p[5]),
+            price: p[5],
             sold: p[6],
           })
         })

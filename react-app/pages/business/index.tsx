@@ -53,7 +53,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 const Business: React.FC<Props> = ({ businesses}): JSX.Element => {
   const { address } = useContractKit();
 
-  console.log(JSON.stringify(businesses));
+  // console.log(JSON.stringify(businesses));
 
   const { register, handleSubmit, formState: { errors } } = useForm<IFormInputs>({
     resolver: yupResolver(validBusinessSchema)

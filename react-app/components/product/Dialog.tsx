@@ -18,10 +18,10 @@ import {
 } from "@/constants";
 import Upload from "@/components/product/Upload";
 import { useState } from "react";
-import BigNumber from "bignumber.js";
 import { useContractKit } from "@celo-tools/use-contractkit";
 import { useDispatch } from "react-redux";
 import { updateNotification } from "@/state/app/reducer";
+import BN from "bn.js";
 
 interface DialogProps {
   openModal: boolean,
@@ -65,7 +65,7 @@ const Dialog = ({ openModal, onClose }: DialogProps): JSX.Element => {
       imageUrl,
       data.description,
       data.location,
-      new BigNumber(data.price).shiftedBy(ERC20_DECIMALS).toString()
+      new BN(data.price)
     ]
 
     console.log(params);

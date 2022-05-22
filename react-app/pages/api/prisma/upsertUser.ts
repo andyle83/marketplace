@@ -11,13 +11,9 @@ const upsertUser = async (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     let { address, balance } = req.body;
-    console.log(address);
-    console.log(balance);
     const user = await prisma.customer.upsert({
       where: { address: address },
-      update: {
-        balance: balance,
-      },
+      update: {},
       create: {
         address: address,
         balance: balance,

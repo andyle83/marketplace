@@ -1,6 +1,6 @@
 // export const MPContractAddress        = "0xf8fF35Bf5ceEcBE62C4C70245189C9A27b3A1430";
 // export const MPContractAddress        = "0xF377516621Cef90E12C0b5133adc783A336B1123";
-export const MPContractAddress        = "0xB67880E89e79aA1529532677Cc07e2ab007e6443";
+export const MPContractAddress        = "0x6fAA581066751fc1d0dca9D309edA014Bb0555E2";
 export const cUSDContractAddress      = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1";
 
 export const LoadingProductStatus     = "⌛ Loading products list...";
