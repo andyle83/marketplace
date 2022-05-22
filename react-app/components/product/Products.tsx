@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch } from "react-redux";
 
-import { updateNotification } from "@/state/app/reducer";
+import {updateBalance, updateNotification, updateProfile} from "@/state/app/reducer";
 import { useContractKit } from "@celo-tools/use-contractkit";
 
 import erc20Abi from '@/contract/erc20.abi.json';
@@ -31,6 +31,7 @@ interface ProductProps {
 const Products = (
   { index, owner, name, image, description, location, price, sold, reloadProduct }: ProductProps):JSX.Element => {
   const { kit } = useContractKit();
+  const showingPrice = ethers.utils.formatUnits(price, ERC20_DECIMALS);
 
   // @ts-ignore
   const cUSDContract = new kit.web3.eth.Contract(erc20Abi, cUSDContractAddress);
@@ -68,6 +69,7 @@ const Products = (
 
       // TODO: update balance
       reloadProduct(true);
+      dispatch(updateBalance({ amount: showingPrice }));
       // This is expensive UX feeling !
       // window.location.reload();
     } catch (e) {
@@ -106,7 +108,7 @@ const Products = (
           <a className="btn btn-outline-primary"
              id={index}
              onClick={() => purchaseHandler(index, name, price)}>
-            Buy for {ethers.utils.formatUnits(price, ERC20_DECIMALS)} cUSD
+            Buy for {showingPrice} cUSD
           </a>
         </div>
       </div>
