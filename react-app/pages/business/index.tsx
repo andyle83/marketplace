@@ -1,7 +1,7 @@
 import * as React from "react";
 import AppLayout from "@/components/layout/AppLayout";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { object, string } from "yup";
+import { object, string, number } from "yup";
 import { useContractKit } from "@celo-tools/use-contractkit";
 import {
   BusinessRegisterLabel,
@@ -17,6 +17,7 @@ import prisma from "@/lib/prisma";
 type IFormInputs = {
   name: string;
   address: string;
+  balance: number;
   location: string;
   phone: string;
 }
@@ -24,6 +25,7 @@ type IFormInputs = {
 const validBusinessSchema = object({
   name: string().required({ValidBusinessName}),
   address: string().required({ValidWalletAddress}),
+  balance: number().positive().required(),
   location: string().required({ValidBusinessLocation}),
   phone: string().required({ValidPhoneNumber})
 }).required();
@@ -42,6 +44,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     select: {
       id: true,
       address: true,
+      balance: true,
       location: true,
       phone: true,
     }
@@ -96,6 +99,18 @@ const Business: React.FC<Props> = ({ businesses}): JSX.Element => {
                     <input type="text" className="form-control" id="location" {...register("location", { required: true })}  />
                     <div role="alert" className="mt-2 text-danger">{errors.location?.message}</div>
                   </div>
+                </div>
+                <div className="row mb-4 justify-content-center">
+                  <label htmlFor="balance" className="col-sm-2 col-form-label">Wallet balance</label>
+                  <div className="col-sm-3">
+                    <div className="input-group">
+                      <input type="text" className="form-control" id="balance" disabled value="123" />
+                      <div className="input-group-append">
+                        <span className="input-group-text">cUSD</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-sm-3" />
                 </div>
                 <div className="row mb-4 justify-content-center">
                   <label htmlFor="phone" className="col-sm-2 col-form-label">Mobile Number</label>
