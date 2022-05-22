@@ -1,8 +1,8 @@
 import * as React from "react";
-import {useContractKit} from "@celo-tools/use-contractkit";
-import {RootStateOrAny, useSelector} from "react-redux";
+import { useContractKit } from "@celo-tools/use-contractkit";
+import { RootStateOrAny, useSelector } from "react-redux";
 
-export default function Footer() {
+const Footer = (): JSX.Element => {
   const blockNumber = useSelector((state:RootStateOrAny) => state.app.blockNumber);
   const { network: { name } } = useContractKit();
 
@@ -50,3 +50,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+export default Footer;

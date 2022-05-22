@@ -9,6 +9,17 @@ The feature includes:
 - See products hosted on the Celo Blockchain
 - Purchase products with cUSD and pay the owner
 - Add your own products to the dApp
+- Record purchase history
+
+On-going implementation (by order)
+
+- Pagination
+- Searching
+- Only verified merchant can add product
+- Merchant can check income / revenue in total or by product
+- Voting or commenting in purchased product (only customer who purchase can vote)
+- Category (labeling product type)
+- Tracking order
 
 **Demo website**: https://marketplace-andyle83.vercel.app/
 
@@ -23,6 +34,7 @@ The feature includes:
 
 **Backend** [TBD]
 - Using ORM (i.e, Prisma) and Postgres database to store off-chain data / fall-over solution
+- Heroku to host Postgres
 
 **Frontend**
 
