@@ -22,6 +22,7 @@ model Customer {
 model Business {
   id            String     @default(cuid())
   address       String
+  location      String
   phone         String     @default("000-000-0000")
   balance       Float      @default(0.00)
   income        Float      @default(0.00)

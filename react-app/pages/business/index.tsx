@@ -11,6 +11,8 @@ import {
   ValidWalletAddress
 } from "@/constants";
 import {yupResolver} from "@hookform/resolvers/yup";
+import {GetServerSideProps} from "next";
+import prisma from "@/lib/prisma";
 
 type IFormInputs = {
   name: string;
@@ -26,15 +28,39 @@ const validBusinessSchema = object({
   phone: string().required({ValidPhoneNumber})
 }).required();
 
-const Business: React.FC = (): JSX.Element => {
+type BusinessProps = {
+  address: string;
+  phone: string;
+}
+
+type Props = {
+  businesses: BusinessProps[]
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const businesses = await prisma.business.findMany({
+    select: {
+      id: true,
+      address: true,
+      location: true,
+      phone: true,
+    }
+  });
+
+  return { props : { businesses }}
+}
+
+const Business: React.FC<Props> = ({ businesses}): JSX.Element => {
   const { address } = useContractKit();
+
+  console.log(JSON.stringify(businesses));
 
   const { register, handleSubmit, formState: { errors } } = useForm<IFormInputs>({
     resolver: yupResolver(validBusinessSchema)
   });
 
   const onSubmit: SubmitHandler<IFormInputs> = async data => {
-    console.log(JSON.stringify(data));
+    // console.log(JSON.stringify(data));
   }
 
   return (
