@@ -11,9 +11,10 @@ import Identicon from "@/components/product/Identicon";
 import {
   MPContractAddress,
   cUSDContractAddress,
-  BuyNewProductSuccess
+  BuyNewProductSuccess, ERC20_DECIMALS
 } from '@/constants';
 import Image from "next/image";
+import { ethers } from "ethers";
 
 interface ProductProps {
   index: string,
@@ -38,9 +39,10 @@ const Products = (
 
   const dispatch = useDispatch();
 
-  const approve = async (price: number) => {
+  const approve = async (price) => {
+    const parsedPrice = ethers.utils.parseUnits(price, ERC20_DECIMALS);
     return await cUSDContract.methods
-                  .approve(MPContractAddress, price)
+                  .approve(MPContractAddress, parsedPrice)
                   .send({ from: kit.defaultAccount })
   }
 
@@ -50,8 +52,6 @@ const Products = (
 
   const purchaseHandler = async (index: string, name: string, price: number) => {
     dispatchMessage(`⌛ Waiting payment approval for ${name}`);
-
-    console.log(`approve call with price ${price} cUSD`)
 
     try {
       await approve(price)
@@ -82,7 +82,6 @@ const Products = (
 
   return (
     <div className="card mb-4">
-      {/*<img className="card-img-top" src={image} alt="..." />*/}
       <Image src={image} width={300} height={300} alt={name} />
       <div className="position-absolute top-0 end-0 bg-warning mt-4 px-2 py-1 rounded-start">
         {sold} Sold
@@ -107,7 +106,7 @@ const Products = (
           <a className="btn btn-outline-primary"
              id={index}
              onClick={() => purchaseHandler(index, name, price)}>
-            Buy for {price} cUSD
+            Buy for {ethers.utils.formatUnits(price, ERC20_DECIMALS)} cUSD
           </a>
         </div>
       </div>

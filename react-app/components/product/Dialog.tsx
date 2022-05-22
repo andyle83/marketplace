@@ -21,7 +21,7 @@ import { useState } from "react";
 import { useContractKit } from "@celo-tools/use-contractkit";
 import { useDispatch } from "react-redux";
 import { updateNotification } from "@/state/app/reducer";
-import BN from "bn.js";
+import {ethers} from "ethers";
 
 interface DialogProps {
   openModal: boolean,
@@ -65,10 +65,8 @@ const Dialog = ({ openModal, onClose }: DialogProps): JSX.Element => {
       imageUrl,
       data.description,
       data.location,
-      new BN(data.price)
+      ethers.utils.parseUnits(data.price.toString(), ERC20_DECIMALS),
     ]
-
-    console.log(params);
 
     if (address) {
       // @ts-ignore
