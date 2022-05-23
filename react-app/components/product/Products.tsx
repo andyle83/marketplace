@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch } from "react-redux";
 
-import { updateBalance, updateNotification } from "@/state/app/reducer";
+import {updateBalance, updateNotification, updateReloadProduct} from "@/state/app/reducer";
 import { useContractKit } from "@celo-tools/use-contractkit";
 
 import erc20Abi from '@/contract/erc20.abi.json';
@@ -25,11 +25,10 @@ interface ProductProps {
   location: string,
   price: number,
   sold: number,
-  reloadProduct: (isReload: boolean) => void,
 }
 
 const Products = (
-  { index, owner, name, image, description, location, price, sold, reloadProduct }: ProductProps):JSX.Element => {
+  { index, owner, name, image, description, location, price, sold }: ProductProps):JSX.Element => {
   const { kit } = useContractKit();
   const showingPrice = ethers.utils.formatUnits(price, ERC20_DECIMALS);
 
@@ -68,7 +67,7 @@ const Products = (
       dispatchMessage(BuyNewProductSuccess(name));
 
       // reloading product with new number of purchase
-      reloadProduct(true);
+      dispatch(updateReloadProduct({ reloadProduct: true }));
 
       // update balance in wallet
       dispatch(updateBalance({ amount: showingPrice }));

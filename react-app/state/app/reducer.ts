@@ -9,6 +9,9 @@ export interface ApplicationState {
   profile: {
     address: string,
     balance: number,
+  },
+  products: {
+    reloadProduct: boolean,
   }
 }
 
@@ -21,6 +24,9 @@ const initialState: ApplicationState = {
   profile: {
     address: null,
     balance: 0,
+  },
+  products: {
+    reloadProduct: true,
   }
 }
 
@@ -47,9 +53,13 @@ const appSlice = createSlice({
     updateBalance(state, action) {
       const { amount } = action.payload;
       state.profile.balance = state.profile.balance - parseFloat(amount);
+    },
+    updateReloadProduct(state, action) {
+      const { reloadProduct } = action.payload;
+      state.products.reloadProduct = reloadProduct;
     }
   },
 })
 
-export const { updateBlockNumber, updateLoadingState, updateNotification, updateProfile, updateBalance } = appSlice.actions;
+export const { updateBlockNumber, updateLoadingState, updateNotification, updateProfile, updateBalance, updateReloadProduct } = appSlice.actions;
 export default appSlice.reducer;

@@ -1,11 +1,11 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import {RootStateOrAny, useDispatch, useSelector} from "react-redux";
 import { useContractKit } from "@celo-tools/use-contractkit";
 
 import AppLayout from "@/components/layout/AppLayout";
 import Products from "@/components/product/Products";
-import { updateLoadingState, updateNotification } from "@/state/app/reducer";
+import {updateLoadingState, updateNotification, updateReloadProduct} from "@/state/app/reducer";
 
 import { LoadingProductStatus } from '@/constants';
 import { MPContractAddress } from '@/constants';
@@ -15,8 +15,11 @@ export default function App() {
   // get contract kit
   const { kit, address, network } = useContractKit();
   const [products, setProducts] = useState([]);
-  const [reloadProduct, setReloadProduct] = useState<boolean>(true);
   const dispatch = useDispatch();
+
+  const reloadProduct = useSelector(
+    (state:RootStateOrAny) => state.app.products.reloadProduct
+  );
 
   // get contract of our marketplace
   // @ts-ignore
@@ -53,7 +56,7 @@ export default function App() {
         dispatch(updateLoadingState({isLoading: false}))
       ).catch(e => console.error(e));
 
-      setReloadProduct(false);
+      dispatch(updateReloadProduct( { reloadProduct: !reloadProduct}));
     }
   }, [address, network, dispatch, contract.methods]);
 
@@ -61,7 +64,7 @@ export default function App() {
     // update notification
     return products.map((product, index) =>
         <div className="col-md-4" key={index}>
-          <Products {...product} reloadProduct={(reload) => setReloadProduct(reload)}  />
+          <Products {...product} />
         </div>
     )
   }
