@@ -60,13 +60,13 @@ const Products = (
     }
 
     try {
-      // purchase product
+      // call smart contract to purchase product
       await contract.methods.buyProduct(index).send({ from: kit.defaultAccount })
 
       // update notification message and rerender component
       dispatchMessage(BuyNewProductSuccess(name));
 
-      // reloading product with new number of purchase
+      // reloading product with new number of purchase in product list
       dispatch(updateReloadProduct({ reloadProduct: true }));
 
       // update balance in wallet

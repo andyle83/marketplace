@@ -79,6 +79,7 @@ const Dialog = ({ openModal, onClose }: DialogProps): JSX.Element => {
         dispatch(updateNotification({ message: `⚠️ ${error}.` }));
       }
 
+      // should catch event of new product before closing dialog ?
       dispatch(updateNotification({ message: AddNewProductSuccess(params[0]) }));
       onClose();
     }
