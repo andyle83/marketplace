@@ -17,6 +17,7 @@ export default function App() {
   const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
 
+  // TODO: should we use event handler from contract instead ?
   const reloadProduct = useSelector(
     (state:RootStateOrAny) => state.app.products.reloadProduct
   );
