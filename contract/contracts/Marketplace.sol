@@ -19,6 +19,8 @@ contract Marketplace {
 
     address internal cUsdTokenAddress = 0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1;
 
+    event newProduct(string name, address _seller, uint _price);
+
     struct Product {
         address payable owner;
         string name;
@@ -56,6 +58,9 @@ contract Marketplace {
 
         // increase whenever we have a new product added
         productsLength++;
+
+        // emit event to update UI
+        emit newProduct(_name, msg.sender, _price);
     }
 
     function getProductsLength() public view returns (uint) {

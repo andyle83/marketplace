@@ -4,7 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { object, string, number, mixed } from "yup";
 
-import marketplaceAbi from "@/contract/Marketplace.abi.json";
+import marketplaceAbi from "../../contracts/Marketplace.sol/Marketplace.json";
 
 import 'react-responsive-modal/styles.css';
 import {
@@ -70,7 +70,7 @@ const Dialog = ({ openModal, onClose }: DialogProps): JSX.Element => {
 
     if (address) {
       // @ts-ignore
-      const contract = new kit.web3.eth.Contract(marketplaceAbi, MPContractAddress);
+      const contract = new kit.web3.eth.Contract(marketplaceAbi.abi, MPContractAddress);
       try {
         contract.methods
           .writeProduct(...params)

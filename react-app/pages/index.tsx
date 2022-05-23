@@ -9,7 +9,7 @@ import {updateLoadingState, updateNotification, updateReloadProduct} from "@/sta
 
 import { LoadingProductStatus } from '@/constants';
 import { MPContractAddress } from '@/constants';
-import marketplaceAbi from "@/contract/Marketplace.abi.json";
+import marketplaceAbi from "../contracts/Marketplace.sol/Marketplace.json";
 
 export default function App() {
   // get contract kit
@@ -24,7 +24,7 @@ export default function App() {
 
   // get contract of our marketplace
   // @ts-ignore
-  const contract = new kit.web3.eth.Contract(marketplaceAbi, MPContractAddress);
+  const contract = new kit.web3.eth.Contract(marketplaceAbi.abi, MPContractAddress);
 
   // get products
   useEffect(() => {

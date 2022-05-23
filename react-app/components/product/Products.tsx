@@ -4,8 +4,8 @@ import { useDispatch } from "react-redux";
 import {updateBalance, updateNotification, updateReloadProduct} from "@/state/app/reducer";
 import { useContractKit } from "@celo-tools/use-contractkit";
 
-import erc20Abi from '@/contract/erc20.abi.json';
-import marketplaceAbi from "@/contract/Marketplace.abi.json";
+import erc20Abi from '../../contracts/Marketplace.sol/IERC20Token.json';
+import marketplaceAbi from "../../contracts/Marketplace.sol/Marketplace.json";
 import Identicon from "@/components/product/Identicon";
 
 import {
@@ -33,9 +33,9 @@ const Products = (
   const showingPrice = ethers.utils.formatUnits(price, ERC20_DECIMALS);
 
   // @ts-ignore
-  const cUSDContract = new kit.web3.eth.Contract(erc20Abi, cUSDContractAddress);
+  const cUSDContract = new kit.web3.eth.Contract(erc20Abi.abi, cUSDContractAddress);
   // @ts-ignore
-  const contract = new kit.web3.eth.Contract(marketplaceAbi, MPContractAddress);
+  const contract = new kit.web3.eth.Contract(marketplaceAbi.abi, MPContractAddress);
 
   const dispatch = useDispatch();
 
