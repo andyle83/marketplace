@@ -22,6 +22,7 @@ export default function App() {
     (state:RootStateOrAny) => state.app.products.reloadProduct
   );
 
+  // get contract of our marketplace
   // @ts-ignore
   const contract = new kit.web3.eth.Contract(marketplaceAbi.abi, MPContractAddress);
 
@@ -55,7 +56,7 @@ export default function App() {
       setProducts(await Promise.all(_products));
     }
 
-    // fetching updated product list when customer buy a product or business add a new product
+    // Reload product list when customer purchase or new product's added
     if (reloadProduct || isProductAdded) {
       dispatch(updateNotification({message: LoadingProductStatus}));
 
@@ -65,12 +66,11 @@ export default function App() {
 
       dispatch(updateReloadProduct( { reloadProduct: !reloadProduct}));
 
-      setIsProductAdded(!isProductAdded);
+      setIsProductAdded(false);
     }
   }, [address, network, dispatch, contract.methods]);
 
   const renderProducts = () => {
-    // update notification
     return products.map((product, index) =>
         <div className="col-md-4" key={index}>
           <Products {...product} />
