@@ -34,10 +34,9 @@ const Wallet = ():JSX.Element => {
   useEffect(() => {
     if (address) {
       if (parseFloat(rBalance) == 0) {
-        console.log('fetch...');
         fetchBalance().catch(e => console.error(e));
       } else {
-        console.log('redux...');
+        // store as a single source of true
         setBalance(rBalance);
       }
     }
