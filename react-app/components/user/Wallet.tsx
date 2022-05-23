@@ -26,7 +26,7 @@ const Wallet = ():JSX.Element => {
 
     // upsert user data
     await axios.post("/api/prisma/upsertUser", {
-      address: address.toLowerCase(),
+      address: address,
       balance: parseFloat(roundingBalance)
     })
   }, [address, kit]);

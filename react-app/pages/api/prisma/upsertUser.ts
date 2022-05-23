@@ -15,7 +15,7 @@ const upsertUser = async (req: NextApiRequest, res: NextApiResponse) => {
       where: { address: address },
       update: {},
       create: {
-        address: address,
+        address: address.toLowerCase(),
         balance: balance,
       }
     });
