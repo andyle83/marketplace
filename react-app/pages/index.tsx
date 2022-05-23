@@ -12,19 +12,24 @@ import { MPContractAddress } from '@/constants';
 import marketplaceAbi from "../contracts/Marketplace.sol/Marketplace.json";
 
 export default function App() {
-  // get contract kit
   const { kit, address, network } = useContractKit();
   const [products, setProducts] = useState([]);
+  const [isProductAdded, setIsProductAdded] = useState(false);
   const dispatch = useDispatch();
 
-  // TODO: should we use event handler from contract instead ?
+  // Reload when a product is purchased
   const reloadProduct = useSelector(
     (state:RootStateOrAny) => state.app.products.reloadProduct
   );
 
-  // get contract of our marketplace
   // @ts-ignore
   const contract = new kit.web3.eth.Contract(marketplaceAbi.abi, MPContractAddress);
+
+  contract.events.newProduct(function(error, event) {
+    if (event) {
+      setIsProductAdded(true);
+    }
+  });
 
   // get products
   useEffect(() => {
@@ -50,7 +55,8 @@ export default function App() {
       setProducts(await Promise.all(_products));
     }
 
-    if (reloadProduct) {
+    // fetching updated product list when customer buy a product or business add a new product
+    if (reloadProduct || isProductAdded) {
       dispatch(updateNotification({message: LoadingProductStatus}));
 
       fetchProducts().then(_ =>
@@ -58,6 +64,8 @@ export default function App() {
       ).catch(e => console.error(e));
 
       dispatch(updateReloadProduct( { reloadProduct: !reloadProduct}));
+
+      setIsProductAdded(!isProductAdded);
     }
   }, [address, network, dispatch, contract.methods]);
 
