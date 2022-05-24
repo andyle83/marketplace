@@ -1,21 +1,21 @@
-/** Create or Insert User (Business or Customer) into Prisma database **/
+/** Create Business into Prisma database **/
 
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
 import {ReasonPhrases, StatusCodes} from "http-status-codes";
 
-const upsertUser = async (req: NextApiRequest, res: NextApiResponse) => {
+const registerBusiness = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "POST") {
     return res.status(StatusCodes.METHOD_NOT_ALLOWED).json( { message: ReasonPhrases.METHOD_NOT_ALLOWED });
   }
 
   try {
-    let { address, balance } = req.body;
-    const user = await prisma.customer.upsert({
-      where: { address },
-      update: {},
-      create: {
+    let { address, location, phone, balance } = req.body;
+    const user = await prisma.business.create({
+      data: {
         address: address.toLowerCase(),
+        location,
+        phone,
         balance,
       }
     });
@@ -27,4 +27,4 @@ const upsertUser = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 }
 
-export default upsertUser;
+export default registerBusiness;
