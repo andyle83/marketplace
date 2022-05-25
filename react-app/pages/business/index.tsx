@@ -1,7 +1,8 @@
 import * as React from "react";
 import AppLayout from "@/components/layout/AppLayout";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { object, string, number } from "yup";
+import { object, string } from "yup";
+import "yup-phone";
 import {
   BusinessRegisterLabel,
   BusinessWalletRequest,
@@ -26,7 +27,7 @@ type IFormInputs = {
 const validBusinessSchema = object({
   name: string().required(ValidBusinessName),
   location: string().required(ValidBusinessLocation),
-  phone: string().required(ValidPhoneNumber)
+  phone: string().phone().required(ValidPhoneNumber)
 });
 
 type BusinessProps = {
@@ -67,8 +68,12 @@ const Business: React.FC<Props> = ({ businesses}): JSX.Element => {
     resolver: yupResolver(validBusinessSchema)
   });
 
-  const onSubmit: SubmitHandler<IFormInputs> = async data => {
-    console.log(JSON.stringify(data));
+  const onSubmit: SubmitHandler<IFormInputs> = async ({ name, location, phone}) => {
+    console.log(`${name} ${location} ${phone}`);
+    // // insert new business
+    // await axios.post("/api/prisma/registerBusiness", {
+    //   name:
+    // })
   }
 
   return (
@@ -120,7 +125,7 @@ const Business: React.FC<Props> = ({ businesses}): JSX.Element => {
                 <div className="row mb-4 justify-content-center">
                   <label htmlFor="phone" className="col-sm-2 col-form-label">Mobile Number</label>
                   <div className="col-sm-3">
-                    <input type="text" className="form-control" id="phone" placeholder="000-000-0000" {...register("phone", { required: true })}  />
+                    <input type="text" className="form-control" id="phone" placeholder="+00 000-000-000" {...register("phone", { required: true })}  />
                     <div role="alert" className="mt-2 text-danger">{errors.phone?.message}</div>
                   </div>
                   <div className="col-sm-3" />
