@@ -1,4 +1,4 @@
-export const MPContractAddress        = "0xFCedf9CF9704678Ea1208478F63291f32fc8B239";
+export const MPContractAddress        = "0xe47803EA3825Fe685C8db9Cf531CF253e9F7EFd1";
 export const cUSDContractAddress      = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1";
 
 export const LoadingProductStatus     = "⌛ Loading products list...";
