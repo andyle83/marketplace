@@ -13,6 +13,8 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import {GetServerSideProps} from "next";
 import prisma from "@/lib/prisma";
 import {RootStateOrAny, useSelector} from "react-redux";
+import axios from "axios";
+import {useContractKit} from "@celo-tools/use-contractkit";
 
 type IFormInputs = {
   name: string;
@@ -54,7 +56,11 @@ export const getServerSideProps: GetServerSideProps = async () => {
 }
 
 const Business: React.FC<Props> = ({ businesses}): JSX.Element => {
-  const {balance, address} = useSelector(
+
+  // select address from contractkit rather than useSelector help to avoid render incorrect initial
+  const { address } = useContractKit();
+
+  const { balance } = useSelector(
     (state:RootStateOrAny) => state.app.profile
   );
 
@@ -65,7 +71,10 @@ const Business: React.FC<Props> = ({ businesses}): JSX.Element => {
   });
 
   const onSubmit: SubmitHandler<IFormInputs> = async data => {
-    // console.log(JSON.stringify(data));
+    console.log(JSON.stringify(data));
+    // const business = await axios.post("/api/prisma/registerBusiness" {
+    //
+    // })
   }
 
   return (
