@@ -48,7 +48,7 @@ const validProductSchema = object({
     .test("fileType", "Unsupported file format", (value) =>{
       return (value.length > 0) && ["image/jpeg", "image/png", "image/jpg"].includes(value[0].type)
     })
-}).required();
+});
 
 const Dialog = ({ openModal, onClose }: DialogProps): JSX.Element => {
   const { kit, address } = useContractKit();

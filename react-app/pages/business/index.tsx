@@ -25,12 +25,12 @@ type IFormInputs = {
 }
 
 const validBusinessSchema = object({
-  name: string().required({ValidBusinessName}),
-  address: string().required({ValidWalletAddress}),
+  name: string().required(ValidBusinessName),
+  address: string().required(ValidWalletAddress),
   balance: number().positive().required(),
-  location: string().required({ValidBusinessLocation}),
-  phone: string().required({ValidPhoneNumber})
-}).required();
+  location: string().required(ValidBusinessLocation),
+  phone: string().required(ValidPhoneNumber)
+});
 
 type BusinessProps = {
   address: string;
@@ -72,9 +72,6 @@ const Business: React.FC<Props> = ({ businesses}): JSX.Element => {
 
   const onSubmit: SubmitHandler<IFormInputs> = async data => {
     console.log(JSON.stringify(data));
-    // const business = await axios.post("/api/prisma/registerBusiness" {
-    //
-    // })
   }
 
   return (
