@@ -19,7 +19,6 @@ export const ValidProductDescription  = "Description is required";
 export const ValidBusinessName        = "Business name is required";
 export const ValidBusinessLocation    = "Business location is required";
 export const ValidPhoneNumber         = "Phone number is required";
-export const ValidWalletAddress       = "Celo Wallet address is required";
 
 export const BuyNewProductSuccess     = (message) => `🎉 You successfully bought "${message}".`;
 export const AddNewProductSuccess     = (message) => `🎉 You successfully added "${message}".`;

@@ -7,7 +7,6 @@ import {
   BusinessWalletRequest,
   BusinessWelcomeMessage, ValidBusinessLocation,
   ValidBusinessName, ValidPhoneNumber,
-  ValidWalletAddress
 } from "@/constants";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {GetServerSideProps} from "next";
@@ -26,8 +25,6 @@ type IFormInputs = {
 
 const validBusinessSchema = object({
   name: string().required(ValidBusinessName),
-  address: string().required(ValidWalletAddress),
-  balance: number().positive().required(),
   location: string().required(ValidBusinessLocation),
   phone: string().required(ValidPhoneNumber)
 });
