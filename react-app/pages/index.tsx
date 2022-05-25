@@ -72,7 +72,7 @@ export default function App() {
 
   const renderProducts = () => {
     return products.map((product, index) =>
-        <div className="col-md-4" key={index}>
+        <div className="col-md-3" key={index}>
           <Products {...product} />
         </div>
     )

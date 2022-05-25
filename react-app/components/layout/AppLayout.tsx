@@ -8,7 +8,7 @@ interface AppLayoutProps {
 
 export default function AppLayout({ children }: AppLayoutProps) {
   return (
-    <div className="container mt-2" style={{ maxWidth: "72em"}}>
+    <div className="container mt-2" style={{ maxWidth: "90em"}}>
       <Header />
       {children}
       <Footer />
